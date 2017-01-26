@@ -1,0 +1,48 @@
+// Place all the styles related to the cognitive_bank controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Move down content because we have a fixed navbar that is 50px tall
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.navbar-inverse {
+  background-color: black;
+}
+
+.navbar-brand {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+// Override Bootstrap display: block
+.navbar-brand > img {
+  display: inline;
+}
+
+.navbar-logo {
+  height: 50px;
+  vertical-align: -70%
+}
+
+.main-logo {
+  height: 100px;
+  vertical-align: -25%
+}
+
+.offer {
+  position: relative;
+  height: 500px;
+}
+
+.offer-image {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.offer-buttons {
+  position: absolute;
+  bottom: 2px;
+}

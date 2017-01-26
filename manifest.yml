@@ -1,0 +1,5 @@
+---
+applications:
+- name: Cognitive Bank
+  buildpack: ruby_buildpack
+  memory: 1GB

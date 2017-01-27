@@ -1,6 +1,6 @@
 
 class CognitiveBankController < ApplicationController
-  def index
+  def home
   end
   
   def offers

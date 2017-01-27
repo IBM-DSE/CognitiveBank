@@ -2,6 +2,27 @@
 
 <div class="container">
   <% if logged_in? %>
+      
       <h3>Welcome, <%= current_user.name %>!</h3>
+      <br>
+      <h4>Total Transactions: <%= current_user.transactions.count %></h4>
+      <%= pie_chart @sorted_categories %>
+
+      <h3>Transactions</h3>
+      <table class="table table-bordered">
+        <tr>
+          <th>Date</th>
+          <th>Category</th>
+          <th>Amount</th>
+        </tr>
+        <% current_user.transactions.order(date: :desc).each do |transaction| %>
+            <tr>
+              <td><%= transaction.date %></td>
+              <td><%= transaction.category %></td>
+              <td><%= transaction.amount %></td>
+            </tr>
+        <% end %>
+      </table>
+
   <% end %>
 </div>

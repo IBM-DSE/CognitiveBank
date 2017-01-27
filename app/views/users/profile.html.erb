@@ -1,0 +1,7 @@
+<h1>Profile</h1>
+
+<div class="container">
+  <% if logged_in? %>
+      <h3>Welcome, <%= current_user.name %>!</h3>
+  <% end %>
+</div>

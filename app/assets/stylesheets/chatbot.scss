@@ -19,16 +19,18 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
+  height: 80vh;
   
 }
 
 #chat-window {
   position: relative;
-  background: white;
-  width: 370px;
-  height: 590px;
+  width: 30vw;
+  min-width: 300px;
+  height: calc(100% - 80px);
   border-radius: 25px;
   margin-bottom: 20px;
+  background: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   overflow: hidden;
   
@@ -77,7 +79,6 @@
   padding: 1.25rem 1.875rem;
   display: inline-block;
   margin: 0.3125rem 0;
-  max-width: calc(100% - 5.3125rem);
   word-wrap: break-word;
 }
 
@@ -175,6 +176,9 @@
 // Button to close and open window
 
 #chat-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
   float:right;
   cursor: pointer;
 }

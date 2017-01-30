@@ -1,0 +1,28 @@
+/**
+ * Created by David on 1/30/17.
+ */
+class WatsonMessage extends React.Component {
+    render() {
+        return (
+            <div className="message-wrapper watson">
+              <div className="message watson-message">
+                {this.props.msg}
+              </div>
+              <%= image_tag 'watson-logo-round' %>
+            </div>
+        );
+    }
+}
+
+class UserMessage extends React.Component {
+    render() {
+        return (
+            <div className="message-wrapper user">
+              <%= image_tag 'head' %>
+              <div className="message user-message">
+                {this.props.msg}
+              </div>
+            </div>
+        );
+    }
+}

@@ -12,10 +12,12 @@
 //
 //= require react
 //= require react_ujs
-//= require turbolinks
+//= require components
 //= require jquery
-//= require jquery_ujs 
+//= require jquery.turbolinks
+//= require jquery_ujs
 //= require bootstrap-sprockets
 //= require Chart.bundle
 //= require chartkick
 //= require_tree .
+//= require turbolinks

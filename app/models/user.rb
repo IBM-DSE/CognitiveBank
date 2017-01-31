@@ -9,11 +9,8 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
   
-  has_many :transactions
-  
-  def self.category_counts
-    
-  end
+  has_many :transactions, dependent: :destroy
+  has_many :messages, dependent: :destroy
   
   # Returns the hash digest of the given string.
   def User.digest(string)

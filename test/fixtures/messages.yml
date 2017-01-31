@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  content: MyString
+  watson_response: false
+
+two:
+  user: two
+  content: MyString
+  watson_response: false

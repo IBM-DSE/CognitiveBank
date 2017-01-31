@@ -1,0 +1,72 @@
+// Place all the styles related to the messages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user, .watson {
+  display: block;
+  overflow: visible;
+  position: relative;
+  margin: 0 5.3125rem;
+}
+
+.user{text-align: left;}
+.watson{text-align: right;}
+
+.watson-message,
+.user-message {
+  border-radius: 2rem;
+  font-family: "Helvetica Neue for IBM Medium", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #FFFFFF;
+  padding: 1.25rem 1.875rem;
+  display: inline-block;
+  margin: 0.3125rem 0;
+  word-wrap: break-word;
+}
+
+.watson-message {
+  background: #24af4c;
+}
+
+.user-message {
+  background: #007fff;
+}
+
+.user-message::before, .watson-message::after {
+  content: "";
+  position: absolute;
+  border: 1rem solid transparent;
+}
+
+.user-message::before {
+  left: -1.65rem;
+  border-right-color: #007fff;
+}
+
+.watson-message::after {
+  right: -1.65rem;
+  bottom: 1.5rem;
+  border-left-color: #24af4c;
+}
+
+.user img:not(.msg) {
+  height: 5.2rem;
+  position: absolute;
+  left: -5.2rem;
+  top: 0.1rem;
+}
+
+.watson img:not(.msg) {
+  height: 4.5rem;
+  position: absolute;
+  right: -5.2rem;
+  bottom: 0.2rem;
+}
+
+.watson img.msg {
+  height: 50px;
+}
+
+.watson .pre-bar::before {
+  border-left-color: white;
+}

@@ -1,17 +1,27 @@
-<div id="chat-zone">
-  <div id="chat-window">
-    <%= react_component('WatsonMessage', msg: "Hey there, #{logged_in? ? current_user.name : 'user'}!") %>
-    <%= react_component('UserMessage', msg: 'Hey there, Watson!') %>
-    <div id="chat-input-container">
-      <%= text_area(:post, :body, id: 'chat-input', placeholder: 'Send a message...') %>
-    </div>
-  </div>
+<% if logged_in? %>
+    <div id="chat-zone">
+      <div id="chat-window">
 
-  <div id="chat-button">
-    <%= image_tag 'watson-logo-round.png', id: 'watson-button' %>
-    <div id="close-button">
-      <span id="close-icon">X</span>
+        <div id="chat-flow">
+          <!--<div id="chat-scroll-wrapper">-->
+            <div id="chat-messages">
+              <%= render current_user.messages %>
+            </div>
+          <!--</div>-->
+        </div>
+
+        <div id="chat-input-container">
+          <%= render 'messages/input' %>
+          <!--%= text_area(:post, :body, id: 'chat-input', placeholder: 'Send a message...') %>-->
+        </div>
+      </div>
+
+      <div id="chat-button">
+        <%= image_tag 'watson-logo-round.png', id: 'watson-button' %>
+        <div id="close-button">
+          <span id="close-icon">X</span>
+        </div>
+      </div>
+
     </div>
-  </div>
-  
-</div>
+<% end %>

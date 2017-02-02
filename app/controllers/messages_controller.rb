@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
   def create
     @message = current_user.messages.build(message_params)
     if @message.save
+      @message.send_to_watson
       respond_to do |format|
         format.js
       end

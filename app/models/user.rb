@@ -11,6 +11,8 @@ class User < ApplicationRecord
   
   has_many :transactions, dependent: :destroy
   has_many :messages, dependent: :destroy
+
+  serialize :context, Hash
   
   # Returns the hash digest of the given string.
   def User.digest(string)

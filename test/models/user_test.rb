@@ -3,7 +3,7 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   
   def setup
-    @user = User.new(name: 'Example User', email: 'user@example.com', password: "foobar", password_confirmation: "foobar")
+    @user = User.new(name: 'Example User', email: 'user@example.com', password: 'foobar', password_confirmation: 'foobar')
   end
   
   test 'should be valid' do
@@ -11,12 +11,12 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'name should be present' do
-    @user.name = "     "
+    @user.name = '     '
     assert_not @user.valid?
   end
 
   test 'email should be present' do
-    @user.email = "     "
+    @user.email = '     '
     assert_not @user.valid?
   end
 
@@ -41,6 +41,11 @@ class UserTest < ActiveSupport::TestCase
     @user.email = mixed_case_email
     @user.save
     assert_equal mixed_case_email.downcase, @user.reload.email
+  end
+  
+  test 'context should be read/write-able' do
+    @user.update_attribute :context, {foo: 'bar'}
+    assert_equal @user.context, {foo: 'bar'}
   end
 
 end

@@ -1,0 +1,10 @@
+---
+applications:
+- name: Cognitive Bank
+  buildpack: ruby_buildpack
+  memory: 1GB
+  services:
+    - CognitiveBank-Conversation
+  command: bundle exec rake db:setup && bundle exec rails s -p $PORT
+  env:
+    WORKSPACE_ID: <WATSON_CONVERATION_WORKSPACE_ID> 

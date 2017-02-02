@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  name: MyString
+  gender: false
+  birth_date: 2017-02-02
+  education: 1
+  marital_status: false
+  children_count: 1
+  city: MyString
+  zip_code: MyString
+  annual_income: 1
+  client_importance: 1
+  client_potential: 1
+  twitter_id: MyString
+
+two:
+  user: two
+  name: MyString
+  gender: false
+  birth_date: 2017-02-02
+  education: 1
+  marital_status: false
+  children_count: 1
+  city: MyString
+  zip_code: MyString
+  annual_income: 1
+  client_importance: 1
+  client_potential: 1
+  twitter_id: MyString

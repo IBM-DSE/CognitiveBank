@@ -1,8 +1,6 @@
-<% if logged_in? and is_customer? %>
-    
 <div id="chat-zone">
+  
   <div id="chat-window">
-
     <div id="chat-flow">
       <div id="chat-messages">
         <%= render current_customer.messages %>
@@ -20,7 +18,5 @@
       <span id="close-icon">X</span>
     </div>
   </div>
-
+  
 </div>
-    
-<% end %>

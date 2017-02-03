@@ -1,6 +1,6 @@
 class Message < ApplicationRecord
-  belongs_to :user
-  validates :user_id, presence: true
+  belongs_to :customer
+  validates :customer_id, presence: true
   validates :content, presence: true, length: { maximum: 140 }
   
   API_ENDPOINT='https://gateway.watsonplatform.net/conversation/api/v1/workspaces/'
@@ -23,22 +23,31 @@ class Message < ApplicationRecord
   def send_to_watson
     
     # send to watson conversation
-    response = send_to_watson_conversation
-    results  = eval(response.body)
+    response           = send_to_watson_conversation
+    results            = eval(response.body)
     
     # update user context
-    user.update_attribute :context, results[:context]
+    customer[:context] = results[:context]
     
     # create watson messages
     results[:output][:text].each do |line|
-      user.messages.create! content: line, watson_response: true
+      customer.messages.build content: line, watson_response: true
     end
+    
+    customer.save
   end
   
   private
   
   def send_to_watson_conversation
-    CONVERSATION_RESOURCE.post({ input: { text: self.content }, context: user.context }.to_json,
-                               :content_type => 'application/json')
+    body = { input: { text: self.content }, context: customer.context }.to_json
+    begin
+      CONVERSATION_RESOURCE.post(body, :content_type => 'application/json')
+    rescue Exception => ex
+      puts "ERROR: #{ex.response}"
+      puts "Conversation Endpoint = #{CONVERSATION_RESOURCE}"
+      puts "Body sent to Watson Conversation: #{body}"
+      raise ex
+    end
   end
 end

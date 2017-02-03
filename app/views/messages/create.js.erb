@@ -1,4 +1,3 @@
 $("#chat-messages").html("<%= escape_javascript(render current_customer.messages) %>");
 $("#chat-input").val("");
-mydiv = $("#chat-flow");
-mydiv.scrollTop(mydiv.prop("scrollHeight"));
+ChatWindow.scroll_down();

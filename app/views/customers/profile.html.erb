@@ -3,6 +3,8 @@
 <div class="container">
   <% if logged_in? %>
       
+      <%= @churn if @churn %>
+      
       <h3>Welcome, <%= current_user.name %>!</h3>
       <br>
       <h4>Total Transactions: <%= current_customer.transactions.count %></h4>

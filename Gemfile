@@ -67,3 +67,6 @@ group :test do
   gem 'minitest-reporters'
   gem 'rails-controller-testing'
 end
+
+# Prevents warning messages
+gem 'thor', '0.19.1'

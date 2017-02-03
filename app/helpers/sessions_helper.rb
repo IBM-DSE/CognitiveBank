@@ -19,6 +19,10 @@ module SessionsHelper
   def logged_in?
     !current_user.nil?
   end
+  
+  def is_customer?
+    current_user.customer
+  end
 
   # Logs out the current user.
   def log_out

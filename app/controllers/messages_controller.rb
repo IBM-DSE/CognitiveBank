@@ -2,16 +2,17 @@ class MessagesController < ApplicationController
   before_action :logged_in_user
   
   def create
-    @message = current_user.messages.build(message_params)
-    if @message.save
-      @message.send_to_watson
-      respond_to do |format|
-        format.js
-      end
+    
+    # Build new message from this user
+    @message = current_customer.messages.build(message_params)
+    
+    # Send to Watson Conversation
+    if @message.send_to_watson
+      
+      # Respond with Javascript to update chat bubble
+      respond_to { |format| format.js }
     else
-      flash.now[:danger] = 'Invalid email/password combination'
-      @feed_items = []
-      render 'static_pages/home'
+      flash.now[:danger] = 'Sorry, there was a problem when talking to Watson. Ask an administrator for assistance.'
     end
   end
 

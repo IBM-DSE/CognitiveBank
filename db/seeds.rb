@@ -17,7 +17,7 @@ User.create!(name: 'David Thomason', email: 'david@example.com', password: 'foob
 
 # Load the transaction categories
 CSV.foreach('db/transaction_categories.csv', headers: true) do |row|
-  TransactionCategory.create!(id: row[1], category: row[0])
+  TransactionCategory.create!(id: row[1], name: row[0])
 end
 puts "Loaded #{TransactionCategory.count} transaction categories."
 
@@ -27,9 +27,7 @@ CSV.foreach('db/transactions.csv', headers: true) do |row|
   
   if row['twitter_id']
     
-    puts "Found Twitter ID #{row['twitter_id']}"
     # If we've encountered a new user, add it to the database
-    puts ".#{row['id'].to_i.class}==#{customer.id.class}."
     if row['id'].to_i != customer.id
       customer.save! if customer.id
       customer = Customer.new

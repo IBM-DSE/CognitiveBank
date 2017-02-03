@@ -2,7 +2,7 @@ class CustomersController < ApplicationController
   def profile
     if logged_in?
   
-      current_customer.get_churn if Rails.env.production?
+      @churn = current_customer.get_churn if Rails.env.production?
       
       cc = {}
       TransactionCategory.all.each do |category|

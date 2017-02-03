@@ -10,7 +10,9 @@ class Customer < ApplicationRecord
   SCORING_ML_RESOURCE = RestClient::Resource.new SCORING_ML_URL
   
   def get_churn
-    puts post_to_scoring_ml ['F', 38, 2, 114368, 3852862, 5, 700259, 0.0, 335, 2090, 3]
+    response = post_to_scoring_ml ['F', 38, 2, 114368, 3852862, 5, 700259, 0.0, 335, 2090, 3]
+    full_result = eval(response.body)[:result]
+    full_result.slice :prediction, :raw_prediction, :probability
   end
   #where:
   #SEX: F

@@ -1,6 +1,9 @@
 class CustomersController < ApplicationController
   def profile
     if logged_in?
+  
+      current_customer.get_churn if Rails.env.production?
+      
       cc = {}
       TransactionCategory.all.each do |category|
         cc[category.name] = current_customer.transactions.where(transaction_category: category).count

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  personality: MyString
+  values: MyString
+  needs: MyString
+
+two:
+  customer: two
+  personality: MyString
+  values: MyString
+  needs: MyString

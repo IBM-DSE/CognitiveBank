@@ -1,6 +1,7 @@
 class Customer < ApplicationRecord
   belongs_to :user
 
+  has_one :twitter_personality
   has_many :transactions
   has_many :messages
 
@@ -26,6 +27,11 @@ class Customer < ApplicationRecord
   #YRLY_TX: 335
   #AVG_TX_AMT: 2090
   #NEGTWEETS: 3
+  
+  def start_conversation
+    # Send empty string to Watson Conversation
+    Message.send_to_watson_conversation('', self) if messages.empty?
+  end
   
   def post_to_scoring_ml(record)
     

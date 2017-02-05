@@ -8,18 +8,16 @@
 
 require 'csv'
 
+
 User.create!(name: 'David Thomason', email: 'david@example.com', password: 'foobar', password_confirmation: 'foobar')
 
-# User.create!(id: 1009505380, name: 'Carmela Giuggia', email: 'carmela@example.com', 
-#              password: 'password', password_confirmation: 'password')
-# User.create!(id: 1009505390, name: 'Rufo Bragalini', email: 'rufo@example.com', 
-#              password: 'password', password_confirmation: 'password')
 
 # Load the transaction categories
 CSV.foreach('db/transaction_categories.csv', headers: true) do |row|
   TransactionCategory.create!(id: row[1], name: row[0])
 end
 puts "Loaded #{TransactionCategory.count} transaction categories."
+
 
 puts 'Loading the customers and transactions...'
 customer = Customer.new
@@ -49,3 +47,12 @@ CSV.foreach('db/transactions.csv', headers: true) do |row|
 
 end
 puts "Loaded #{Customer.count} customers and #{Transaction.count} transactions."
+
+
+# Load the twitter personalities
+CSV.foreach('db/twitter_personalities.csv', headers: true) do |row|
+  tp = TwitterPersonality.new(row.to_hash.slice('personality', 'values', 'needs'))
+  tp.customer = Customer.find_by_twitter_id row['username']
+  puts "#{row['username']} : #{tp.customer.user.name}" if tp.customer
+  tp.save
+end

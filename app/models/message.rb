@@ -19,13 +19,29 @@ class Message < ApplicationRecord
   
   URL                   = API_ENDPOINT + WORKSPACE_ID + '/message?version=' + VERSION
   CONVERSATION_RESOURCE = RestClient::Resource.new URL, USERNAME, PASSWORD
-  
+
+  # send self to watson conversation
   def send_to_watson
-    
-    # send to watson conversation
-    response           = send_to_watson_conversation
-    results            = eval(response.body)
-    
+    Message.send_to_watson_conversation content, customer
+  end
+  
+  # class method for sending string message content and customer context to WC
+  def self.send_to_watson_conversation(content, customer)
+    body = { input: { text: content }, context: customer.context }.to_json
+    begin
+      response = CONVERSATION_RESOURCE.post(body, :content_type => 'application/json')
+      Message.update_customer eval(response.body), customer
+    rescue Exception => ex
+      puts "ERROR: #{ex.response}"
+      puts "Conversation Endpoint = #{CONVERSATION_RESOURCE}"
+      puts "Body sent to Watson Conversation: #{body}"
+      raise ex
+    end
+  end
+  
+  private
+  
+  def self.update_customer(results, customer)
     # update user context
     customer[:context] = results[:context]
     
@@ -36,18 +52,5 @@ class Message < ApplicationRecord
     
     customer.save
   end
-  
-  private
-  
-  def send_to_watson_conversation
-    body = { input: { text: self.content }, context: customer.context }.to_json
-    begin
-      CONVERSATION_RESOURCE.post(body, :content_type => 'application/json')
-    rescue Exception => ex
-      puts "ERROR: #{ex.response}"
-      puts "Conversation Endpoint = #{CONVERSATION_RESOURCE}"
-      puts "Body sent to Watson Conversation: #{body}"
-      raise ex
-    end
-  end
+
 end

@@ -25,7 +25,7 @@
 }
 
 .watson-message {
-  background: #24af4c;
+  background: #008571;
 }
 
 .user-message {
@@ -46,25 +46,25 @@
 .watson-message::after {
   right: -1.65rem;
   bottom: 1.5rem;
-  border-left-color: #24af4c;
+  border-left-color: #008571;
 }
 
-.user img:not(.msg) {
+.user-icon {
   height: 5.2rem;
   position: absolute;
   left: -5.2rem;
   top: 0.1rem;
 }
 
-.watson img:not(.msg) {
+.watson-icon {
   height: 4.5rem;
   position: absolute;
   right: -5.2rem;
   bottom: 0.2rem;
 }
 
-.watson img.msg {
-  height: 50px;
+.watson img:not(.watson-icon) {
+  width: 100%;
 }
 
 .watson .pre-bar::before {

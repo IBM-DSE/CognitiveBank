@@ -10,24 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170203201418) do
+ActiveRecord::Schema.define(version: 20170206150120) do
 
   create_table "customers", force: :cascade do |t|
-    t.integer  "user_id"
-    t.boolean  "gender"
-    t.date     "birth_date"
-    t.integer  "education"
-    t.boolean  "marital_status"
-    t.integer  "children_count"
-    t.string   "city"
-    t.string   "zip_code"
-    t.integer  "annual_income"
-    t.integer  "client_importance"
-    t.integer  "client_potential"
-    t.string   "twitter_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.text     "context"
+    t.integer "user_id"
+    t.string  "sex"
+    t.integer "age"
+    t.integer "education"
+    t.integer "investment"
+    t.integer "income"
+    t.integer "activity"
+    t.float   "yrly_amt"
+    t.float   "avg_daily_tx"
+    t.integer "yrly_tx"
+    t.float   "avg_tx_amt"
+    t.integer "negtweets"
+    t.string  "state"
+    t.string  "education_group"
+    t.text    "context"
     t.index ["user_id"], name: "index_customers_on_user_id"
   end
 
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20170203201418) do
 
   create_table "twitter_personalities", force: :cascade do |t|
     t.integer  "customer_id"
+    t.string   "username"
     t.string   "personality"
     t.string   "values"
     t.string   "needs"

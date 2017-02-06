@@ -2,50 +2,50 @@
 
 <div class="container">
   <% if logged_in? %>
-      
-      <% if @churn %>
-      <div>
-        <h4>Churn Result:</h4>
-        <%= pp @churn %>
-      </div>
-      <% end %>
 
-      <% if @personality %>
-      <div>
-        <h4>Twitter Personality:</h4>
-        <%= current_customer.attributes.slice('twitter_id') %><br>
-        <%= @personality.attributes.slice('personality', 'values', 'needs') %><br>
-        <% values_closeness = @personality.values == 'Closeness' %>
-        Values Closeness: <strong><%= values_closeness %></strong>
-        <%= hidden_field_tag(:values_closeness, values_closeness) %>
-      </div>
-      <% end %>
-
-      <% no_messages = current_customer.messages.where(watson_response: false).empty? %>
-      <%= hidden_field_tag(:no_messages, no_messages) %>
-      <br>
-      <%= 'no messages yet' if no_messages %> 
-      
       <h3>Welcome, <%= current_user.name %>!</h3>
       <br>
-      <h4>Total Transactions: <%= current_customer.transactions.count %></h4>
-      <%= pie_chart @sorted_categories %>
+      <% if @churn %>
+          <div>
+            <h4>Churn Result:</h4>
+            <%= render partial: 'layouts/display_attributes', locals: { hash: @churn } %>
+          </div>
+      <% end %>
+      <br>
+      <% if @twitter %>
+          <div>
+            <h4>Twitter Profile:</h4>
+            <p>
+              <strong>Twitter Account: </strong>
+              <%= link_to @twitter.username, 'https://twitter.com/'+@twitter.username, target: '_blank' %>
+            </p>
+            <%= render partial: 'layouts/display_attributes', locals: { hash: @twitter.attributes.slice('personality', 'values', 'needs') } %>
+          </div>
+      <% end %>
+      <br>
+      <div>
+        <h4>Customer Summary:</h4>
+        <%= render partial: 'layouts/display_attributes', locals: { hash: current_customer.attributes.except('id', 'user_id', 'context') } %>
+      </div>
+      <!--<br>-->
+      <!--<h4>Total Transactions: %= current_customer.transactions.count %></h4>-->
+      <!--%= pie_chart @sorted_categories %>-->
 
-      <h3>Transactions</h3>
-      <table class="table table-bordered">
-        <tr>
-          <th>Date</th>
-          <th>Category</th>
-          <th>Amount</th>
-        </tr>
-        <% current_customer.transactions.order(date: :desc).each do |transaction| %>
-            <tr>
-              <td><%= transaction.date %></td>
-              <td><%= transaction.category %></td>
-              <td><%= transaction.amount %></td>
-            </tr>
-        <% end %>
-      </table>
+      <!--<h3>Transactions</h3>-->
+      <!--<table class="table table-bordered">-->
+      <!--<tr>-->
+      <!--<th>Date</th>-->
+      <!--<th>Category</th>-->
+      <!--<th>Amount</th>-->
+      <!--</tr>-->
+      <!--% current_customer.transactions.order(date: :desc).each do |transaction| %>-->
+      <!--<tr>-->
+      <!--<td>%= transaction.date %></td>-->
+      <!--<td>%= transaction.category %></td>-->
+      <!--<td>%= transaction.amount %></td>-->
+      <!--</tr>-->
+      <!--% end %>-->
+      <!--</table>-->
 
   <% end %>
 </div>

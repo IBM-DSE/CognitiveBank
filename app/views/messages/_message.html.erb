@@ -1,8 +1,8 @@
 <% type = message.watson_response ? 'watson' : 'user' %>
 <div class="message-wrapper <%= type %>">
-  <%= image_tag 'head.svg' if type == 'user' %>
+  <%= image_tag 'head.svg', class: 'user-icon' if type == 'user' %>
   <div class="message <%= type %>-message">
-    <%= message.content %>
+    <%= message.content.html_safe %>
   </div>
-  <%= image_tag 'watson-logo-round.png' if type == 'watson' %>
+  <%= image_tag 'watson-logo-round.png', class: 'watson-icon' if type == 'watson' %>
 </div>

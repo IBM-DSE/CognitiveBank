@@ -70,6 +70,10 @@ class Customer < ApplicationRecord
   
   end
   
+  def twitter_id
+    self.twitter_personality.username
+  end
+  
   def gender
     self.gender ? 'Male' : 'Female'
   end

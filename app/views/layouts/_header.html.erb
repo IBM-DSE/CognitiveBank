@@ -22,7 +22,8 @@
                 Account <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><%= link_to 'Profile', profile_path %></li>
+                <li><%= link_to 'Profile', profile_path if is_customer? %></li>
+                <li><%= link_to 'Admin', admin_path if is_admin? %></li>
                 <li class="divider"></li>
                 <li><%= link_to 'Log out', logout_path, method: 'delete' %></li>
               </ul>
@@ -34,4 +35,3 @@
     </div><!--/.nav-collapse -->
   </div><!--/.container-fluid -->
 </nav>
-

@@ -1,6 +1,8 @@
 class CustomersController < ApplicationController
+  before_action :logged_in_user
+  
   def profile
-    if logged_in?
+    if is_customer?
       
       # Sort transaction categories
       # cc = {}
@@ -21,9 +23,24 @@ class CustomersController < ApplicationController
       @twitter = current_customer.twitter_personality
       
       current_customer.start_conversation
-    
     else
-      redirect_to login_path, flash: { danger: 'You must log in to view your profile' }
+      redirect_to login_path, flash: { danger: 'You must log in as customer to view your profile' }
     end
+  end
+  
+  def clear_messages
+    @customer = Customer.find params[:id]
+    @customer.messages.destroy_all
+    @customer.context = nil
+    unless @customer.save
+      flash.now[:danger] = "There was an error when deleting the messages for customer #{params[:id]}"
+    end
+    redirect_to admin_path
+  end
+
+  private
+
+  def message_params
+    params.require(:customer)
   end
 end

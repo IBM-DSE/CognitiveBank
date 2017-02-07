@@ -2,7 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.user, .watson {
+$user-background: #007fff;
+$watson-background: #008571;
+
+$arrow-offset: -1.65rem;
+$icon-offset: -5.2rem;
+
+.message-wrapper {
   display: block;
   overflow: visible;
   position: relative;
@@ -12,8 +18,7 @@
 .user{text-align: left;}
 .watson{text-align: right;}
 
-.watson-message,
-.user-message {
+.message {
   border-radius: 2rem;
   font-family: "Helvetica Neue for IBM Medium", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -25,11 +30,11 @@
 }
 
 .watson-message {
-  background: #008571;
+  background: $watson-background;
 }
 
 .user-message {
-  background: #007fff;
+  background: $user-background;
 }
 
 .user-message::before, .watson-message::after {
@@ -39,27 +44,29 @@
 }
 
 .user-message::before {
-  left: -1.65rem;
-  border-right-color: #007fff;
+  left: $arrow-offset;
+  border-right-color: $user-background;
 }
 
 .watson-message::after {
-  right: -1.65rem;
+  right: $arrow-offset;
   bottom: 1.5rem;
-  border-left-color: #008571;
+  border-left-color: $watson-background;
+}
+
+.message-icon {
+  position: absolute;
 }
 
 .user-icon {
   height: 5.2rem;
-  position: absolute;
-  left: -5.2rem;
+  left: $icon-offset;
   top: 0.1rem;
 }
 
 .watson-icon {
   height: 4.5rem;
-  position: absolute;
-  right: -5.2rem;
+  right: $icon-offset;
   bottom: 0.2rem;
 }
 

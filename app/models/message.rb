@@ -16,9 +16,9 @@ class Message < ApplicationRecord
     PASSWORD = ENV['CONVERSATION_PASSWORD']
   end
   WORKSPACE_ID = ENV['WORKSPACE_ID']
-  SMART_WORKSPACE_ID = ENV['SMART_WORKSPACE_ID']
-  
-  
+
+  URL                   = API_ENDPOINT + WORKSPACE_ID + '/message?version=' + VERSION
+  CONVERSATION_RESOURCE = RestClient::Resource.new URL, USERNAME, PASSWORD
 
   # send self to watson conversation
   def send_to_watson
@@ -28,18 +28,13 @@ class Message < ApplicationRecord
   # class method for sending string message content and customer context to WC
   def self.send_to_watson_conversation(content, customer)
     
-    workspace_id = customer.id == 1009561370 ? SMART_WORKSPACE_ID : WORKSPACE_ID
-    url                   = API_ENDPOINT + workspace_id + '/message?version=' + VERSION
-    conversation_resource = RestClient::Resource.new url, USERNAME, PASSWORD
-    puts "using #{workspace_id}"
-    
     body = { input: { text: content }, context: customer.context }.to_json
     begin
-      response = conversation_resource.post(body, :content_type => 'application/json')
+      response = CONVERSATION_RESOURCE.post(body, :content_type => 'application/json')
       Message.update_customer eval(response.body), customer
     rescue Exception => ex
       puts "ERROR: #{ex.response}"
-      puts "Conversation Endpoint = #{conversation_resource}"
+      puts "Conversation Endpoint = #{CONVERSATION_RESOURCE}"
       puts "Body sent to Watson Conversation: #{body}"
       raise ex
     end

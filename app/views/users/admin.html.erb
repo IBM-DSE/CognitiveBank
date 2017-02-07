@@ -1,0 +1,29 @@
+<% if logged_in? and is_admin? %>
+<h1>Admin Panel</h1>
+
+<div class="container">
+
+  <h3>Welcome, <%= current_user.name %>!</h3>
+  <h4>You are logged in as administrator</h4>
+  <br>
+  <h4>Customers:</h4>
+  <table class="table table-bordered">
+    <tr>
+      <th>User</th>
+      <th>Conversation</th>
+    </tr>
+    <% Customer.all.each do |customer| %>
+        <tr>
+          <td><%= customer.twitter_id %></td>
+          <td>
+            <%= 'Not Started' if customer.messages.empty? %>
+            <%= link_to 'Clear Conversation', customer_path(customer), 
+                        method: :delete,
+                        class: 'btn btn-danger' unless customer.messages.empty? %>
+          </td>
+        </tr>
+    <% end %>
+  </table>
+
+</div>
+<% end %>

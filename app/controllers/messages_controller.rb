@@ -25,9 +25,9 @@ class MessagesController < ApplicationController
       flash.now[:danger] = 'Sorry, there was a problem when talking to Watson. Ask an administrator for assistance.'
     end
   end
-  
+
   private
-  
+
   def message_params
     params.require(:message).permit(:content)
   end

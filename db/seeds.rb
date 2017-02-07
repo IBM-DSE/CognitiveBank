@@ -24,7 +24,7 @@ csv.first(220).each_with_index do |row, i|
   if i < TwitterPersonality.count-2
     cust                     = Customer.new(row.to_hash)
     cust.twitter_personality = TwitterPersonality.find(i+1)
-    username = cust.twitter_personality.username || "user#{i}"
+    username                 = cust.twitter_personality.username || "user#{i}"
     cust.user                = User.new(name:     username,
                                         email:    username+'@example.com',
                                         password: 'password', password_confirmation: 'password')
@@ -33,7 +33,7 @@ csv.first(220).each_with_index do |row, i|
   elsif i == 19
     cust                     = Customer.new(row.to_hash)
     cust.twitter_personality = TwitterPersonality.find_by_username 'Jonathan_Soroff'
-    username = cust.twitter_personality.username || "user#{i}"
+    username                 = cust.twitter_personality.username || "user#{i}"
     cust.user                = User.new(name:     username,
                                         email:    username+'@example.com',
                                         password: 'password', password_confirmation: 'password')
@@ -42,7 +42,7 @@ csv.first(220).each_with_index do |row, i|
   elsif i == 218
     cust                     = Customer.new(row.to_hash)
     cust.twitter_personality = TwitterPersonality.find_by_username 'gaelgreene'
-    username = cust.twitter_personality.username || "user#{i}"
+    username                 = cust.twitter_personality.username || "user#{i}"
     cust.user                = User.new(name:     username,
                                         email:    username+'@example.com',
                                         password: 'password', password_confirmation: 'password')
@@ -53,8 +53,13 @@ end
 puts "Loaded #{Customer.count} customers."
 
 
-User.create!(name: 'David Thomason', email: 'david@example.com', password: 'foobar', password_confirmation: 'foobar')
+User.create!(name:     'David Thomason', email: 'david@example.com',
+             password: 'password', password_confirmation: 'password',
+             admin:    true)
 
+User.create!(name:     'Avijit Chatterjee', email: 'avijit@example.com',
+             password: 'password', password_confirmation: 'password',
+             admin:    true)
 
 # # Load the transaction categories
 # CSV.foreach('db/transaction_categories.csv', headers: true) do |row|

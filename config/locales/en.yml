@@ -19,5 +19,10 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
+
 en:
-  hello: "Hello world"
+  yrly_amt: "Yearly Amount"
+  avg_daily_tx: "Average Daily Transactions"
+  yrly_tx: "Yearly Transactions"
+  avg_tx_amt: "Average Transaction Amount"
+  negtweets: "Negative Tweets"

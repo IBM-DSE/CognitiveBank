@@ -32,9 +32,10 @@
   border-radius: 25px;
   margin-bottom: 20px;
   background: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 5px 40px rgba(0,0,0,.16)!important;
   overflow: hidden;
   
+  z-index: 1;
   display: none;
 }
 
@@ -48,6 +49,7 @@
 
 #chat-flow {
   overflow: hidden;
+  -webkit-overflow-scrolling: touch;
   position: relative;
   height: 100%;
   padding-bottom: 55px;
@@ -111,22 +113,38 @@
   cursor: pointer;
 }
 
-#chat-button * {
+#chat-button > * {
   width: 60px;
   height: 60px;
+  border-radius: 30px;
+}
+
+#watson-button {
+  box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #close-button {
   background-color: black;
-  border-radius: 30px;
   text-align: center;
   display: none;
+  box-shadow: 0 0 12px 4px rgba(0,0,0,.1);
 }
 
 #close-icon {
   line-height: 60px;
-  font-size: 2em;
+  font-size: 1.5em;
   font-weight: 200;
   color: white;
   user-select: none;
+}
+
+.gradient {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  bottom: 0;
+  right: 0;
+  content: "";
+  pointer-events: none;
+  background: radial-gradient(ellipse at bottom right,rgba(29,39,54,.16) 0,rgba(29,39,54,0) 72%);
 }

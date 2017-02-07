@@ -1,3 +1,2 @@
 $("#chat-messages").html("<%= escape_javascript(render current_customer.messages) %>");
-$("#chat-input").val("");
-ChatWindow.scroll_down();
+ChatWindow.received_message();

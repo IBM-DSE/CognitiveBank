@@ -82,8 +82,10 @@ class Customer < ApplicationRecord
   
   def extract_from_json(json)
     body        = JSON.parse(json)
-    full_result = body['result']
-    full_result.slice 'prediction', 'raw_prediction', 'probability'
+    result = body['result']
+    churn = result['prediction'] == 1.0
+    prob = result['probability']['values'][result['prediction'].to_i]
+    {churn: churn, probability: (prob*100.0).round(2).to_s+'%'}
   end
 
 end

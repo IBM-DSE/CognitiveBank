@@ -21,8 +21,11 @@
 
 
 en:
-  yrly_amt: "Yearly Amount"
-  avg_daily_tx: "Average Daily Transactions"
-  yrly_tx: "Yearly Transactions"
-  avg_tx_amt: "Average Transaction Amount"
-  negtweets: "Negative Tweets"
+  activerecord:
+    attributes:
+      customer:
+        yrly_amt: "Yearly Amount"
+        avg_daily_tx: "Average Daily Transactions"
+        yrly_tx: "Yearly Transactions"
+        avg_tx_amt: "Average Transaction Amount"
+        negtweets: "Negative Tweets"

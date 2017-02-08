@@ -11,6 +11,15 @@ class CustomersController < ApplicationController
       # end
       # @sorted_categories = cc.sort_by {|k,v| v}.reverse.to_h
       
+      puts "Customer #{current_customer.user.name} logged in!"
+
+      puts 'Customer Profile:'
+      current_customer.attributes.except('id', 'context').each do |k,v|
+        puts "  #{Customer.human_attribute_name k}: #{v}"
+      end
+      
+      puts 'Fetching churn probability...'
+      
       # Get churn
       if Rails.env.production?
         @churn = current_customer.get_churn
@@ -19,8 +28,20 @@ class CustomersController < ApplicationController
         @churn = current_customer.load_sample_ml_result
       end
       
+      puts 'Customer churn result: '
+      @churn.each do |k,v|
+        puts "  #{k.to_s.humanize}: #{v}"
+      end
+      
+      puts "Fetching Personality Insights for #{current_customer.user.name}..."
+      
       # get personality
       @twitter = current_customer.twitter_personality
+      
+      puts 'Customer Personality:'
+      @twitter.attributes.slice('personality', 'values', 'needs').each do |k,v|
+        puts "  #{k.humanize}: #{v}"
+      end
       
       current_customer.start_conversation
     else

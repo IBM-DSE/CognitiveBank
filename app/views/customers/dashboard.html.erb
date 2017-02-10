@@ -1,0 +1,98 @@
+<div class="container">
+  <br>
+  <h3>Welcome back, <%= current_user.name %>!</h3>
+  <h5>Last login: Feb. 9th, 2017</h5>
+  <br>
+  <div class="jumbotron">
+
+    <div class="row">
+      <div class="cc-element">
+        <%= image_tag 'generic_credit_card.png', id: 'credit_card_img' %>
+      </div>
+      <div class="cc-element">
+        <h4 id="credit_card_label">Cognitive Traveler Rewards Card</h4>
+        <h4 id="credit_card_label">.... - 1911</h4>
+      </div>
+
+    </div>
+    <br><br>
+    <div class="row">
+      
+      <div class="col-sm-4">
+        <div class="dash-tile center">
+          <h4>Current Balance</h4>
+          <div class="middle-content">
+            <h3>$1,265.87</h3>
+            <br>
+            <h5>Available Credit</h5>
+            <h4>$8,735.13</h4>
+          </div>
+          <br>
+          <%= link_to 'View Balance Details' %>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="dash-tile center">
+          <h4>Current Miles</h4>
+          <div class="middle-content">
+            <h3 class="vertical-align">57,892</h3>
+          </div>
+          <br>
+          <%= link_to 'Rewards Center' %>
+        </div>
+      </div>
+      
+      <div class="col-sm-4">
+        <div class="dash-tile center">
+          <h4>Last Statement Balance:</h4>
+          <div class="middle-content">
+            <h3>$1,932.52</h3>
+            <br>
+            <h5>Due on</h5>
+            <h4>March 1st, 2017</h4>
+          </div>
+          <br>
+          <%= link_to 'Make a Payment' %>
+        </div>
+      </div>
+      
+    </div>
+    <br><br>
+    <div class="row">
+      <div class="col-sm-12">
+
+        <ul id="dash-tabs" class="nav nav-tabs">
+          <li class="active"><a data-toggle="tab" href="#transactions">Transactions</a></li>
+          <li><a data-toggle="tab" href="#spending">Spending Summary</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div id="transactions" class="tab-pane fade in active">
+            <table class="table table-bordered table-striped">
+              <tr>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Amount</th>
+              </tr>
+              <% current_customer.transactions.order(date: :desc).each do |transaction| %>
+                  <tr>
+                    <td><%= transaction.date %></td>
+                    <td><%= transaction.category %></td>
+                    <td><%= rand_dollar %></td>
+                  </tr>
+              <% end %>
+            </table>
+          </div>
+          <div id="spending" class="tab-pane fade">
+            <br>
+            <h4>Total Transactions: <%= current_customer.transactions.count %></h4>
+            <%= pie_chart @sorted_categories %>
+          </div>
+        </div>
+
+      
+      </div>
+    </div>
+
+<%= javascript_include_tag 'auto_chat' %>

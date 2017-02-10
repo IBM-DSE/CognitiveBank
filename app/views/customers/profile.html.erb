@@ -3,7 +3,7 @@
 <div class="container">
   <% if logged_in? %>
 
-      <h3>Welcome, <%= current_user.name %>!</h3>
+      <h3><%= current_user.name %>'s Profile:</h3>
       <br>
       <% if @churn %>
           <div>
@@ -27,27 +27,9 @@
         <h4>Customer Summary:</h4>
         <%= render partial: 'layouts/display_attributes', locals: { hash: current_customer.attributes.except('id', 'user_id', 'context') } %>
       </div>
-      <!--<br>-->
-      <!--<h4>Total Transactions: %= current_customer.transactions.count %></h4>-->
-      <!--%= pie_chart @sorted_categories %>-->
-
-      <!--<h3>Transactions</h3>-->
-      <!--<table class="table table-bordered">-->
-      <!--<tr>-->
-      <!--<th>Date</th>-->
-      <!--<th>Category</th>-->
-      <!--<th>Amount</th>-->
-      <!--</tr>-->
-      <!--% current_customer.transactions.order(date: :desc).each do |transaction| %>-->
-      <!--<tr>-->
-      <!--<td>%= transaction.date %></td>-->
-      <!--<td>%= transaction.category %></td>-->
-      <!--<td>%= transaction.amount %></td>-->
-      <!--</tr>-->
-      <!--% end %>-->
-      <!--</table>-->
+      
 
   <% end %>
 </div>
 
-<%= javascript_include_tag 'auto_chat' %>
+<!--%= javascript_include_tag 'auto_chat' %>-->

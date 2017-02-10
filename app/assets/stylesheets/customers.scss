@@ -1,3 +1,38 @@
 // Place all the styles related to the customers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#credit_card_img {
+  height: 100px;
+}
+
+.cc-element {
+  display: inline-block;
+  padding-left: 15px;
+}
+
+.dash-tile {
+  padding: 10px;
+  background: white;
+  border: 1px solid blue;
+  border-radius: 6px;
+}
+
+.dash-tile > h4 {
+  height: 36px;
+}
+
+.middle-content {
+  height: 120px;
+}
+
+.vertical-align {
+  vertical-align: middle;
+  line-height: 120px;
+}
+
+#dash-tabs a {
+  font-size: 1.6em;
+  padding-left: 30px;
+  padding-right: 30px;
+}

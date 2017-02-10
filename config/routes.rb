@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   get 'offers', to: 'cognitive_bank#offers'
 
   get 'admin', to: 'users#admin'
-  
+
+  get 'dashboard', to: 'customers#dashboard'
   get 'profile', to: 'customers#profile'
   get 'messages', to: 'messages#start'
   post 'messages', to: 'messages#create'

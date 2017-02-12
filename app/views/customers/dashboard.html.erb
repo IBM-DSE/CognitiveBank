@@ -17,7 +17,7 @@
     </div>
     <br><br>
     <div class="row">
-      
+
       <div class="col-sm-4">
         <div class="dash-tile center">
           <h4>Current Balance</h4>
@@ -42,7 +42,7 @@
           <%= link_to 'Rewards Center' %>
         </div>
       </div>
-      
+
       <div class="col-sm-4">
         <div class="dash-tile center">
           <h4>Last Statement Balance:</h4>
@@ -56,7 +56,7 @@
           <%= link_to 'Make a Payment' %>
         </div>
       </div>
-      
+
     </div>
     <br><br>
     <div class="row">
@@ -91,8 +91,11 @@
           </div>
         </div>
 
-      
+
       </div>
     </div>
+  </div>
+</div>
 
+<%= hidden_field_tag 'chat_window_delay', ENV['CHAT_WINDOW_DELAY'] || 10 %>
 <%= javascript_include_tag 'auto_chat' %>

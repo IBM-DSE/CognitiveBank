@@ -8,7 +8,7 @@ class Message < ApplicationRecord
   
   
   if ENV['VCAP_SERVICES']
-    convo_creds = CF::App::Credentials.find_by_service_name('CognitiveBank-Conversation')
+    convo_creds = CF::App::Credentials.find_by_service_label('conversation')
     USERNAME    = convo_creds['username']
     PASSWORD    = convo_creds['password']
   else
@@ -72,11 +72,14 @@ class Message < ApplicationRecord
     customer.save
     
     if results[:output][:action]
+      action = results[:output][:action]
       puts ' '
-      puts 'Watson Conversation Action Signal: '+results[:output][:action]
-      churn_res = customer.get_churn true
-      Customer.print_churn(churn_res)
-      send_to_watson_conversation('churn', customer) if churn_res[:churn]
+      puts 'Watson Conversation Action Signal: '+action
+      
+      if action == 'check_churn'
+        churn_res = ML_Scoring.new customer
+        send_to_watson_conversation('churn', customer) if churn_res.will_churn?
+      end
     end
     
   rescue Exception => e

@@ -13,6 +13,8 @@ class CustomersController < ApplicationController
       cc[transaction.category] += 1
     end
     @sorted_categories = cc.sort_by { |k, v| v }.reverse.to_h
+
+    # ML_Scoring.new current_customer
     
     current_customer.start_conversation
   end
@@ -20,19 +22,16 @@ class CustomersController < ApplicationController
   def profile
     if is_customer?
       
-      # puts ' '
-      # puts "Customer #{current_customer.name} logged in!"
-      # # Get churn
-      # @churn = current_customer.get_churn
+      # Get churn
+      @churn_result = ML_Scoring.new current_customer
       
-      # puts ' '
-      # puts "Fetching Personality Insights for #{current_customer.name}..."
-      # get personality
+      puts ' '
+      puts "Fetching Personality Insights for #{current_customer.name}..."
       @twitter = current_customer.twitter_personality
-      # puts 'Customer Personality:'
-      # @twitter.attributes.slice('personality', 'values', 'needs').each do |k,v|
-      #   puts "  #{k.humanize}: #{v}"
-      # end
+      puts 'Customer Personality:'
+      @twitter.attributes.slice('personality', 'values', 'needs').each do |k,v|
+        puts "  #{k.humanize}: #{v}"
+      end
     else
       redirect_to login_path, flash: { danger: 'You must log in as customer to view your profile' }
     end

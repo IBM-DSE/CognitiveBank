@@ -1,5 +1,3 @@
 $(document).ready ->
-#  #  values_closeness = $('#values_closeness')[0].value == 'true'
-#  #  console.log values_closeness
-#  #  if values_closeness
-  setTimeout (-> ChatWindow.open()), 5000
+  delay = parseInt($('#chat_window_delay').val())
+  setTimeout (-> ChatWindow.open()), delay*1000

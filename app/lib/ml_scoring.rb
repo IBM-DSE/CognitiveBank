@@ -1,6 +1,6 @@
 class ML_Scoring
   
-  ML_SCORING_RESOURCE = RestClient::Resource.new ENV['ML_SCORING_URL'], :read_timeout => 10
+  ML_SCORING_RESOURCE = RestClient::Resource.new ENV['ML_SCORING_URL'], :read_timeout => ENV['ML_SCORING_TIMEOUT'] || 2
   
   def initialize(customer)
     @customer_attrs = customer.attributes.slice(*SCORING_ATTRS).values

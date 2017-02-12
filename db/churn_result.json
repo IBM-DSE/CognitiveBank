@@ -1,44 +1,35 @@
 {
-	"result": {
-		"AVG_DAILY_TX": 0.0,
-		"EDUCATION": 2,
-		"features": {
-			"values": [
-				1.0,
-				38.0,
-				2.0,
-				114368.0,
-				3852862.0,
-				5.0,
-				700259.0,
-				0.0,
-				335.0,
-				2090.0,
-				3.0
-			]
-		},
-		"INVESTMENT": 114368,
-		"prediction": 0.0,
-		"AVG_TX_AMT": 2090.0,
-		"raw_prediction": {
-			"values": [
-				8.874226371287005,
-				-8.874226371287005
-			]
-		},
-		"AGE": 38.0,
-		"SEX": "F",
-		"gender_index": 1.0,
-		"YRLY_TX": 335,
-		"NEGTWEETS": 3.0,
-		"INCOME": 3852862,
-		"YRLY_AMT": 700259.0,
-		"ACTIVITY": 5,
-		"probability": {
-			"values": [
-				0.9998600697272697,
-				0.0001399302727302394
-			]
-		}
-	}
+  "EDUCATION": 3,
+  "gender_code": 0.0,
+  "features": {
+    "values": [
+      41.0,
+      4.0,
+      3.0,
+      12.0,
+      316530.0,
+      0.0,
+      12.0
+    ]
+  },
+  "prediction": 1.0,
+  "AGE": 41,
+  "SEX": "M",
+  "NEGTWEETS": 12,
+  "INCOME": 316530.0,
+  "state_code": 12.0,
+  "rawPrediction": {
+    "values": [
+      -2.6489602018934804,
+      2.6489602018934804
+    ]
+  },
+  "ACTIVITY": 4,
+  "STATE": "TX",
+  "probability": {
+    "values": [
+      0.06605312581502727,
+      0.9339468741849727
+    ]
+  }
 }

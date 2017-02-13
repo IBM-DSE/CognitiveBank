@@ -10,8 +10,8 @@ toggle = ->
     ready_input()
   
 scroll_down = ->
-  mydiv = $('#chat-flow');
-  mydiv.scrollTop(mydiv.prop('scrollHeight'));
+  mydiv = $('#chat-flow')
+  mydiv.scrollTop(mydiv.prop('scrollHeight'))
   
 ready_input = ->
   scroll_down()
@@ -22,7 +22,7 @@ ChatWindow.open = ->
 
 ChatWindow.received_message = ->
   $('#chat-input').attr('placeholder', 'Send a message...')
-  $('#chat-input').prop('disabled', false);
+  $('#chat-input').prop('disabled', false)
   ready_input()
 
 $(document).on 'turbolinks:load', ->

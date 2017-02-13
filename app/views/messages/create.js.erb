@@ -1,2 +1,2 @@
-$("#chat-messages").html("<%= escape_javascript(render current_customer.messages) %>");
-ChatWindow.received_message();
+$("#chat-messages").html("<%= escape_javascript(render current_customer.messages) %>")
+$("#chat-messages img").load(function(){ ChatWindow.received_message(); });

@@ -28,8 +28,6 @@ class ML_Scoring
   
   private
   
-  # SCORING_ATTRS = %w(sex age education investment income activity yrly_amt avg_daily_tx yrly_tx avg_tx_amt negtweets)
-  
   SCORING_ATTRS = %w(age activity education sex state negtweets income)
   
   def post_to_scoring_ml(ml_resource)

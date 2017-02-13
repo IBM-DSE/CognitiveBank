@@ -19,15 +19,15 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  height: 80vh;
+  height: 90vh;
 }
 
 // Messages window
 
 #chat-window {
   position: relative;
-  width: 30vw;
   min-width: 300px;
+  max-width: 50vw;
   height: calc(100% - 80px);
   border-radius: 25px;
   margin-bottom: 20px;

@@ -23,7 +23,7 @@ class CustomersController < ApplicationController
     if is_customer?
       
       # Get churn
-      @churn_result = ML_Scoring.new current_customer
+      @churn_result = current_customer.get_churn
       
       puts ' '
       puts "Fetching Personality Insights for #{current_customer.name}..."

@@ -15,13 +15,17 @@ class ML_Scoring
   end
   
   def will_churn?
-    @result[:churn]
+    @result[:prediction]
   end
   
   def probability
     @result.probability
   end
-
+  
+  def to_h
+    @result
+  end
+  
   def to_s
     @result.to_s
   end
@@ -51,7 +55,7 @@ class ML_Scoring
     puts result
     churn   = result['prediction'] == 1.0
     prob    = result['probability']['values'][result['prediction'].to_i]
-    @result = { churn: churn, probability: (prob*100.0).round(2).to_s+'%' }
+    @result = { prediction: churn, probability: (prob*100.0).round(2).to_s+'%' }
   end
   
   def print_churn_result

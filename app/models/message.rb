@@ -6,13 +6,13 @@ class Message < ApplicationRecord
   API_ENDPOINT='https://gateway.watsonplatform.net/conversation/api/v1/workspaces/'
   VERSION     = '2016-09-20'
   
-  if ENV['VCAP_SERVICES']
+  if ENV['CONVERSATION_USERNAME'] and ENV['CONVERSATION_PASSWORD']
+    USERNAME = ENV['CONVERSATION_USERNAME']
+    PASSWORD = ENV['CONVERSATION_PASSWORD']
+  elsif ENV['VCAP_SERVICES']
     convo_creds = CF::App::Credentials.find_by_service_label('conversation')
     USERNAME    = convo_creds['username']
     PASSWORD    = convo_creds['password']
-  else
-    USERNAME = ENV['CONVERSATION_USERNAME']
-    PASSWORD = ENV['CONVERSATION_PASSWORD']
   end
   WORKSPACE_ID = ENV['WORKSPACE_ID']
 

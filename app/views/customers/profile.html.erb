@@ -5,31 +5,39 @@
 
       <h3><%= current_user.name %>'s Profile:</h3>
       <br>
-      <% if @churn %>
-          <div>
-            <h4>Churn Result:</h4>
-            <%= render partial: 'layouts/display_attributes', locals: { hash: @churn } %>
-          </div>
-      <% end %>
-      <br>
-      <% if @twitter %>
-          <div>
-            <h4>Twitter Profile:</h4>
-            <p>
-              <strong>Twitter Account: </strong>
-              <%= link_to @twitter.username, 'https://twitter.com/'+@twitter.username, target: '_blank' %>
-            </p>
-            <%= render partial: 'layouts/display_attributes', locals: { hash: @twitter.attributes.slice('personality', 'values', 'needs') } %>
-          </div>
-      <% end %>
-      <br>
-      <div>
-        <h4>Customer Summary:</h4>
-        <%= render partial: 'layouts/display_attributes', locals: { hash: current_customer.attributes.except('id', 'user_id', 'context') } %>
-      </div>
       
+      <table class="table">
+        <tr>
+          <td>
+            <div>
+              <%= render partial: 'summary' %>
+            </div>
+          </td>
 
+          <td>
+            
+            <% if @twitter %>
+                <div>
+                  <h4>Twitter Profile:</h4>
+                  <p><strong>Twitter Username: </strong> <%= @twitter.username %>43253</p>
+                  <%= render partial: 'layouts/display_hash', 
+                             locals: { hash: @twitter.attributes.slice('personality', 'values', 'needs') } %>
+                </div>
+            <% end %>
+
+            <br><br>
+            
+            <% if @churn_result %>
+                <div>
+                  <h4>Customer Churn:</h4>
+                  <%= render partial: 'layouts/display_hash', locals: { hash: @churn_result.to_h } %>
+                </div>
+            <% end %>
+            
+          </td>
+          
+        </tr>
+      </table>
+      
   <% end %>
 </div>
-
-<!--%= javascript_include_tag 'auto_chat' %>-->

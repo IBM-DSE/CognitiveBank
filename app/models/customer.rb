@@ -17,6 +17,7 @@ class Customer < ApplicationRecord
   
   def get_churn
     @churn_result = ML_Scoring.new self
+    @churn_result
   end
   
   def name
@@ -28,7 +29,7 @@ class Customer < ApplicationRecord
   end
   
   def gender
-    self.gender ? 'Male' : 'Female'
+    self.sex == 'M' ? 'Male' : 'Female'
   end
 
 end

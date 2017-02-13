@@ -13,6 +13,7 @@ $icon-offset: -5.2rem;
   overflow: visible;
   position: relative;
   margin: 0 5.3125rem;
+  max-width: 360px;
 }
 
 .user{text-align: left;}
@@ -71,7 +72,8 @@ $icon-offset: -5.2rem;
 }
 
 .watson img:not(.watson-icon) {
-  width: 100%;
+  //width: 100%;
+  max-height: 300px;
 }
 
 .watson .pre-bar::before {

@@ -1,6 +1,8 @@
 class ML_Scoring
   
-  ML_SCORING_RESOURCE = RestClient::Resource.new ENV['ML_SCORING_URL'], :read_timeout => ENV['ML_SCORING_TIMEOUT'] || 2
+  ML_SCORING_RESOURCE = RestClient::Resource.new ENV['ML_SCORING_URL'], 
+                                                 :read_timeout => ENV['ML_SCORING_TIMEOUT'] || 2, 
+                                                 :open_timeout => ENV['ML_SCORING_TIMEOUT'] || 2
   
   def initialize(customer)
     @customer_attrs = customer.attributes.slice(*SCORING_ATTRS).values
@@ -19,6 +21,10 @@ class ML_Scoring
   def probability
     @result.probability
   end
+
+  def to_s
+    @result.to_s
+  end
   
   private
   
@@ -34,8 +40,7 @@ class ML_Scoring
       puts headers
       puts body
       request = ml_resource.post(body, headers)
-      # POST request with modified headers
-      # RestClient.post 'http://example.com/resource', {:foo => 'bar', :baz => 'qux'}, {:Authorization => 'Bearer cT0febFoD5lxAlNAXHo6g'}
+      puts 'Scoring request successful!'
       process_json request
     rescue Exception => e
       puts 'ERROR: '+e.message

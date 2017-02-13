@@ -6,7 +6,6 @@ class Message < ApplicationRecord
   API_ENDPOINT='https://gateway.watsonplatform.net/conversation/api/v1/workspaces/'
   VERSION     = '2016-09-20'
   
-  
   if ENV['VCAP_SERVICES']
     convo_creds = CF::App::Credentials.find_by_service_label('conversation')
     USERNAME    = convo_creds['username']
@@ -67,7 +66,7 @@ class Message < ApplicationRecord
       puts ' '
       puts "Watson response: \"#{msg.content}\""
     end
-
+    
     # save the customer data
     customer.save
     

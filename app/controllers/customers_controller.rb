@@ -13,9 +13,9 @@ class CustomersController < ApplicationController
       cc[transaction.category] += 1
     end
     @sorted_categories = cc.sort_by { |k, v| v }.reverse.to_h
-
-    # ML_Scoring.new current_customer
     
+    current_customer.get_churn
+
     current_customer.start_conversation
   end
   

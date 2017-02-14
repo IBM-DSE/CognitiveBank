@@ -11,7 +11,6 @@ class Customer < ApplicationRecord
   attr_reader :churn_result
   
   def start_conversation
-    clear_conversation
     Message.send_to_watson_conversation('', self) if messages.empty?  # Send empty string to Watson Conversation
   end
   

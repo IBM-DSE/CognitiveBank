@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
   end
   
   def destroy
+    current_customer.clear_conversation if is_customer?
     log_out
     redirect_to root_path
   end

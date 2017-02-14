@@ -1,7 +1,7 @@
 <h4>Customer Summary:</h4>
 
 <p><strong>Gender: </strong><%= current_customer.gender %></p>
-<% current_customer.attributes.slice('age', 'education_group', 'negtweets').each do |k,v| %>
+<% current_customer.attributes.slice('age', 'state', 'education_group', 'negtweets').each do |k,v| %>
     <p><strong><%= Customer.human_attribute_name k %>: </strong><%= v.to_s %></p>
 <% end %>
 <% current_customer.attributes.slice('income', 'investment', 'yrly_amt').each do |k,v| %>

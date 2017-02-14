@@ -15,7 +15,7 @@ class CustomersController < ApplicationController
     @sorted_categories = cc.sort_by { |k, v| v }.reverse.to_h
     
     current_customer.get_churn
-
+    
     current_customer.start_conversation
   end
   
@@ -39,9 +39,7 @@ class CustomersController < ApplicationController
   
   def clear_messages
     @customer = Customer.find params[:id]
-    @customer.messages.destroy_all
-    @customer.context = nil
-    unless @customer.save
+    unless @customer.clear_conversation
       flash.now[:danger] = "There was an error when deleting the messages for customer #{params[:id]}"
     end
     redirect_to admin_path

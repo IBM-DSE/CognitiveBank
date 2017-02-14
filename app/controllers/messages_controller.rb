@@ -1,7 +1,6 @@
 class MessagesController < ApplicationController
   before_action :logged_in_user
 
-  # TODO: make this an AJAX call from Javascript method
   # Start conversation with Watson
   def start
     
@@ -29,6 +28,6 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:content)
+    params.require(:message).permit(:content, :context)
   end
 end

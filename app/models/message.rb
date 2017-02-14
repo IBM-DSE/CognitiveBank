@@ -3,6 +3,8 @@ class Message < ApplicationRecord
   validates :customer_id, presence: true
   validates :content, presence: true
   
+  attr_accessor :context
+  
   API_ENDPOINT='https://gateway.watsonplatform.net/conversation/api/v1/workspaces/'
   VERSION     = '2016-09-20'
   

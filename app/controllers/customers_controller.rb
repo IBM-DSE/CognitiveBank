@@ -21,13 +21,15 @@ class CustomersController < ApplicationController
   
   def profile
     if is_customer?
-      
+      @customer = current_customer
+  
       # Get churn
-      @churn_result = current_customer.get_churn
+      # @churn_result = current_customer.get_churn
+      @customer.update_churn
       
       puts ' '
-      puts "Fetching Personality Insights for #{current_customer.name}..."
-      @twitter = current_customer.twitter_personality
+      puts "Fetching Personality Insights for #{@customer.name}..."
+      @twitter = @customer.twitter_personality
       puts 'Customer Personality:'
       @twitter.attributes.slice('personality', 'values', 'needs').each do |k,v|
         puts "  #{k.humanize}: #{v}"

@@ -25,6 +25,13 @@ class Customer < ApplicationRecord
     @churn_result
   end
   
+  def update_churn
+    churn_result = ML_Scoring.new self
+    self.churn_prediction=churn_result.will_churn?
+    self.churn_probability=churn_result.probability
+    self.save
+  end
+  
   def name
     self.user.name
   end

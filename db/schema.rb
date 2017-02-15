@@ -10,24 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170210164651) do
+ActiveRecord::Schema.define(version: 20170215150950) do
 
   create_table "customers", force: :cascade do |t|
-    t.integer "user_id"
-    t.string  "sex"
-    t.integer "age"
-    t.integer "education"
-    t.integer "investment"
-    t.integer "income"
-    t.integer "activity"
-    t.float   "yrly_amt"
-    t.float   "avg_daily_tx"
-    t.integer "yrly_tx"
-    t.float   "avg_tx_amt"
-    t.integer "negtweets"
-    t.string  "state"
-    t.string  "education_group"
-    t.text    "context"
+    t.integer  "user_id"
+    t.string   "sex"
+    t.integer  "age"
+    t.integer  "education"
+    t.integer  "investment"
+    t.integer  "income"
+    t.integer  "activity"
+    t.float    "yrly_amt"
+    t.float    "avg_daily_tx"
+    t.integer  "yrly_tx"
+    t.float    "avg_tx_amt"
+    t.integer  "negtweets"
+    t.string   "state"
+    t.string   "education_group"
+    t.text     "context"
+    t.boolean  "churn_prediction"
+    t.float    "churn_probability"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["user_id"], name: "index_customers_on_user_id"
   end
 

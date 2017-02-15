@@ -25,7 +25,7 @@ ChatWindow.received_message = ->
   $('#chat-input').prop('disabled', false)
   ready_input()
 
-$(document).on 'turbolinks:load', ->
+$(document).ready ->
   $('#chat-button').click ->
     toggle()
     

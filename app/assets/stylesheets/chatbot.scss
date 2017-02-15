@@ -14,13 +14,18 @@
  * limitations under the License.
  */
 
+$offset: 10px;
+$button-size: 60px;
+$input-height: 55px;
+
 // Top-level container
+
 #chat-zone {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  height: 90vh;
-  max-height: calc(100vh - 70px);
+  bottom: $offset;
+  right: $offset;
+  //height: 90vh;
+  height: calc(100vh - calc(50px + #{$offset}));
 }
 
 // Messages window
@@ -29,9 +34,9 @@
   position: relative;
   min-width: 300px;
   max-width: 50vw;
-  height: calc(100% - 80px);
+  height: calc(100% - calc(#{$button-size} + #{$offset}));
   border-radius: 25px;
-  margin-bottom: 20px;
+  margin-bottom: $offset;
   background: white;
   box-shadow: 0 5px 40px rgba(0,0,0,.16)!important;
   overflow: hidden;
@@ -49,16 +54,15 @@
 }
 
 #chat-flow {
-  overflow: scroll;
+  overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   position: relative;
-  height: 100%;
-  padding-bottom: 55px;
+  height: calc(100% - #{$input-height});
+  //padding-bottom: 55px;
 }
 
 #chat-flow:hover {
 }
-
 
 // Text area for user input
 
@@ -114,8 +118,8 @@
 }
 
 #chat-button > * {
-  width: 60px;
-  height: 60px;
+  width: $button-size;
+  height: $button-size;
   border-radius: 30px;
 }
 
@@ -131,7 +135,7 @@
 }
 
 #close-icon {
-  line-height: 60px;
+  line-height: $button-size;
   font-size: 1.5em;
   font-weight: 200;
   color: white;

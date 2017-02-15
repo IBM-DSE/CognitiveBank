@@ -14,7 +14,6 @@ class CustomersController < ApplicationController
     end
     @sorted_categories = cc.sort_by { |k, v| v }.reverse.to_h
     
-    # current_customer.get_churn
     current_customer.update_churn
     
     current_customer.start_conversation
@@ -24,8 +23,7 @@ class CustomersController < ApplicationController
     if is_customer?
       @customer = current_customer
   
-      # Get churn
-      # @churn_result = current_customer.get_churn
+      # Update churn
       @customer.update_churn
       
       puts ' '

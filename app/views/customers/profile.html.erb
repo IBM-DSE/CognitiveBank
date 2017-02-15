@@ -20,6 +20,7 @@
                 <div>
                   <h4>Twitter Profile:</h4>
                   <p><strong>Twitter Username: </strong> <%= @twitter.username %>43253</p>
+                  <p><strong>Negative Signals: </strong> Foreign Transaction Fees</p>
                   <%= render partial: 'layouts/display_hash', 
                              locals: { hash: @twitter.attributes.slice('personality', 'values', 'needs') } %>
                 </div>

@@ -2,8 +2,34 @@ module CustomersHelper
   
   MAX=1000
   
-  def rand_dollar
-    '$ '+(rand * MAX).round(2).to_s
-  end
+  MIN_AIRFARE=1000
+  MAX_AIRFARE=5000
   
+  MIN_HOTEL=300
+  MAX_HOTEL=1000
+  
+  MIN_DINING=100
+  MAX_DINING=250
+
+  MIN_SAFARI=800
+  MAX_SAFARI=1200
+  
+  def rand_dollar(category)
+    
+    dollars = case category
+                when 'Airfare'
+                  MIN_AIRFARE + rand * (MAX_AIRFARE-MIN_AIRFARE)
+                when 'Hotel'
+                  MIN_HOTEL + rand * (MAX_HOTEL-MIN_HOTEL)
+                when 'Dining'
+                  MIN_DINING + rand * (MAX_DINING-MIN_DINING)
+                when 'Safari'
+                  MIN_SAFARI + rand * (MAX_SAFARI-MIN_SAFARI)
+                else
+                  rand * MAX
+              end
+    
+    '$ '+dollars.round(2).to_s
+  end
+
 end

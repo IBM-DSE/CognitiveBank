@@ -77,9 +77,9 @@
               </tr>
               <% current_customer.transactions.order(date: :desc).each do |transaction| %>
                   <tr>
-                    <td><%= transaction.date %></td>
+                    <td><%= transaction.date.strftime('%F') %></td>
                     <td><%= transaction.category %></td>
-                    <td><%= rand_dollar %></td>
+                    <td><%= rand_dollar transaction.category %></td>
                   </tr>
               <% end %>
             </table>

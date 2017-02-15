@@ -76,8 +76,8 @@ class Message < ApplicationRecord
       puts 'Watson Conversation Action Signal: '+action
       
       if action == 'check_churn'
-        churn_res = ML_Scoring.new customer
-        send_to_watson_conversation('churn', customer) if churn_res.will_churn?
+        customer.update_churn if customer[:churn_prediction].nil?
+        send_to_watson_conversation('churn', customer) if customer[:churn_prediction]
       end
     end
     

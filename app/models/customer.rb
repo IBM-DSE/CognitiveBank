@@ -20,16 +20,16 @@ class Customer < ApplicationRecord
     self.save
   end
   
-  def get_churn
-    @churn_result = ML_Scoring.new self
-    @churn_result
+  def update_churn
+    churn = ML_Scoring.new self
+    self.churn_prediction=churn.result[:prediction]
+    self.churn_probability=churn.result[:probability]
+    self.save
   end
   
-  def update_churn
-    churn_result = ML_Scoring.new self
-    self.churn_prediction=churn_result.will_churn?
-    self.churn_probability=churn_result.probability
-    self.save
+  def will_churn?
+    update_churn if self[:churn_prediction].nil?
+    self.churn_prediction
   end
   
   def name

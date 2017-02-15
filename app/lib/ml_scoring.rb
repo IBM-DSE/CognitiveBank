@@ -1,8 +1,6 @@
 class ML_Scoring
   
-  ML_SCORING_RESOURCE = RestClient::Resource.new ENV['ML_SCORING_URL'], 
-                                                 :read_timeout => ENV['ML_SCORING_TIMEOUT'] || 2, 
-                                                 :open_timeout => ENV['ML_SCORING_TIMEOUT'] || 2
+  attr_reader :result
   
   def initialize(customer)
     @customer_attrs = customer.attributes.slice(*SCORING_ATTRS).values
@@ -10,16 +8,10 @@ class ML_Scoring
     puts 'Fetching churn probability from MLz churn model.'
     puts 'Sending customer attributes to churn scoring: '
     puts @customer_attrs.to_s
-    post_to_scoring_ml ML_SCORING_RESOURCE
+    
+    post_to_scoring_ml
+    
     print_churn_result
-  end
-  
-  def will_churn?
-    @result[:prediction]
-  end
-  
-  def probability
-    @result[:probability]
   end
   
   def to_h
@@ -33,15 +25,19 @@ class ML_Scoring
   private
   
   SCORING_ATTRS = %w(age activity education sex state negtweets income)
+
+  ML_SCORING_RESOURCE = RestClient::Resource.new ENV['ML_SCORING_URL'],
+                                                 :read_timeout => ENV['ML_SCORING_TIMEOUT'] || 2,
+                                                 :open_timeout => ENV['ML_SCORING_TIMEOUT'] || 2
   
-  def post_to_scoring_ml(ml_resource)
-    puts 'Posting to endpoint '+ml_resource.url
+  def post_to_scoring_ml
+    puts 'Posting to endpoint '+ML_SCORING_RESOURCE.url
     headers = { :content_type => 'application/json', :Authorization => ENV['ML_SCORING_AUTH'] }
     body    = { 'Record': @customer_attrs }.to_json
     begin
       puts headers
       puts body
-      request = ml_resource.post(body, headers)
+      request = ML_SCORING_RESOURCE.post(body, headers)
       puts 'Scoring request successful!'
       process_json request
     rescue Exception => e

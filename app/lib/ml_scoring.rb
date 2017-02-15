@@ -19,7 +19,7 @@ class ML_Scoring
   end
   
   def probability
-    @result.probability
+    @result[:probability]
   end
   
   def to_h

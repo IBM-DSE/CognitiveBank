@@ -14,7 +14,7 @@ class CustomersController < ApplicationController
     end
     @sorted_categories = cc.sort_by { |k, v| v }.reverse.to_h
     
-    current_customer.get_churn
+    # current_customer.get_churn
     
     current_customer.start_conversation
   end

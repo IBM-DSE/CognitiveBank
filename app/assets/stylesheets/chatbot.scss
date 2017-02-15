@@ -23,7 +23,7 @@ $input-height: 55px;
 #chat-zone {
   position: fixed;
   bottom: $offset;
-  right: $offset;
+  right: 20px;
   //height: 90vh;
   height: calc(100vh - calc(50px + #{$offset}));
 }

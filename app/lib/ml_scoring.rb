@@ -25,10 +25,11 @@ class ML_Scoring
   private
   
   SCORING_ATTRS = %w(age activity education sex state negtweets income)
-
-  ML_SCORING_RESOURCE = RestClient::Resource.new ENV['ML_SCORING_URL'],
-                                                 :read_timeout => ENV['ML_SCORING_TIMEOUT'].to_i || 2,
-                                                 :open_timeout => ENV['ML_SCORING_TIMEOUT'].to_i || 2
+  
+  SCORING_CALL_TIMEOUT = (ENV['ML_SCORING_TIMEOUT'] || 2).to_i
+  ML_SCORING_RESOURCE = RestClient::Resource.new ENV['ML_SCORING_URL'], 
+                                                 :read_timeout => SCORING_CALL_TIMEOUT, 
+                                                 :open_timeout => SCORING_CALL_TIMEOUT
   
   def post_to_scoring_ml
     puts 'Posting to endpoint '+ML_SCORING_RESOURCE.url

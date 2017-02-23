@@ -72,3 +72,5 @@ end
 
 # Prevents warning messages
 gem 'thor', '0.19.1'
+
+gem 'local_time'

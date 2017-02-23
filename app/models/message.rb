@@ -1,7 +1,7 @@
 class Message < ApplicationRecord
   belongs_to :customer
   validates :customer_id, presence: true
-  validates :content, presence: true#, length: { maximum: 140 }
+  validates :content, presence: true
   
   API_ENDPOINT='https://gateway.watsonplatform.net/conversation/api/v1/workspaces/'
   VERSION     = '2016-09-20'

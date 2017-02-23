@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170215150950) do
+ActiveRecord::Schema.define(version: 20170223211436) do
 
   create_table "customers", force: :cascade do |t|
     t.integer  "user_id"
@@ -44,6 +44,17 @@ ActiveRecord::Schema.define(version: 20170215150950) do
     t.index ["customer_id"], name: "index_messages_on_customer_id"
   end
 
+  create_table "ml_scoring_services", force: :cascade do |t|
+    t.string   "hostname"
+    t.integer  "ldap_port"
+    t.integer  "deployment"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "scoring_port"
+    t.string   "username"
+    t.string   "password"
+  end
+
   create_table "transaction_categories", force: :cascade do |t|
     t.string "name"
   end
@@ -72,10 +83,10 @@ ActiveRecord::Schema.define(version: 20170215150950) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "password_digest"
-    t.boolean  "admin"
+    t.boolean  "admin",           default: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

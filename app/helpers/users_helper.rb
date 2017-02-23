@@ -5,7 +5,7 @@ module UsersHelper
   end
   
   def is_customer?
-    current_user.customer
+    !current_user.admin
   end
 
   # Returns the current logged-in user (if any).

@@ -2,9 +2,9 @@ require 'test_helper'
 
 class MessagesControllerTest < ActionDispatch::IntegrationTest
   
-  def setup
-    @message = messages(:one)
-  end
+  # def setup
+  #   @message = messages(:one)
+  # end
   
   test 'should redirect create when not logged in' do
     assert_no_difference 'Message.count' do

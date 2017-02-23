@@ -22,6 +22,10 @@ class ML_Scoring
     @result.to_s
   end
   
+  def update_token
+    get_token
+  end
+  
   private
   
   SCORING_ATTRS = %w(age activity education sex state negtweets income)
@@ -31,6 +35,10 @@ class ML_Scoring
                                                  :read_timeout => SCORING_CALL_TIMEOUT, 
                                                  :open_timeout => SCORING_CALL_TIMEOUT
   
+  def get_token
+    
+  end
+  
   def post_to_scoring_ml
     puts 'Posting to endpoint '+ML_SCORING_RESOURCE.url
     headers = { :content_type => 'application/json', :Authorization => ENV['ML_SCORING_AUTH'] }
@@ -38,9 +46,9 @@ class ML_Scoring
     begin
       puts headers
       puts body
-      request = ML_SCORING_RESOURCE.post(body, headers)
+      response = ML_SCORING_RESOURCE.post(body, headers)
       puts 'Scoring request successful!'
-      process_json request
+      process_json response
     rescue Exception => e
       puts 'ERROR: '+e.message
       load_sample_ml_result

@@ -33,7 +33,7 @@
                   <h4>Customer Churn:</h4>
                   <p><strong><%= Customer.human_attribute_name :churn_prediction %>: </strong><%= @customer.churn_prediction.to_s %></p>
                   <p><strong><%= Customer.human_attribute_name :churn_probability %>: </strong><%= @customer.churn_probability.to_s %></p>
-                  <p><strong>Last Scoring Call: </strong><%= @customer.updated_at %></p>
+                  <p><strong>Last Scoring Call: </strong><%= local_time(@customer.updated_at) %></p>
                   <!--%= render partial: 'layouts/display_hash', locals: { hash: @churn_result.to_h } %>-->
                 </div>
             <% end %>

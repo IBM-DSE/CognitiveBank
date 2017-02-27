@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  prediction: false
+  probability: 1.5
+  endpoint: MyString
+  response: MyString
+
+two:
+  prediction: false
+  probability: 1.5
+  endpoint: MyString
+  response: MyString

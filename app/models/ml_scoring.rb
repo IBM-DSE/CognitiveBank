@@ -1,0 +1,5 @@
+class MlScoring < ApplicationRecord
+  
+  
+  
+end

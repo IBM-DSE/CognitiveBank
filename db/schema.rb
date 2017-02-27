@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223211436) do
+ActiveRecord::Schema.define(version: 20170227140431) do
 
   create_table "customers", force: :cascade do |t|
     t.integer  "user_id"
@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(version: 20170223211436) do
     t.integer  "scoring_port"
     t.string   "username"
     t.string   "password"
+  end
+
+  create_table "ml_scorings", force: :cascade do |t|
+    t.boolean  "prediction"
+    t.float    "probability"
+    t.string   "endpoint"
+    t.string   "response"
+    t.datetime "created_at"
   end
 
   create_table "transaction_categories", force: :cascade do |t|

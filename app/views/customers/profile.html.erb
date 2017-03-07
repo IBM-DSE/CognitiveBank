@@ -3,7 +3,7 @@
 <div class="container">
   <% if logged_in? %>
 
-      <h3><%= current_user.name %>'s Profile:</h3>
+      <h2><%= current_user.name %>'s Profile:</h2>
       <br>
       
       <table class="table">
@@ -16,13 +16,22 @@
 
           <td>
             
-            <% if @twitter %>
+            <% if @personality %>
                 <div>
-                  <h4>Twitter Profile:</h4>
-                  <p><strong>Twitter Username: </strong> <%= @twitter.username %>43253</p>
+                  <h3>Twitter Profile:</h3>
+                  
+                  <p><strong>Twitter Username: </strong> <%= current_user.name.downcase %>43253</p>
+                  <br>
+                  <h4>Personality: </h4>
+                  <% @personality[:personality].each do |k, v| %>
+                      <p>&nbsp&nbsp&nbsp&nbsp<strong><%= k %>: </strong><%= number_to_percentage(v*100, precision: 1) %></p>
+                  <% end %>
+                  <br>
+                  <p><strong>Needs: </strong><%= @personality[:needs] %></p>
+                  <p><strong>Values: </strong><%= @personality[:values] %></p>
+                  <br>
                   <p><strong>Negative Signals: </strong> Foreign Transaction Fees</p>
-                  <%= render partial: 'layouts/display_hash', 
-                             locals: { hash: @twitter.attributes.slice('personality', 'values', 'needs') } %>
+                  
                 </div>
             <% end %>
 
@@ -30,11 +39,10 @@
             
             <% if @customer.churn_prediction %>
                 <div>
-                  <h4>Customer Churn:</h4>
-                  <p><strong><%= Customer.human_attribute_name :churn_prediction %>: </strong><%= @customer.churn_prediction.to_s %></p>
-                  <p><strong><%= Customer.human_attribute_name :churn_probability %>: </strong><%= @customer.churn_probability.to_s %></p>
+                  <h3>Customer Churn:</h3>
+                  <p><strong>Prediction: </strong><%= @customer.churn_prediction.to_s %></p>
+                  <p><strong>Probability: </strong><%= @customer.churn_probability.to_s %></p>
                   <p><strong>Last Scoring Call: </strong><%= local_time(@customer.updated_at) %></p>
-                  <!--%= render partial: 'layouts/display_hash', locals: { hash: @churn_result.to_h } %>-->
                 </div>
             <% end %>
             

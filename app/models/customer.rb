@@ -18,6 +18,11 @@ class Customer < ApplicationRecord
     self.save
   end
   
+  def get_personality
+    personality = WatsonPersonalityInsights.new
+    personality.to_h
+  end
+  
   def update_churn
     churn = MlScoring.new self
     if churn.result

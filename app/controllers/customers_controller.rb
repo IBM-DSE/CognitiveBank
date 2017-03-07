@@ -28,10 +28,10 @@ class CustomersController < ApplicationController
       
       puts ' '
       puts "Fetching Personality Insights for #{@customer.name}..."
-      @twitter = @customer.twitter_personality
+      @personality = @customer.get_personality
       puts 'Customer Personality:'
-      @twitter.attributes.slice('personality', 'values', 'needs').each do |k,v|
-        puts "  #{k.humanize}: #{v}"
+      @personality.each do |k,v|
+        puts "  #{k}: #{v}"
       end
     else
       redirect_to login_path, flash: { danger: 'You must log in as customer to view your profile' }

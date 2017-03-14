@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ML_ScoringTest < ActiveSupport::TestCase
+class MlScoringTest < ActiveSupport::TestCase
   
   def setup
     @customer = customers(:bruce)

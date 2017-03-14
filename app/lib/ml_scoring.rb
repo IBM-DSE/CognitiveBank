@@ -1,4 +1,4 @@
-class ML_Scoring
+class MlScoring
   
   attr_reader :result
   

@@ -21,7 +21,7 @@ class Customer < ApplicationRecord
   end
   
   def update_churn
-    churn = ML_Scoring.new self
+    churn = MlScoring.new self
     self.churn_prediction=churn.result[:prediction]
     self.churn_probability=churn.result[:probability]
     self.save

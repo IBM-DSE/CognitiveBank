@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ML_ScoringServiceTest < ActiveSupport::TestCase
+class MlScoringServiceTest < ActiveSupport::TestCase
   
   TOKEN_PREFIX = 'eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9'
   

@@ -1,0 +1,14 @@
+<table class="table table-bordered table-striped">
+  <tr>
+    <% records.klass.columns.each do |col| %>
+      <th><%= col.name.humanize %></th>
+    <% end %>
+  </tr>
+  <% records.each do |rec| %>
+    <tr>
+      <% rec.attributes.each do |k,v| %>
+        <td><%= v %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'ml_scoring_service/index'
+
   root 'cognitive_bank#home'
   get 'offers', to: 'cognitive_bank#offers'
 

@@ -17,12 +17,16 @@ class MlScoringService < ApplicationRecord
   
   def test_score
     score = get_score
-    score.is_a?(String) and token.start_with?(TOKEN_PREFIX)
+    score.is_a?(Hash) and
+        score.keys.include? 'prediction' and
+        [1, 0].include? score['prediction'] and
+        score.keys.include? 'probability' and
+        (0..1) === score['probability']['values'][score['prediction']]
   end
   
   private
   
-  TOKEN_PREFIX = 'eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9'
+  TOKEN_PREFIX  = 'eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9'
   SCORING_ATTRS = %w(AGE ACTIVITY EDUCATION SEX STATE NEGTWEETS INCOME)
   SAMPLE_RECORD = [41, 4, 3, 'M', 'TX', 12, 316530]
   

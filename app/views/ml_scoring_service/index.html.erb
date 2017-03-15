@@ -2,5 +2,6 @@
 
 <%= render partial: 'layouts/record_table', locals: { 
     records: @ml_scoring_services,
-    helpers: ['ldap_call']
+    helpers: %w(ldap_test ml_scoring_test),
+    blacklist: %w(created_at updated_at)
 } %>

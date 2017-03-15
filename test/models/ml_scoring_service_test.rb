@@ -5,7 +5,7 @@ class MlScoringServiceTest < ActiveSupport::TestCase
   TOKEN_PREFIX = 'eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9'
   
   def setup
-    @scoring_service = ml_scoring_services :svl_gateway
+    @scoring_service = ml_scoring_services :wsc_gateway
   end
   
   test 'ldap_token_fetch' do

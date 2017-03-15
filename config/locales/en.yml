@@ -22,6 +22,8 @@
 
 en:
   activerecord:
+    models:
+      ml_scoring_service: "Machine Learning Scoring Service"
     attributes:
       customer:
         yrly_amt: "Annual Spending"
@@ -30,3 +32,6 @@ en:
         avg_tx_amt: "Average Transaction Amount"
         negtweets: "Negative Tweets"
         education_group: "Education Level"
+      ml_scoring_service:
+        ldap_port: "LDAP Port"
+        ldap_call: "LDAP Call"

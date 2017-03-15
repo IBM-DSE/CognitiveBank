@@ -1,13 +1,19 @@
 <table class="table table-bordered table-striped">
   <tr>
     <% records.klass.columns.each do |col| %>
-      <th><%= col.name.humanize %></th>
+      <th><%= records.klass.human_attribute_name col.name %></th>
+    <% end %>
+    <% helpers.each do |helper| %>
+      <th><%= records.klass.human_attribute_name helper %></th>
     <% end %>
   </tr>
   <% records.each do |rec| %>
     <tr>
       <% rec.attributes.each do |k,v| %>
         <td><%= v %></td>
+      <% end %>
+      <% helpers.each do |helper| %>
+          <%= method(helper).call(rec) %>
       <% end %>
     </tr>
   <% end %>

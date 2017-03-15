@@ -89,5 +89,8 @@ User.create!(name:     'David Thomason', email: 'david@example.com',
              password: 'password', password_confirmation: 'password',
              admin:    true)
 
-YAML.load_file('test/fixtures/ml_scoring_services.yml').each { |rec| MlScoringService.create!(rec[1]) }
+User.create!(name:     'Avijit Chatterjee', email: 'avijit@example.com',
+             password: 'password', password_confirmation: 'password',
+             admin:    true)
+
 puts "Loaded #{MlScoringService.count} ML Scoring Services."

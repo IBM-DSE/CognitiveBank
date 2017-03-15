@@ -51,6 +51,7 @@ puts "Loaded #{TwitterPersonality.count} twitter personalities."
 #   end
 # end
 
+puts 'Loading the customers and transactions...'
 csv_text = File.read('db/bruce_profile.csv')
 CSV.parse(csv_text, :headers => true) do |row|
   cust                     = Customer.new(row.to_hash)
@@ -73,7 +74,6 @@ puts "Loaded #{Customer.count} customers."
 # 
 # 
 
-# puts 'Loading the customers and transactions...'
 customer = Customer.first
 CSV.foreach('db/bruce_transactions.csv', headers: true) do |row|
   
@@ -89,6 +89,5 @@ User.create!(name:     'David Thomason', email: 'david@example.com',
              password: 'password', password_confirmation: 'password',
              admin:    true)
 
-User.create!(name:     'Avijit Chatterjee', email: 'avijit@example.com',
-             password: 'password', password_confirmation: 'password',
-             admin:    true)
+YAML.load_file('test/fixtures/ml_scoring_services.yml').each { |rec| MlScoringService.create!(rec[1]) }
+puts "Loaded #{MlScoringService.count} ML Scoring Services."

@@ -6,8 +6,8 @@
   <h3>Welcome, <%= current_user.name %>!</h3>
   <h4>You are logged in as administrator</h4>
   <br>
-  <h4>Customers:</h4>
-  <table class="table table-bordered">
+  <h3>Customers:</h3>
+  <table class="table table-bordered table-striped">
     <tr>
       <th>User</th>
       <th>Conversation</th>
@@ -24,6 +24,8 @@
         </tr>
     <% end %>
   </table>
+  <br>
+  <%= render 'ml_scoring_service/index' %>
 
 </div>
 <% end %>

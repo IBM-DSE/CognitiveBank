@@ -1,7 +1,9 @@
+<% columns = records.klass.columns.map {|col| col.name} %>
+<% columns = columns - blacklist if defined? blacklist %>
 <table class="table table-bordered table-striped">
   <tr>
-    <% records.klass.columns.each do |col| %>
-      <th><%= records.klass.human_attribute_name col.name %></th>
+    <% columns.each do |col| %>
+      <th><%= records.klass.human_attribute_name col %></th>
     <% end %>
     <% helpers.each do |helper| %>
       <th><%= records.klass.human_attribute_name helper %></th>
@@ -9,8 +11,8 @@
   </tr>
   <% records.each do |rec| %>
     <tr>
-      <% rec.attributes.each do |k,v| %>
-        <td><%= v %></td>
+      <% columns.each do |col| %>
+        <td><%= rec[col] %></td>
       <% end %>
       <% helpers.each do |helper| %>
           <%= method(helper).call(rec) %>

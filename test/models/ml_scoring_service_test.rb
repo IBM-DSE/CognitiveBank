@@ -6,17 +6,22 @@ class MlScoringServiceTest < ActiveSupport::TestCase
   SCORING_ATTRS = %w(AGE ACTIVITY EDUCATION SEX STATE NEGTWEETS INCOME)
   
   def setup
-    @scoring_service = ml_scoring_services :wsc_gateway
+    @scoring_service               = ml_scoring_services :wsc_gateway
+    @bad_hostname_scoring_service  = ml_scoring_services :wsc_gateway_bad_hostname
+    @bad_ldap_port_scoring_service = ml_scoring_services :wsc_gateway_bad_ldap_port
+    @bad_scoring_port_service      = ml_scoring_services :wsc_gateway_bad_scoring_port
+    
+    @bruce = customers :bruce
   end
   
   test 'fetch_ldap_token' do
-    token = @scoring_service.get_token
+    token = @scoring_service.instance_eval{get_token}
     assert_kind_of String, token
     assert token.start_with? TOKEN_PREFIX
   end
 
   test 'fetch_ml_score' do
-    score = @scoring_service.get_score
+    score = MlScoringService.get_score @bruce
     assert_not_kind_of FalseClass, score
     assert_kind_of Hash, score
     SCORING_ATTRS.each do |attr|
@@ -30,6 +35,21 @@ class MlScoringServiceTest < ActiveSupport::TestCase
     score['probability']['values'].each do |val|
       assert (0..1) === val
     end
+  end
+
+  test 'bad_hostname_fetch_ml_score' do
+    score = @bad_hostname_scoring_service.get_score @bruce
+    assert_kind_of FalseClass, score
+  end
+  
+  test 'bad_ldap_port_fetch_ml_score' do
+    score = @bad_ldap_port_scoring_service.get_score @bruce
+    assert_kind_of FalseClass, score
+  end
+
+  test 'bad_scoring_port_fetch_ml_score' do
+    score = @bad_scoring_port_service.get_score @bruce
+    assert_kind_of FalseClass, score
   end
   
 end

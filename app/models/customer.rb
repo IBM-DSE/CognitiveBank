@@ -8,8 +8,6 @@ class Customer < ApplicationRecord
   
   serialize :context, JSON
 
-  attr_reader :churn_result
-  
   def start_conversation
     Message.send_to_watson_conversation('', self) if messages.empty?  # Send empty string to Watson Conversation
   end
@@ -22,9 +20,11 @@ class Customer < ApplicationRecord
   
   def update_churn
     churn = MlScoring.new self
-    self.churn_prediction=churn.result[:prediction]
-    self.churn_probability=churn.result[:probability]
-    self.save
+    if churn.result
+      self.churn_prediction=churn.result[:prediction]
+      self.churn_probability=churn.result[:probability]
+      self.save
+    end
   end
   
   def will_churn?

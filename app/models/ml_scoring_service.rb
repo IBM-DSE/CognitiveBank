@@ -1,19 +1,15 @@
 class MlScoringService < ApplicationRecord
   
-  def self.get_score(customer_attrs)
-    self.first.get_score customer_attrs
+  def self.get_score(customer)
+    self.first.get_score customer
   end
   
-  def get_score(customer_attrs)
-    token = get_token
+  def get_score(customer)
+    token          = get_token
+    return false unless token
+    customer_attrs = customer.attributes.slice(*SCORING_ATTRS).values
     post_to_scoring_ml token, customer_attrs
   end
-  
-  def get_token
-    response = RestClient.post(ldap_url, creds.to_json, content_type: :json)
-    JSON.parse(response)['token']
-  end
-  
   
   def test_ldap
     token = get_token
@@ -32,7 +28,7 @@ class MlScoringService < ApplicationRecord
   private
   
   TOKEN_PREFIX  = 'eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9'
-  SCORING_ATTRS = %w(AGE ACTIVITY EDUCATION SEX STATE NEGTWEETS INCOME)
+  SCORING_ATTRS = %w(age activity education sex state negtweets income)
   SAMPLE_RECORD = [26, 2, 3, 'M', 'NY', 0, 483620]
   
   def ldap_url
@@ -47,7 +43,21 @@ class MlScoringService < ApplicationRecord
     "http://#{self.hostname}:#{self.scoring_port}/wml/scoring/spark/deployments/#{self.deployment}/predict"
   end
   
+  def get_token
+    begin
+      response = RestClient.post ldap_url, creds.to_json, content_type: :json
+      JSON.parse(response)['token']
+    rescue Exception => e
+      STDERR.puts 'ERROR: '+e.message
+      false
+    end
+  end
+  
   def post_to_scoring_ml(token, customer_attrs)
+    puts ' '
+    puts 'Fetching churn probability from MLz churn model.'
+    puts 'Sending customer attributes to churn scoring: '
+    puts customer_attrs.to_s
     puts 'Posting to endpoint '+scoring_url
     headers = { :content_type => 'application/json', :Authorization => 'Bearer '+token }
     body    = { 'Record': customer_attrs }.to_json
@@ -58,11 +68,11 @@ class MlScoringService < ApplicationRecord
       puts 'Scoring request successful!'
       JSON.parse(response)
     rescue Exception => e
-      puts 'ERROR: '+e.message
+      STDERR.puts 'ERROR: '+e.message
       false
     end
   end
-
+  
   # SCORING_CALL_TIMEOUT = (ENV['ML_SCORING_TIMEOUT'] || 2).to_i
   # ML_SCORING_RESOURCE = RestClient::Resource.new ENV['ML_SCORING_URL'],
   #                                                :read_timeout => SCORING_CALL_TIMEOUT,

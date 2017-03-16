@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   get 'profile', to: 'customers#profile'
   get 'messages', to: 'messages#start'
   post 'messages', to: 'messages#create'
-  delete 'customer/:id/messages', to: 'customers#clear_messages', as: 'customer'
   
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

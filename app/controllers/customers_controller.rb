@@ -38,14 +38,6 @@ class CustomersController < ApplicationController
     end
   end
   
-  def clear_messages
-    @customer = Customer.find params[:id]
-    unless @customer.clear_conversation
-      flash.now[:danger] = "There was an error when deleting the messages for customer #{params[:id]}"
-    end
-    redirect_to admin_path
-  end
-  
   private
   
   def message_params

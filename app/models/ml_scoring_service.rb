@@ -31,7 +31,7 @@ class MlScoringService < ApplicationRecord
   end
   
   def test_score
-    score = get_score SAMPLE_RECORD
+    score = post_to_scoring_ml get_token, SAMPLE_RECORD
     score.is_a?(Hash) and
         score.keys.include? 'prediction' and
         [1, 0].include? score['prediction'] and

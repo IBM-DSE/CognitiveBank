@@ -1,7 +1,21 @@
 class MlScoringService < ApplicationRecord
+  after_save { MlScoringService.init_main }
+
+  def self.init_main
+    @@main ||= MlScoringService.first
+  end
+  
+  def self.set_main(service)
+    @@main = service
+  end
+
+  def self.get_main
+    @@main
+  end
   
   def self.get_score(customer)
-    self.first.get_score customer
+    MlScoringService.init_main
+    @@main.get_score customer
   end
   
   def get_score(customer)

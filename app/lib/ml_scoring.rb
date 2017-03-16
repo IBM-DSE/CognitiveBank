@@ -3,18 +3,12 @@ class MlScoring
   attr_reader :result
   
   def initialize(customer)
-    customer_attrs = customer.attributes.slice(*SCORING_ATTRS).values
-    puts ' '
-    puts 'Fetching churn probability from MLz churn model.'
-    puts 'Sending customer attributes to churn scoring: '
-    puts customer_attrs.to_s
-    
-    # post_to_scoring_ml
-    score = MlScoringService.get_score(customer_attrs)
-
-    process_score score
-    
-    print_churn_result
+    # get score from MlScoringService
+    score = MlScoringService.get_score(customer)
+    if score
+      process_score score
+      print_churn_result
+    end
   end
   
   def to_h
@@ -30,8 +24,6 @@ class MlScoring
   end
   
   private
-  
-  SCORING_ATTRS = %w(age activity education sex state negtweets income)
   
   def process_score(score)
     puts score

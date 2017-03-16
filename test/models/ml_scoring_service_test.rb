@@ -13,30 +13,18 @@ class MlScoringServiceTest < ActiveSupport::TestCase
     
     @bruce = customers :bruce
   end
+
+  test 'fetch_token_bad_ldap_port' do
+    score = @bad_ldap_port_scoring_service.instance_eval{get_token}
+    assert_kind_of FalseClass, score
+  end
   
   test 'fetch_ldap_token' do
     token = @scoring_service.instance_eval{get_token}
     assert_kind_of String, token
     assert token.start_with? TOKEN_PREFIX
   end
-
-  test 'fetch_ml_score' do
-    score = MlScoringService.get_score @bruce
-    assert_not_kind_of FalseClass, score
-    assert_kind_of Hash, score
-    SCORING_ATTRS.each do |attr|
-      assert_includes score.keys, attr
-    end
-    
-    assert_includes score.keys, 'prediction'
-    assert_includes [1,0], score['prediction']
-    
-    assert_includes score.keys, 'probability'
-    score['probability']['values'].each do |val|
-      assert (0..1) === val
-    end
-  end
-
+  
   test 'bad_hostname_fetch_ml_score' do
     score = @bad_hostname_scoring_service.get_score @bruce
     assert_kind_of FalseClass, score
@@ -50,6 +38,23 @@ class MlScoringServiceTest < ActiveSupport::TestCase
   test 'bad_scoring_port_fetch_ml_score' do
     score = @bad_scoring_port_service.get_score @bruce
     assert_kind_of FalseClass, score
+  end
+
+  test 'fetch_ml_score' do
+    score = @scoring_service.get_score @bruce
+    assert_not_kind_of FalseClass, score
+    assert_kind_of Hash, score
+    SCORING_ATTRS.each do |attr|
+      assert_includes score.keys, attr
+    end
+  
+    assert_includes score.keys, 'prediction'
+    assert_includes [1,0], score['prediction']
+  
+    assert_includes score.keys, 'probability'
+    score['probability']['values'].each do |val|
+      assert (0..1) === val
+    end
   end
   
 end

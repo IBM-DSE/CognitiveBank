@@ -11,16 +11,17 @@
     <tr>
       <th>User</th>
       <th>Conversation</th>
+      <th>Churn Prediction: </th>
+      <th>Churn Probability: </th>
+      <th>Last Scoring Call: </th>
     </tr>
     <% Customer.all.each do |customer| %>
         <tr>
           <td><%= customer.twitter_id %></td>
-          <td>
-            <%= 'Not Started' if customer.messages.empty? %>
-            <%= link_to 'Clear Conversation', customer_path(customer), 
-                        method: :delete,
-                        class: 'btn btn-danger' unless customer.messages.empty? %>
-          </td>
+          <td><%= customer.messages.empty? ? 'Not Started' : "#{customer.messages.count} Messages" %></td>
+          <td><%= customer.churn_prediction.to_s %></td>
+          <td><%= number_to_percentage(customer.churn_probability*100, precision: 1) %></td>
+          <td><%= local_time(customer.updated_at) %></td>
         </tr>
     <% end %>
   </table>

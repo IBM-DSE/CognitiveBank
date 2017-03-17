@@ -1,168 +1,168 @@
 {
   "name": "Cognitive Bank Chatbot - Local Images",
-  "created": "2017-02-14T15:54:48.148Z",
+  "created": "2017-02-14T16:07:40.900Z",
   "intents": [
     {
       "intent": "affirmative",
-      "created": "2017-02-14T15:54:48.148Z",
-      "updated": "2017-02-14T15:54:48.148Z",
+      "created": "2017-02-14T16:07:40.900Z",
+      "updated": "2017-02-14T16:07:40.900Z",
       "examples": [
         {
           "text": "absolutely",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "affirmative",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "definitely",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "fine",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "indeed",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "ok",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "okay",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "sure",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "yes",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         }
       ],
       "description": null
     },
     {
       "intent": "appreciation",
-      "created": "2017-02-14T15:54:48.148Z",
-      "updated": "2017-02-14T15:54:48.148Z",
+      "created": "2017-02-14T16:07:40.900Z",
+      "updated": "2017-02-14T16:07:40.900Z",
       "examples": [
         {
           "text": "appreciate it",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "much appreciated",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "thanks",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "thanks a lot",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "thank you",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "thank you so much",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "you're awesome",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "you're so cool",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "you rock",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         }
       ],
       "description": null
     },
     {
       "intent": "negative",
-      "created": "2017-02-14T15:54:48.148Z",
-      "updated": "2017-02-14T15:54:48.148Z",
+      "created": "2017-02-14T16:07:40.900Z",
+      "updated": "2017-02-14T16:07:40.900Z",
       "examples": [
         {
           "text": "absolutely not",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "definitely not",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "I'll pass",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "nah",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "negative",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "no",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "nope",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "no thank you",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         },
         {
           "text": "no way",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z"
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z"
         }
       ],
       "description": null
     }
   ],
-  "updated": "2017-02-14T15:54:48.148Z",
+  "updated": "2017-03-17T18:54:33.196Z",
   "entities": [
     {
       "type": null,
@@ -171,28 +171,28 @@
       "values": [
         {
           "value": "clothing",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z",
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z",
           "metadata": null,
           "synonyms": []
         },
         {
           "value": "restaurants",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z",
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z",
           "metadata": null,
           "synonyms": []
         },
         {
           "value": "travel",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z",
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z",
           "metadata": null,
           "synonyms": []
         }
       ],
-      "created": "2017-02-14T15:54:48.148Z",
-      "updated": "2017-02-14T15:54:48.148Z",
+      "created": "2017-02-14T16:07:40.900Z",
+      "updated": "2017-02-14T16:07:40.900Z",
       "open_list": false,
       "description": null
     },
@@ -203,28 +203,28 @@
       "values": [
         {
           "value": "begin",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z",
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z",
           "metadata": null,
           "synonyms": []
         },
         {
           "value": "offers",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z",
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z",
           "metadata": null,
           "synonyms": []
         },
         {
           "value": "start",
-          "created": "2017-02-14T15:54:48.148Z",
-          "updated": "2017-02-14T15:54:48.148Z",
+          "created": "2017-02-14T16:07:40.900Z",
+          "updated": "2017-02-14T16:07:40.900Z",
           "metadata": null,
           "synonyms": []
         }
       ],
-      "created": "2017-02-14T15:54:48.148Z",
-      "updated": "2017-02-14T15:54:48.148Z",
+      "created": "2017-02-14T16:07:40.900Z",
+      "updated": "2017-02-14T16:07:40.900Z",
       "open_list": false,
       "description": null
     },
@@ -233,8 +233,8 @@
       "entity": "sys-date",
       "source": "system.entities",
       "values": [],
-      "created": "2017-02-14T15:54:48.148Z",
-      "updated": "2017-02-14T15:54:48.148Z",
+      "created": "2017-02-14T16:07:40.900Z",
+      "updated": "2017-02-14T16:07:40.900Z",
       "open_list": false,
       "description": null
     }
@@ -250,19 +250,19 @@
       "output": {
         "text": {
           "values": [
-            "Before you leave, we have something special just for you...<br><br>In appreciation of your loyalty, we will <strong>waive your foreign transaction fees</strong> for this trip!"
+            "Before you leave, we have something special just for you...<br><br>In appreciation of your loyalty, we will <strong><u>waive your foreign transaction fees</u></strong> for this trip!"
           ],
           "selection_policy": "sequential"
         }
       },
-      "parent": "node_5_1486400349255",
+      "parent": "Additional Offer",
       "context": null,
-      "created": "2017-02-14T15:54:48.148Z",
-      "updated": "2017-02-14T15:54:48.148Z",
+      "created": "2017-02-14T16:07:40.900Z",
+      "updated": "2017-03-17T18:53:48.882Z",
       "metadata": null,
-      "conditions": "input.text == \"churn\"",
+      "conditions": "$will_churn",
       "description": null,
-      "dialog_node": "node_9_1486401261842",
+      "dialog_node": "Anti-Churn Offer",
       "previous_sibling": null
     },
     {
@@ -277,8 +277,8 @@
       },
       "parent": "Conversation Start",
       "context": null,
-      "created": "2017-02-14T15:54:48.148Z",
-      "updated": "2017-02-14T15:54:48.148Z",
+      "created": "2017-02-14T16:07:40.900Z",
+      "updated": "2017-02-14T16:07:40.900Z",
       "metadata": null,
       "conditions": "#affirmative",
       "description": null,
@@ -297,8 +297,8 @@
       },
       "parent": "node_2_1486398110273",
       "context": null,
-      "created": "2017-02-14T15:54:48.148Z",
-      "updated": "2017-02-14T15:54:48.148Z",
+      "created": "2017-02-14T16:07:40.900Z",
+      "updated": "2017-02-14T16:07:40.900Z",
       "metadata": null,
       "conditions": "#affirmative",
       "description": null,
@@ -317,8 +317,8 @@
       },
       "parent": null,
       "context": null,
-      "created": "2017-02-14T15:54:48.148Z",
-      "updated": "2017-02-14T15:54:48.148Z",
+      "created": "2017-02-14T16:07:40.900Z",
+      "updated": "2017-02-14T16:07:40.900Z",
       "metadata": null,
       "conditions": "conversation_start",
       "description": null,
@@ -337,8 +337,8 @@
       },
       "parent": null,
       "context": null,
-      "created": "2017-02-14T15:54:48.148Z",
-      "updated": "2017-02-14T15:54:48.148Z",
+      "created": "2017-02-14T16:07:40.900Z",
+      "updated": "2017-02-14T16:07:40.900Z",
       "metadata": null,
       "conditions": "anything_else",
       "description": null,
@@ -357,13 +357,13 @@
       },
       "parent": "Yes",
       "context": null,
-      "created": "2017-02-14T15:54:48.148Z",
-      "updated": "2017-02-14T15:54:48.148Z",
+      "created": "2017-02-14T16:07:40.900Z",
+      "updated": "2017-02-14T16:07:40.900Z",
       "metadata": null,
       "conditions": "@category:travel",
       "description": null,
       "dialog_node": "node_2_1486398110273",
-      "previous_sibling": "node_1_1486396313447"
+      "previous_sibling": null
     },
     {
       "go_to": null,
@@ -377,8 +377,8 @@
       },
       "parent": "Conversation Start",
       "context": null,
-      "created": "2017-02-14T15:54:48.148Z",
-      "updated": "2017-02-14T15:54:48.148Z",
+      "created": "2017-02-14T16:07:40.900Z",
+      "updated": "2017-02-14T16:07:40.900Z",
       "metadata": null,
       "conditions": "#negative",
       "description": null,
@@ -397,13 +397,13 @@
       },
       "parent": "Yes",
       "context": null,
-      "created": "2017-02-14T15:54:48.148Z",
-      "updated": "2017-02-14T15:54:48.148Z",
+      "created": "2017-02-14T16:07:40.900Z",
+      "updated": "2017-03-17T18:52:35.312Z",
       "metadata": null,
       "conditions": "@category:restaurants",
       "description": null,
-      "dialog_node": "node_1_1486396313447",
-      "previous_sibling": null
+      "dialog_node": "node_1_1489776746056",
+      "previous_sibling": "node_2_1486398110273"
     },
     {
       "go_to": null,
@@ -417,33 +417,12 @@
       },
       "parent": "node_4_1486398255085",
       "context": null,
-      "created": "2017-02-14T15:54:48.148Z",
-      "updated": "2017-02-14T15:54:48.148Z",
+      "created": "2017-02-14T16:07:40.900Z",
+      "updated": "2017-02-14T16:07:40.900Z",
       "metadata": null,
       "conditions": null,
       "description": null,
       "dialog_node": "node_8_1486401053571",
-      "previous_sibling": null
-    },
-    {
-      "go_to": null,
-      "output": {
-        "text": {
-          "values": [
-            "Since you're going during the rainy season, I found a good offer for you:<br><br><strong>Marmot Minimalist Rain Jacket - Men's $139.73 <strike>$200.00</strike> Save $60.27 (30%)</strong><br><br><img src='/images/red-raincoat.png'>"
-          ],
-          "selection_policy": "sequential"
-        },
-        "action": "check_churn"
-      },
-      "parent": "node_8_1486401053571",
-      "context": null,
-      "created": "2017-02-14T15:54:48.148Z",
-      "updated": "2017-02-14T15:54:48.148Z",
-      "metadata": null,
-      "conditions": "#affirmative",
-      "description": null,
-      "dialog_node": "node_5_1486400349255",
       "previous_sibling": null
     },
     {
@@ -455,8 +434,8 @@
       "output": {},
       "parent": null,
       "context": null,
-      "created": "2017-02-14T15:54:48.148Z",
-      "updated": "2017-02-14T15:54:48.148Z",
+      "created": "2017-02-14T16:07:40.900Z",
+      "updated": "2017-02-14T16:07:40.900Z",
       "metadata": null,
       "conditions": "@start",
       "description": null,
@@ -472,12 +451,36 @@
       "output": {},
       "parent": "node_3_1486398209118",
       "context": null,
-      "created": "2017-02-14T15:54:48.148Z",
-      "updated": "2017-02-14T15:54:48.148Z",
+      "created": "2017-02-14T16:07:40.900Z",
+      "updated": "2017-02-14T16:07:40.900Z",
       "metadata": null,
       "conditions": "@sys-date",
       "description": null,
       "dialog_node": "node_4_1486398255085",
+      "previous_sibling": null
+    },
+    {
+      "go_to": {
+        "return": null,
+        "selector": "condition",
+        "dialog_node": "Anti-Churn Offer"
+      },
+      "output": {
+        "text": {
+          "values": [
+            "Since you're going during the rainy season, I found a good offer for you:<br><br><strong>Marmot Minimalist Rain Jacket - Men's $139.73 <strike>$200.00</strike> Save $60.27 (30%)</strong><br><img src='/images/red-raincoat.png'>"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_8_1486401053571",
+      "context": null,
+      "created": "2017-02-14T16:07:40.900Z",
+      "updated": "2017-03-17T18:54:33.196Z",
+      "metadata": null,
+      "conditions": "#affirmative",
+      "description": null,
+      "dialog_node": "Additional Offer",
       "previous_sibling": null
     },
     {
@@ -496,8 +499,8 @@
       },
       "parent": "node_3_1486398209118",
       "context": null,
-      "created": "2017-02-14T15:54:48.148Z",
-      "updated": "2017-02-14T15:54:48.148Z",
+      "created": "2017-02-14T16:07:40.900Z",
+      "updated": "2017-02-14T16:07:40.900Z",
       "metadata": null,
       "conditions": "true",
       "description": null,
@@ -517,8 +520,8 @@
       },
       "parent": "node_4_1486398255085",
       "context": null,
-      "created": "2017-02-14T15:54:48.148Z",
-      "updated": "2017-02-14T15:54:48.148Z",
+      "created": "2017-02-14T16:07:40.900Z",
+      "updated": "2017-02-14T16:07:40.900Z",
       "metadata": null,
       "conditions": null,
       "description": null,
@@ -540,8 +543,8 @@
       "context": {
         "month": "@sys-date.literal"
       },
-      "created": "2017-02-14T15:54:48.148Z",
-      "updated": "2017-02-14T15:54:48.148Z",
+      "created": "2017-02-14T16:07:40.900Z",
+      "updated": "2017-02-14T16:07:40.900Z",
       "metadata": null,
       "conditions": null,
       "description": null,
@@ -549,6 +552,6 @@
       "previous_sibling": "node_8_1486401053571"
     }
   ],
-  "workspace_id": "9bf120e2-53fe-4dc4-8758-bca411af182e",
+  "workspace_id": "e68101cc-e181-4ee1-92f2-933e4831166f",
   "counterexamples": []
 }

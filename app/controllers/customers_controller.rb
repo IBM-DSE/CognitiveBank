@@ -14,16 +14,13 @@ class CustomersController < ApplicationController
     end
     @sorted_categories = cc.sort_by { |k, v| v }.reverse.to_h
     
-    current_customer.update_churn
   end
   
   def profile
     if is_customer?
+      
       @customer = current_customer
   
-      # Update churn
-      @customer.update_churn
-      
       puts ' '
       puts "Fetching Personality Insights for #{@customer.name}..."
       @personality = @customer.get_personality
@@ -31,6 +28,7 @@ class CustomersController < ApplicationController
       @personality.each do |k,v|
         puts "  #{k}: #{v}"
       end
+      
     else
       redirect_to login_path, flash: { danger: 'You must log in as customer to view your profile' }
     end
@@ -41,4 +39,5 @@ class CustomersController < ApplicationController
   def message_params
     params.require(:customer)
   end
+  
 end

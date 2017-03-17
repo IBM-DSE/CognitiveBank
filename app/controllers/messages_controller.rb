@@ -14,15 +14,14 @@ class MessagesController < ApplicationController
   end
   
   def create
+    context = JSON.parse(message_params[:context].presence || '{}') # set the context variable as a Hash
     
-    # Build new message from this user
-    @message = current_customer.messages.build(message_params)
+    response = Conversation.send message_params[:content], context  # send message and context to Watson Conversation
     
-    if @message.send_to_watson # if message send was successful,
-      respond_to { |format| format.js } # respond with Javascript to update chat bubble
-    else
-      flash.now[:danger] = 'Sorry, there was a problem when talking to Watson. Ask an administrator for assistance.'
-    end
+    @messages = response[:output][:text]
+    @context = response[:context].to_json
+    
+    respond_to { |format| format.js } # respond with Javascript to update chat bubble
   end
 
   private

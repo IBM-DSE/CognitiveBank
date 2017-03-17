@@ -16,8 +16,9 @@ class MessagesController < ApplicationController
   def create
     context = JSON.parse(message_params[:context].presence || '{}') # set the context variable as a Hash
     
-    response = Conversation.send message_params[:content], context  # send message and context to Watson Conversation
+    response = Conversation.send current_customer, message_params[:content], context  # send message and context to Watson Conversation
     
+    # Extract messages and context 
     @messages = response[:output][:text]
     @context = response[:context].to_json
     

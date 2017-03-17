@@ -33,3 +33,5 @@ $(document).ready ->
     $('#chat-input').prop('disabled', true)
     $('#chat-input').val('')
     $('#chat-input').attr('placeholder', 'Sending...')
+    
+  $("#new_message").submit()

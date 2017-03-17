@@ -1,0 +1,8 @@
+<% type = 'watson' %>
+<div class="message-wrapper <%= type %>">
+  <%= image_tag 'head.svg', class: 'message-icon user-icon' if type == 'user' %>
+  <div class="message <%= type %>-message">
+    <%= content.html_safe %>
+  </div>
+  <%= image_tag 'watson-logo-round.png', class: 'message-icon watson-icon' if type == 'watson' %>
+</div>

@@ -1,3 +1,6 @@
-$("#chat-messages").html("<%= escape_javascript(render current_customer.messages) %>");
-console.log(<%= current_customer.messages.last.context %>);
+<% @messages.each do |message| %>
+  console.log('<%= message.to_s %>');
+  $("#chat-messages").append("<%= j render partial: 'watson_message', locals: {content: message} %>");
+<% end %>
+$("#message_context").val("<%== j @context  %>");
 $("#chat-messages img").load(function(){ ChatWindow.received_message(); });

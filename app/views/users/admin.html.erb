@@ -20,8 +20,8 @@
           <td><%= customer.twitter_id %></td>
           <td><%= customer.messages.empty? ? 'Not Started' : "#{customer.messages.count} Messages" %></td>
           <td><%= customer.churn_prediction.to_s %></td>
-          <td><%= number_to_percentage(customer.churn_probability*100, precision: 1) %></td>
-          <td><%= local_time(customer.updated_at) %></td>
+          <td><%= number_to_percentage(customer.churn_probability*100, precision: 1) if customer.churn_probability %></td>
+          <td><%= local_time(customer.updated_at) if customer.churn_prediction %></td>
         </tr>
     <% end %>
   </table>

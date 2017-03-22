@@ -17,6 +17,12 @@ ready_input = ->
   scroll_down()
   $('#chat-input').focus()
 
+set_user_message = (message) ->
+  if message.length > 0
+    template = $('#myTemplate').html()
+    result = Mustache.render(template, {'message': message});
+    $("#chat-messages").append(result)
+  
 ChatWindow.open = ->
   toggle() unless is_visible()
 
@@ -31,6 +37,7 @@ $(document).ready ->
     
   $("#new_message").bind "ajax:send", (event, xhr, status)->
     $('#chat-input').prop('disabled', true)
+    set_user_message($('#chat-input').val())
     $('#chat-input').val('')
     $('#chat-input').attr('placeholder', 'Sending...')
     

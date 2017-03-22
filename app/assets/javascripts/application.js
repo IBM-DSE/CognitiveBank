@@ -6,3 +6,4 @@
 //= require chartkick
 //= require local_time
 // require turbolinks
+//= require mustache

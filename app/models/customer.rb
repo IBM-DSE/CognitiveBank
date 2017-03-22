@@ -7,16 +7,7 @@ class Customer < ApplicationRecord
   has_many :messages
   
   serialize :context, JSON
-
-  def start_conversation
-    Message.send_to_watson_conversation('', self) if messages.empty?  # Send empty string to Watson Conversation
-  end
   
-  def clear_conversation
-    messages.destroy_all
-    self.context = nil
-    self.save
-  end
   
   def get_personality
     personality = WatsonPersonalityInsights.new
@@ -26,14 +17,14 @@ class Customer < ApplicationRecord
   def update_churn
     churn = MlScoring.new self
     if churn.result
-      self.churn_prediction=churn.result[:prediction]
-      self.churn_probability=churn.result[:probability]
-      self.save
+      pp churn.result
+      self.update! churn.result
+      pp self.inspect
     end
   end
   
   def will_churn?
-    update_churn if self[:churn_prediction].nil?
+    update_churn
     self.churn_prediction
   end
   
@@ -48,5 +39,28 @@ class Customer < ApplicationRecord
   def gender
     self.sex == 'M' ? 'Male' : 'Female'
   end
+  
+  def reset
+    clear_conversation
+    clear_prediction
+  end
+  
+  private
 
+  def start_conversation
+    Message.send_to_watson_conversation('', self) if messages.empty?  # Send empty string to Watson Conversation
+  end
+
+  def clear_conversation
+    messages.destroy_all
+    self.context = nil
+    self.save
+  end
+  
+  def clear_prediction
+    self.churn_prediction = nil
+    self.churn_probability = nil
+    self.save!
+  end
+  
 end

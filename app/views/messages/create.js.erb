@@ -1,5 +1,4 @@
 <% @messages.each do |message| %>
-  console.log('<%= message.to_s %>');
   $("#chat-messages").append("<%= j render partial: 'watson_message', locals: {content: message} %>");
 <% end %>
 $("#message_context").val("<%== j @context  %>");

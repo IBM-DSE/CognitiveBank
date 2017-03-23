@@ -22,7 +22,7 @@ class Conversation
       JSON.parse(response.body).deep_symbolize_keys!.slice(:output, :context)
     
     rescue => e
-      STDERR.puts "ERROR: #{e}"
+      STDERR.puts "Conversation ERROR: #{e}"
       STDERR.puts "Conversation Endpoint = #{CONVERSATION_RESOURCE}"
       STDERR.puts "Body sent to Watson Conversation: #{body}"
       STDERR.puts e.backtrace.select {|l| l.start_with? Rails.root.to_s }

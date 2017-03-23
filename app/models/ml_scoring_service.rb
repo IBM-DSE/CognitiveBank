@@ -62,8 +62,7 @@ class MlScoringService < ApplicationRecord
       response = RestClient.post ldap_url, creds.to_json, content_type: :json
       JSON.parse(response)['token']
     rescue => e
-      STDERR.puts 'ERROR: '+e.message
-      false
+      handle_error e
     end
   end
   
@@ -82,9 +81,14 @@ class MlScoringService < ApplicationRecord
       puts 'Scoring request successful!'
       JSON.parse(response)
     rescue => e
-      STDERR.puts 'ERROR: '+e.message
-      false
+      handle_error e
     end
+  end
+  
+  def handle_error(e)
+    STDERR.puts "ML Scoring ERROR: #{e}"
+    STDERR.puts e.backtrace.select { |l| l.start_with? Rails.root.to_s }
+    false
   end
   
   # SCORING_CALL_TIMEOUT = (ENV['ML_SCORING_TIMEOUT'] || 2).to_i

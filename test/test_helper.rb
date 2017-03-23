@@ -8,6 +8,8 @@ ActiveRecord::Migration.maintain_test_schema!
 
 class ActiveSupport::TestCase
   fixtures :all
+
+  i_suck_and_my_tests_are_order_dependent!
   
   # Returns true if a test user is logged in.
   def is_logged_in?

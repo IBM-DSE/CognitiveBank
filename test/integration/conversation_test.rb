@@ -8,14 +8,16 @@ class ConversationTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:bruce)
   end
-  
-  test 'good conversation' do
+
+  test 'bad socring service conversation' do
+    set_main_ml_service :wsc_gateway_bad_hostname
     log_in_as(@user, password: 'password')
     post '/messages', params: { message: { content: '', context: '' } }, xhr: true, headers: { accept: 'text/javascript' }
     assert_response :success
     assert_select 'img'
     assert_includes @response.body, 'watson-message'
     assert_includes @response.body, INTRO.html_safe
+    set_main_ml_service :wsc_gateway
   end
   
   test 'bad conversation workspace' do
@@ -30,15 +32,13 @@ class ConversationTest < ActionDispatch::IntegrationTest
     ENV['WORKSPACE_ID'] = good_workspace
   end
   
-  test 'bad socring service conversation' do
-    MlScoringService.set_main ml_scoring_services(:wsc_gateway_bad_hostname)
+  test 'good conversation' do
     log_in_as(@user, password: 'password')
     post '/messages', params: { message: { content: '', context: '' } }, xhr: true, headers: { accept: 'text/javascript' }
     assert_response :success
     assert_select 'img'
     assert_includes @response.body, 'watson-message'
     assert_includes @response.body, INTRO.html_safe
-    MlScoringService.set_main ml_scoring_services(:wsc_gateway)
   end
-
+  
 end

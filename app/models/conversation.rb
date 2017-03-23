@@ -31,13 +31,13 @@ class Conversation
       response = CONVERSATION_RESOURCE.post(body, :content_type => 'application/json')
       
       # slice the output and context
-      eval(response.body).slice(:output, :context)
+      JSON.parse(response.body).deep_symbolize_keys!.slice(:output, :context)
     
-    rescue Exception => ex
-      puts "ERROR: #{ex.response}"
-      puts "Conversation Endpoint = #{CONVERSATION_RESOURCE}"
-      puts "Body sent to Watson Conversation: #{body}"
-      raise ex
+    rescue => e
+      STDERR.puts "ERROR: #{e}"
+      STDERR.puts "Conversation Endpoint = #{CONVERSATION_RESOURCE}"
+      STDERR.puts "Body sent to Watson Conversation: #{body}"
+      # raise e
     end
   end
 

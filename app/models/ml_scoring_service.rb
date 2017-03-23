@@ -61,7 +61,7 @@ class MlScoringService < ApplicationRecord
     begin
       response = RestClient.post ldap_url, creds.to_json, content_type: :json
       JSON.parse(response)['token']
-    rescue Exception => e
+    rescue => e
       STDERR.puts 'ERROR: '+e.message
       false
     end
@@ -81,7 +81,7 @@ class MlScoringService < ApplicationRecord
       response = RestClient.post scoring_url, body, headers
       puts 'Scoring request successful!'
       JSON.parse(response)
-    rescue Exception => e
+    rescue => e
       STDERR.puts 'ERROR: '+e.message
       false
     end

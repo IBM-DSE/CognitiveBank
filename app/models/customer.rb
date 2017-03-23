@@ -17,9 +17,7 @@ class Customer < ApplicationRecord
   def update_churn
     churn = MlScoring.new self
     if churn.result
-      pp churn.result
       self.update! churn.result
-      pp self.inspect
     end
   end
   

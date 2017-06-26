@@ -4,7 +4,7 @@ class MlScoring
   
   def initialize(customer)
     # get score from MlScoringService
-    score = MlScoringService.get_score(customer)
+    score = MlScoringService.get_score(customer) || load_sample_ml_result
     if score
       process_score score
       print_churn_result
@@ -38,6 +38,12 @@ class MlScoring
     @result.each do |k, v|
       puts "  #{k.to_s.humanize}: #{v}"
     end
+  end
+  
+  def load_sample_ml_result
+    puts 'loading sample'
+    file = File.read('db/churn_result.json')
+    JSON.parse(file)
   end
   
 end

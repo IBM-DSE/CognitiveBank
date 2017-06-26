@@ -44,6 +44,7 @@ class MlScoringService < ApplicationRecord
   TOKEN_PREFIX  = 'eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9'
   SCORING_ATTRS = %w(age activity education sex state negtweets income)
   SAMPLE_RECORD = [26, 2, 3, 'M', 'NY', 0, 483620]
+  SCORING_CALL_TIMEOUT = (ENV['ML_SCORING_TIMEOUT'] || 2).to_i
   
   def ldap_url
     "http://#{self.hostname}:#{self.ldap_port}/v2/identity/ldap"
@@ -59,7 +60,8 @@ class MlScoringService < ApplicationRecord
   
   def get_token
     begin
-      response = RestClient.post ldap_url, creds.to_json, content_type: :json
+      response = RestClient::Request.execute method: :post, url: ldap_url, payload: creds.to_json, headers: {content_type: :json}, 
+                                             read_timeout: SCORING_CALL_TIMEOUT, open_timeout: SCORING_CALL_TIMEOUT
       JSON.parse(response)['token']
     rescue => e
       handle_error e
@@ -77,7 +79,8 @@ class MlScoringService < ApplicationRecord
     puts headers
     puts body
     begin
-      response = RestClient.post scoring_url, body, headers
+      response = RestClient::Request.execute method: :post, url: scoring_url, payload: body, headers: headers,
+                                             read_timeout: SCORING_CALL_TIMEOUT, open_timeout: SCORING_CALL_TIMEOUT
       puts 'Scoring request successful!'
       JSON.parse(response)
     rescue => e
@@ -90,10 +93,5 @@ class MlScoringService < ApplicationRecord
     STDERR.puts e.backtrace.select { |l| l.start_with? Rails.root.to_s }
     false
   end
-  
-  # SCORING_CALL_TIMEOUT = (ENV['ML_SCORING_TIMEOUT'] || 2).to_i
-  # ML_SCORING_RESOURCE = RestClient::Resource.new ENV['ML_SCORING_URL'],
-  #                                                :read_timeout => SCORING_CALL_TIMEOUT,
-  #                                                :open_timeout => SCORING_CALL_TIMEOUT
 
 end

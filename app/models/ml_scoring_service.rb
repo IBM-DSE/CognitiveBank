@@ -55,7 +55,7 @@ class MlScoringService < ApplicationRecord
   end
   
   def scoring_url
-    "http://#{self.hostname}:#{self.scoring_port}/wml/scoring/spark/deployments/#{self.deployment}/predict"
+    "http://#{self.scoring_hostname || self.hostname}:#{self.scoring_port}/iml/scoring/spark/deployments/#{self.deployment}/predict"
   end
   
   def get_token

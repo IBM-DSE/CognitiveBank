@@ -1,4 +1,6 @@
 language: ruby
 rvm:
   - 2.4
+before_install:
+  - gem install bundler
 before_script: bin/rails db:migrate RAILS_ENV=test

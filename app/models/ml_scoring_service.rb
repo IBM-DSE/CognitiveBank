@@ -27,7 +27,7 @@ class MlScoringService < ApplicationRecord
   
   def test_ldap
     token = get_token
-    token.is_a?(String) and token.start_with?(TOKEN_PREFIX)
+    valid_token(token)
   end
   
   def test_score
@@ -92,6 +92,10 @@ class MlScoringService < ApplicationRecord
     STDERR.puts "ML Scoring ERROR: #{e}"
     STDERR.puts e.backtrace.select { |l| l.start_with? Rails.root.to_s }
     false
+  end
+  
+  def valid_token(token)
+    token.is_a?(String) and token.start_with?(TOKEN_PREFIX)
   end
 
 end

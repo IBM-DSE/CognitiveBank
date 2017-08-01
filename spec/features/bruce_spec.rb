@@ -25,14 +25,31 @@ RSpec.feature 'Bruce', type: :feature, js: true do
     # expect chatbot to pop up and start talking
     expect(page).to have_css '#chat-zone'
     within '#chat-window' do
-      expect(page).to have_css "input[placeholder='Send a message...']"
+      input = find_field('Send a message...')
+
       expect(page).to have_text "Hi there, I'm the Cognitive Bank Virtual Assistant! I can help you find a good offer. Interested?"
-      page.fill_in 'Send a message...', with: 'sure'
-      find('#chat-input').native.send_keys(:enter)
-      # expect(page).to have_text "Great! let's get started... What kind of offers are you interested in? (travel, restaurants, clothing)"
-      # page.fill_in 'Send a message...', with: 'travel'
-      # find('#chat-input').native.send_keys(:enter)
-      # expect(page).to have_text "Looks like you enjoy adventurous trips! I see you were in Kenya last year. Are you interested in a safari again?"
+
+      input.native.send_keys('sure', :enter)
+
+      expect(page).to have_text "Great! let's get started... What kind of offers are you interested in? (travel, restaurants, clothing)"
+
+      input.native.send_keys('travel', :enter)
+
+      expect(page).to have_text "Looks like you enjoy adventurous trips! I see you were in Kenya last year. Are you interested in a safari again?"
+
+      input.native.send_keys('yeah', :enter)
+
+      expect(page).to have_text "Great, which month are you planning?"
+
+      input.native.send_keys('April', :enter)
+
+      expect(page).to have_text "Great, I have an offer that you might be interested in: 50% discount on 1-day Entrance Ticket to Corbett National Park in the foothills of the Himalayas"
+      expect(page).to have_text "Since you are traveling in April, can I make another offer?"
+
+      input.native.send_keys('okay', :enter)
+
+      expect(page).to have_text "Since you're going during the rainy season, I found a good offer for you: Marmot Minimalist Rain Jacket - Men's $139.73 $200.00 Save $60.27 (30%)"
+      expect(page).to have_text "Before you leave, we have something special just for you... In appreciation of your loyalty, we will waive your foreign transaction fees for this trip!"
     end
   end
 end

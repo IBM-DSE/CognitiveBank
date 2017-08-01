@@ -7,11 +7,14 @@ RSpec.feature 'Bruce', type: :feature do
     expect(page).to have_text 'Log in'
     click_link 'Log in'
 
-    expect(page).to have_text 'Email'
-    expect(page).to have_text 'Password'
-    fill_in 'Email', with: 'bruce@example.com'
-    fill_in 'Password', with: 'password'
-    click_button 'Log in'
+    within('h1') { expect(page).to have_text 'Log in' }
+    within('form') do
+      expect(page).to have_text 'Email'
+      expect(page).to have_text 'Password'
+      fill_in 'Email', with: 'bruce@example.com'
+      fill_in 'Password', with: 'password'
+      click_button 'Log in'
+    end
 
     expect(page).to have_text 'Welcome back, Bruce!'
     expect(page).to have_text 'Cognitive Traveler Rewards Card'

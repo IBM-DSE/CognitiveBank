@@ -13,7 +13,6 @@ class Conversation
     begin
       
       # send the payload to Conversation service
-      # response = CONVERSATION_RESOURCE.post(body, :content_type => 'application/json')
       response = RestClient::Request.execute method:  :post, url: conversation_url, payload: body,
                                              headers: { content_type: :json, accept: :json },
                                              user:    USERNAME, password: PASSWORD
@@ -23,7 +22,7 @@ class Conversation
     
     rescue => e
       STDERR.puts "Conversation ERROR: #{e}"
-      STDERR.puts "Conversation Endpoint = #{CONVERSATION_RESOURCE}"
+      STDERR.puts "Conversation Endpoint = #{CONVERSATION_RESOURCE}" if defined? CONVERSATION_RESOURCE
       STDERR.puts "Body sent to Watson Conversation: #{body}"
       STDERR.puts e.backtrace.select {|l| l.start_with? Rails.root.to_s }
       {output: { text: ["Oops! Looks like I haven't been configured correctly to speak with Watson."]}, context: {}}
@@ -36,18 +35,19 @@ class Conversation
   API_ENDPOINT='https://gateway.watsonplatform.net/conversation/api/v1/workspaces/'
   VERSION     = '2016-09-20'
   
-  if ENV['CONVERSATION_USERNAME'] and ENV['CONVERSATION_PASSWORD']
-    USERNAME = ENV['CONVERSATION_USERNAME']
-    PASSWORD = ENV['CONVERSATION_PASSWORD']
-  elsif ENV['VCAP_SERVICES']
+  USERNAME = ENV['CONVERSATION_USERNAME']
+  PASSWORD = ENV['CONVERSATION_PASSWORD']
+  if ENV['VCAP_SERVICES']
     convo_creds = CF::App::Credentials.find_by_service_label('conversation')
-    USERNAME    = convo_creds['username']
-    PASSWORD    = convo_creds['password']
+    if convo_creds
+      USERNAME    = convo_creds['username']
+      PASSWORD    = convo_creds['password']
+    end
   end
   WORKSPACE_ID = ENV['WORKSPACE_ID']
   
-  URL                   = API_ENDPOINT + WORKSPACE_ID + '/message?version=' + VERSION
-  CONVERSATION_RESOURCE = RestClient::Resource.new URL, USERNAME, PASSWORD
+  URL                   = API_ENDPOINT + WORKSPACE_ID + '/message?version=' + VERSION if WORKSPACE_ID
+  CONVERSATION_RESOURCE = RestClient::Resource.new URL, USERNAME, PASSWORD if USERNAME and PASSWORD
   
   def self.conversation_url
     API_ENDPOINT + ENV['WORKSPACE_ID'] + '/message?version=' + VERSION

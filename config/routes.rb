@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'customers#dashboard'
   get 'profile', to: 'customers#profile'
-  get 'messages', to: 'messages#start'
   post 'messages', to: 'messages#create'
   
   get 'login', to: 'sessions#new'

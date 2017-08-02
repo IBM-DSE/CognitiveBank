@@ -1,10 +1,11 @@
+
+# Handles ML Scoring
 class MlScoring
-  
   attr_reader :result
   
   def initialize(customer)
     # get score from MlScoringService
-    score = MlScoringService.get_score(customer) || load_sample_ml_result
+    score = MlScoringService.get_score(customer) || default_score
     if score
       process_score score
       print_churn_result
@@ -40,10 +41,7 @@ class MlScoring
     end
   end
   
-  def load_sample_ml_result
-    puts 'loading sample'
-    file = File.read('db/churn_result.json')
-    JSON.parse(file)
+  def default_score
+    Util.load_default
   end
-  
 end

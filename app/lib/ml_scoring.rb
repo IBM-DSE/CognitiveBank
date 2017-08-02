@@ -42,6 +42,6 @@ class MlScoring
   end
   
   def default_score
-    Util.load_default
+    Util.load_default_score
   end
 end

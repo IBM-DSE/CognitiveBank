@@ -46,8 +46,13 @@ class WatsonPersonalityInsights
   
   def call_wpi_api(tweets)
     # call WPI with twitter data as input
-    response = WPI_RESOURCE.post(tweets, { 'content-type': 'text/plain' })
-    JSON.parse(response)
+    begin
+      response = WPI_RESOURCE.post(tweets, { 'content-type': 'text/plain' })
+      JSON.parse(response)
+    rescue => e
+      STDERR.puts "Watson Personality Insights ERROR: #{e}"
+      Util.load_default_personality
+    end
   end
   
   def traverse_json(data, level)

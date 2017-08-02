@@ -70,6 +70,7 @@ gem 'cf-app-utils', group: :production
 
 # Testing gems
 group :test do
+  gem 'database_cleaner'
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'rails-controller-testing'

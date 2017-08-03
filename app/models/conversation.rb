@@ -24,7 +24,7 @@ class Conversation
       STDERR.puts "Conversation ERROR: #{e}"
       STDERR.puts "Conversation Endpoint = #{CONVERSATION_RESOURCE}" if defined? CONVERSATION_RESOURCE
       STDERR.puts "Body sent to Watson Conversation: #{body}"
-      STDERR.puts e.backtrace.select {|l| l.start_with? Rails.root.to_s }
+      STDERR.puts e.backtrace.select{ |l| l.start_with? Rails.root.to_s }[0]
       {output: { text: ["Oops! Looks like I haven't been configured correctly to speak with Watson."]}, context: {}}
     end
   end

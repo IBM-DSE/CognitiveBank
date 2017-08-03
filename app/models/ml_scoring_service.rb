@@ -90,7 +90,7 @@ class MlScoringService < ApplicationRecord
   
   def handle_error(e)
     STDERR.puts "ML Scoring ERROR: #{e}"
-    STDERR.puts e.backtrace.select { |l| l.start_with? Rails.root.to_s }
+    STDERR.puts e.backtrace.select{ |l| l.start_with? Rails.root.to_s }[0]
     false
   end
   

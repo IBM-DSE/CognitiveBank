@@ -10,7 +10,7 @@ class NaturalLanguageUnderstanding
     JSON.parse(response)
   rescue => e
     STDERR.puts "Watson Natural Language Understanding ERROR: #{e}"
-    # Util.load_default_personality
+    Util.handle_nlu_error
   end
 
   private

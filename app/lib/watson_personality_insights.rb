@@ -4,7 +4,7 @@ class WatsonPersonalityInsights
     @personality = {}
     
     # load tweets from a specific user
-    tweets       = load_tweets('db/Bruce_tweets.txt')
+    tweets       = Twitter.load_tweets
     
     # call WPI api with twitter data as input
     jsonProfile  = call_wpi_api(tweets)
@@ -26,23 +26,19 @@ class WatsonPersonalityInsights
   private
   
   # Watson Personality Insights URL and credentials
-  URL          = 'https://gateway.watsonplatform.net/personality-insights/api/v2/profile'
-  if ENV['WPI_USERNAME'] and ENV['WPI_PASSWORD']
-    USERNAME = ENV['WPI_USERNAME']
-    PASSWORD = ENV['WPI_PASSWORD']
-  elsif ENV['VCAP_SERVICES']
+  WPI_URL      = 'https://gateway.watsonplatform.net/personality-insights/api/v2/profile'
+  WPI_USERNAME = ENV['WPI_USERNAME']
+  WPI_PASSWORD = ENV['WPI_PASSWORD']
+  if ENV['VCAP_SERVICES']
     convo_creds = CF::App::Credentials.find_by_service_label('personality_insights')
-    USERNAME    = convo_creds['username']
-    PASSWORD    = convo_creds['password']
+    if convo_creds
+      WPI_USERNAME = convo_creds['username']
+      WPI_PASSWORD = convo_creds['password']
+    end
   end
   
   # Watson Personality Insights Resource for making REST calls
-  WPI_RESOURCE = RestClient::Resource.new URL, user: USERNAME, password: PASSWORD
-  
-  def load_tweets(filename)
-    # load tweets from file
-    File.open(filename, 'r').read
-  end
+  WPI_RESOURCE = RestClient::Resource.new WPI_URL, user: WPI_USERNAME, password: WPI_PASSWORD if WPI_USERNAME and WPI_PASSWORD
   
   def call_wpi_api(tweets)
     # call WPI with twitter data as input

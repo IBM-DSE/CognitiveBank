@@ -72,21 +72,16 @@ RSpec.feature 'Bruce', type: :feature, js: true do
     
     expect(page).to have_text 'Customer Summary:'
     expect(page).to have_text 'Gender: Male'
-    expect(page).to have_text 'Gender: Male'
     expect(page).to have_text 'Age: 41'
     expect(page).to have_text 'State: TX'
     expect(page).to have_text "Education Level: Master's degree"
     expect(page).to have_text 'Income: $316,530.00'
-    expect(page).to have_text 'Investment: $108,972.00'
-    expect(page).to have_text 'Annual Spending: $70,662.63'
-    expect(page).to have_text 'Annual Transactions: 362'
-    expect(page).to have_text 'Average Daily Transactions: 0.99'
-    expect(page).to have_text 'Average Transaction Amount: $195.20'
 
     expect(page).to have_text 'Twitter Profile:'
     expect(page).to have_text 'Twitter Username: bruce43253'
     expect(page).to have_text 'Negative Tweets: 12'
-    expect(page).to have_text 'Negative Signals: Foreign Transaction Fees'
+    expect(page).to have_text 'Keywords Sentiment'
+    expect(page).to have_text 'foreign exchange fees 0%'
     
     expect(page).to have_text 'Customer Churn:'
     expect(page).to have_text 'Prediction: true'
@@ -94,12 +89,11 @@ RSpec.feature 'Bruce', type: :feature, js: true do
     expect(page).to have_text 'Last Scoring Call:'
     
     expect(page).to have_text 'Personality:'
-    expect(page).to have_text 'Agreeableness: 74.6%'
-    expect(page).to have_text 'Conscientiousness: 71.4%'
-    expect(page).to have_text 'Extraversion: 62.5%'
-    expect(page).to have_text 'Openness: 62.1%'
-    expect(page).to have_text 'Emotional range: 57.8%'
-    expect(page).to have_text 'Needs: Stability'
+    expect(page).to have_text 'Agreeableness:'
+    expect(page).to have_text 'Conscientiousness:'
+    expect(page).to have_text 'Extraversion:'
+    expect(page).to have_text 'Openness:'
+    expect(page).to have_text 'Emotional range:'
     expect(page).to have_text 'Values: Self-transcendence'
     
   end

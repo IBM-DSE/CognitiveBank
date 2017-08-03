@@ -20,14 +20,10 @@ class CustomersController < ApplicationController
     if is_customer?
       
       @customer = current_customer
-  
-      puts ' '
-      puts "Fetching Personality Insights for #{@customer.name}..."
+      
+      @customer.update_churn
       @personality = @customer.get_personality
-      puts 'Customer Personality:'
-      @personality.each do |k,v|
-        puts "  #{k}: #{v}"
-      end
+      # @negative_signals = NaturalLanguageUnderstanding.extract_keywords @customer.tweets
       
     else
       redirect_to login_path, flash: { danger: 'You must log in as customer to view your profile' }

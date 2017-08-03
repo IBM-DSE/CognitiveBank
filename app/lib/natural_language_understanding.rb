@@ -32,9 +32,8 @@ class NaturalLanguageUnderstanding
 
   KEYWORD_FEATURES = {
     keywords: {
-      emotion: true,
       sentiment: true,
-      limit: 2
+      limit: 10
     }
   }.freeze
 

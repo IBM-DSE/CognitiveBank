@@ -1,12 +1,16 @@
 require 'rails_helper'
 
 RSpec.feature 'Bruce', type: :feature, js: true do
-  scenario 'Bruce logs in and views his account' do
+
+  background do
+
+    # Visit home page and click 'Log in'
     visit '/'
     expect(page).to have_text 'Cognitive Bank'
     expect(page).to have_text 'Log in'
     click_link 'Log in'
 
+    # Fill in log in credentials
     within('h1') { expect(page).to have_text 'Log in' }
     within 'form' do
       expect(page).to have_text 'Email'
@@ -16,12 +20,17 @@ RSpec.feature 'Bruce', type: :feature, js: true do
       click_button 'Log in'
     end
 
+    # Expect the customer dashboard
     expect(page).to have_text 'Welcome back, Bruce!'
     expect(page).to have_text 'Cognitive Traveler Rewards Card'
     expect(page).to have_text 'Current Balance'
     expect(page).to have_text 'Current Miles'
     expect(page).to have_text 'Last Statement Balance:'
-
+    
+  end
+  
+  scenario 'Bruce logs in and views his account' do
+    
     # expect chatbot to pop up and start talking
     expect(page).to have_css '#chat-zone'
     within '#chat-window' do
@@ -35,21 +44,64 @@ RSpec.feature 'Bruce', type: :feature, js: true do
 
       input.native.send_keys('travel', :enter)
 
-      expect(page).to have_text "Looks like you enjoy adventurous trips! I see you were in Kenya last year. Are you interested in a safari again?"
+      expect(page).to have_text 'Looks like you enjoy adventurous trips! I see you were in Kenya last year. Are you interested in a safari again?'
 
       input.native.send_keys('yeah', :enter)
 
-      expect(page).to have_text "Great, which month are you planning?"
+      expect(page).to have_text 'Great, which month are you planning?'
 
       input.native.send_keys('April', :enter)
 
-      expect(page).to have_text "Great, I have an offer that you might be interested in: 50% discount on 1-day Entrance Ticket to Corbett National Park in the foothills of the Himalayas"
-      expect(page).to have_text "Since you are traveling in April, can I make another offer?"
+      expect(page).to have_text 'Great, I have an offer that you might be interested in: 50% discount on 1-day Entrance Ticket to Corbett National Park in the foothills of the Himalayas'
+      expect(page).to have_text 'Since you are traveling in April, can I make another offer?'
 
       input.native.send_keys('okay', :enter)
 
       expect(page).to have_text "Since you're going during the rainy season, I found a good offer for you: Marmot Minimalist Rain Jacket - Men's $139.73 $200.00 Save $60.27 (30%)"
-      expect(page).to have_text "Before you leave, we have something special just for you... In appreciation of your loyalty, we will waive your foreign transaction fees for this trip!"
+      expect(page).to have_text 'Before you leave, we have something special just for you... In appreciation of your loyalty, we will waive your foreign transaction fees for this trip!'
     end
+    
   end
+
+  scenario "We visit Bruce's customer profile" do
+    
+    click_link 'Account'
+    click_link 'Profile'
+
+    expect(page).to have_text "Bruce's Profile:"
+    
+    expect(page).to have_text 'Customer Summary:'
+    expect(page).to have_text 'Gender: Male'
+    expect(page).to have_text 'Gender: Male'
+    expect(page).to have_text 'Age: 41'
+    expect(page).to have_text 'State: TX'
+    expect(page).to have_text "Education Level: Master's degree"
+    expect(page).to have_text 'Income: $316,530.00'
+    expect(page).to have_text 'Investment: $108,972.00'
+    expect(page).to have_text 'Annual Spending: $70,662.63'
+    expect(page).to have_text 'Annual Transactions: 362'
+    expect(page).to have_text 'Average Daily Transactions: 0.99'
+    expect(page).to have_text 'Average Transaction Amount: $195.20'
+
+    expect(page).to have_text 'Twitter Profile:'
+    expect(page).to have_text 'Twitter Username: bruce43253'
+    expect(page).to have_text 'Negative Tweets: 12'
+    expect(page).to have_text 'Negative Signals: Foreign Transaction Fees'
+    
+    expect(page).to have_text 'Customer Churn:'
+    expect(page).to have_text 'Prediction: true'
+    expect(page).to have_text 'Probability:'
+    expect(page).to have_text 'Last Scoring Call:'
+    
+    expect(page).to have_text 'Personality:'
+    expect(page).to have_text 'Agreeableness: 74.6%'
+    expect(page).to have_text 'Conscientiousness: 71.4%'
+    expect(page).to have_text 'Extraversion: 62.5%'
+    expect(page).to have_text 'Openness: 62.1%'
+    expect(page).to have_text 'Emotional range: 57.8%'
+    expect(page).to have_text 'Needs: Stability'
+    expect(page).to have_text 'Values: Self-transcendence'
+    
+  end
+  
 end

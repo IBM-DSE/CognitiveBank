@@ -46,8 +46,10 @@ class Conversation
   end
   WORKSPACE_ID = ENV['WORKSPACE_ID']
   
-  URL                   = API_ENDPOINT + WORKSPACE_ID + '/message?version=' + VERSION if WORKSPACE_ID
-  CONVERSATION_RESOURCE = RestClient::Resource.new URL, USERNAME, PASSWORD if USERNAME and PASSWORD
+  if USERNAME and PASSWORD and WORKSPACE_ID
+    CONVERSATION_URL      = API_ENDPOINT + WORKSPACE_ID + '/message?version=' + VERSION if WORKSPACE_ID
+    CONVERSATION_RESOURCE = RestClient::Resource.new CONVERSATION_URL, user: USERNAME, password: PASSWORD
+  end
   
   def self.conversation_url
     API_ENDPOINT + ENV['WORKSPACE_ID'] + '/message?version=' + VERSION

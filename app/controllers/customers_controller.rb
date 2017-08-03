@@ -23,7 +23,7 @@ class CustomersController < ApplicationController
       
       tweets = Twitter.load_tweets
       @personality = @customer.get_personality
-      @negative_signals = @customer.extract_signals tweets
+      @keywords = @customer.extract_signals tweets
 
       @customer.update_churn
     else

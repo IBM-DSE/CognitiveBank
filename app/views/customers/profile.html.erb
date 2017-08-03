@@ -1,5 +1,3 @@
-<h1>Profile</h1>
-
 <div class="container">
   <% if logged_in? %>
 
@@ -9,41 +7,58 @@
       <table class="table">
         <tr>
           <td>
+            
             <div>
               <%= render partial: 'summary' %>
             </div>
-          </td>
-
-          <td>
-            
-            <% if @personality %>
-                <div>
-                  <h3>Twitter Profile:</h3>
-                  
-                  <p><strong>Twitter Username: </strong> <%= current_user.name.downcase %>43253</p>
-                  <br>
-                  <h4>Personality: </h4>
-                  <% @personality[:personality].each do |k, v| %>
-                      <p>&nbsp&nbsp&nbsp&nbsp<strong><%= k %>: </strong><%= number_to_percentage(v*100, precision: 1) %></p>
-                  <% end %>
-                  <br>
-                  <p><strong>Needs: </strong><%= @personality[:needs] %></p>
-                  <p><strong>Values: </strong><%= @personality[:values] %></p>
-                  <br>
-                  <p><strong>Negative Signals: </strong> Foreign Transaction Fees</p>
-                  
-                </div>
-            <% end %>
-
-            <br><br>
             
             <% if @customer.churn_prediction %>
+                <br>
                 <div>
                   <h3>Customer Churn:</h3>
                   <p><strong>Prediction: </strong><%= @customer.churn_prediction.to_s %></p>
-                  <p><strong>Probability: </strong><%= @customer.churn_probability.to_s %></p>
+                  <p><strong>Probability: </strong><%= number_to_percentage(@customer.churn_probability*100, precision: 1) %></p>
                   <p><strong>Last Scoring Call: </strong><%= local_time(@customer.updated_at) %></p>
                 </div>
+            <% end %>
+            
+          </td>
+          
+          <td>
+            
+            <div>
+              
+              <h3>Twitter Profile:</h3>
+              <p><strong>Twitter Username: </strong> <%= current_user.name.downcase %>43253</p>
+              <p><strong>Negative Tweets: </strong> <%= @customer.negtweets %></p>
+              
+              <% if @personality %>
+              <table class="table">
+                <tr><th>Keywords</th><th>Sentiment</th></tr>
+                <% @keywords.each do |keyword| %>
+                  <tr>
+                    <td><%= keyword['text'] %></td>
+                    <td><%= number_to_percentage keyword['sentiment']['score']*100, precision: 0 %></td>
+                  </tr>
+                <% end %>
+              </table>
+              <% end %>
+              
+            </div>
+
+          </td>
+          
+          <td>
+
+            <% if @personality %>
+            <h3>Personality: </h3>
+            <% @personality[:personality].each do |k, v| %>
+                <p><strong><%= k %>: </strong><%= number_to_percentage(v*100, precision: 1) %></p>
+            <% end %>
+            <br>
+            <p><strong>Needs: </strong><%= @personality[:needs] %></p>
+            <p><strong>Values: </strong><%= @personality[:values] %></p>
+            <br>
             <% end %>
             
           </td>

@@ -21,10 +21,11 @@ class CustomersController < ApplicationController
       
       @customer = current_customer
       
-      @customer.update_churn
+      tweets = Twitter.load_tweets
       @personality = @customer.get_personality
-      # @negative_signals = NaturalLanguageUnderstanding.extract_keywords @customer.tweets
-      
+      @negative_signals = @customer.extract_signals tweets
+
+      @customer.update_churn
     else
       redirect_to login_path, flash: { danger: 'You must log in as customer to view your profile' }
     end

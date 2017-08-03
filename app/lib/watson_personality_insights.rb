@@ -47,7 +47,7 @@ class WatsonPersonalityInsights
       JSON.parse(response)
     rescue => e
       STDERR.puts "Watson Personality Insights ERROR: #{e}"
-      Util.load_default_personality
+      Util.handle_wpi_error
     end
   end
   

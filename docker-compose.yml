@@ -1,0 +1,11 @@
+version: '3'
+services:
+  cognitivebank:
+    build: .
+    command: bundle exec rails server
+    volumes:
+      - .:/CognitiveBank
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env

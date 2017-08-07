@@ -1,8 +1,8 @@
 version: '3'
 services:
-  dev:
+  prod:
     build: .
-    command: bundle exec rails server
+    command: bundle exec rails server -e production
     volumes:
       - .:/CognitiveBank
     ports:

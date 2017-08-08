@@ -20,6 +20,7 @@ class CustomersController < ApplicationController
     if is_customer?
       
       @customer = current_customer
+      @twitter_username = @customer.twitter_personality.username
       
       tweets = Twitter.load_tweets
       @personality = @customer.get_personality

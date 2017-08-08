@@ -25,41 +25,43 @@
           </td>
           
           <td>
+
+            <h3>Twitter Profile:</h3>
+            <h3><a href="https://twitter.com/<%= @twitter_username %>" target="_blank">@<%= @twitter_username %></a></h3>
+            <br>
             
-            <div>
-              
-              <h3>Twitter Profile:</h3>
-              <p><strong>Twitter Username: </strong> <%= current_user.name.downcase %>43253</p>
-              <p><strong>Negative Tweets: </strong> <%= @customer.negtweets %></p>
-              
-              <% if @personality %>
-              <table class="table">
-                <tr><th>Keywords</th><th>Sentiment</th></tr>
-                <% @keywords.each do |keyword| %>
-                  <tr>
-                    <td><%= keyword['text'] %></td>
-                    <td><%= number_to_percentage keyword['sentiment']['score']*100, precision: 0 %></td>
-                  </tr>
+            <div class="row">
+
+              <div class="col-md-6 bordered">
+                <% if @keywords %>
+                  <h4>Natural Language Understanding: </h4><br>
+                  <p><strong>Negative Tweets: </strong> <%= @customer.negtweets %></p>
+                  <table class="table">
+                    <tr><th>Keywords</th><th>Sentiment</th></tr>
+                    <% @keywords.each do |keyword| %>
+                        <tr>
+                          <td><%= keyword['text'] %></td>
+                          <td><%= number_to_percentage keyword['sentiment']['score']*100, precision: 0 %></td>
+                        </tr>
+                    <% end %>
+                  </table>
                 <% end %>
-              </table>
-              <% end %>
+              </div>
+              
+              <div class="col-md-6 bordered">
+                <% if @personality %>
+                    <h4>Personality Insights: </h4><br>
+                    <% @personality[:personality].each do |k, v| %>
+                        <p><strong><%= k %>: </strong><%= number_to_percentage(v*100, precision: 1) %></p>
+                    <% end %>
+                    <br>
+                    <p><strong>Needs: </strong><%= @personality[:needs] %></p>
+                    <p><strong>Values: </strong><%= @personality[:values] %></p>
+                    <br>
+                <% end %>
+              </div>
               
             </div>
-
-          </td>
-          
-          <td>
-
-            <% if @personality %>
-            <h3>Personality: </h3>
-            <% @personality[:personality].each do |k, v| %>
-                <p><strong><%= k %>: </strong><%= number_to_percentage(v*100, precision: 1) %></p>
-            <% end %>
-            <br>
-            <p><strong>Needs: </strong><%= @personality[:needs] %></p>
-            <p><strong>Values: </strong><%= @personality[:values] %></p>
-            <br>
-            <% end %>
             
           </td>
           

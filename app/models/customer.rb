@@ -57,11 +57,11 @@ class Customer < ApplicationRecord
   end
   
   private
-
+  
   def start_conversation
     Message.send_to_watson_conversation('', self) if messages.empty?  # Send empty string to Watson Conversation
   end
-
+  
   def clear_conversation
     messages.destroy_all
     self.context = nil

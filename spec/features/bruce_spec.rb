@@ -76,9 +76,14 @@ RSpec.feature 'Bruce', type: :feature, js: true do
     expect(page).to have_text 'State: TX'
     expect(page).to have_text "Education Level: Master's degree"
     expect(page).to have_text 'Income: $316,530.00'
+    expect(page).to have_text 'Investment:'
+    expect(page).to have_text 'Annual Spending:'
+    expect(page).to have_text 'Annual Transactions:'
+    expect(page).to have_text 'Average Daily Transactions:'
+    expect(page).to have_text 'Average Transaction Amount:'
 
     expect(page).to have_text 'Twitter Profile:'
-    expect(page).to have_text 'Twitter Username: bruce43253'
+    expect(page).to have_text '@bruce_wayne64'
     expect(page).to have_text 'Negative Tweets: 12'
     expect(page).to have_text 'Keywords Sentiment'
     expect(page).to have_text 'foreign exchange fees 0%'
@@ -88,12 +93,12 @@ RSpec.feature 'Bruce', type: :feature, js: true do
     expect(page).to have_text 'Probability:'
     expect(page).to have_text 'Last Scoring Call:'
     
-    expect(page).to have_text 'Personality:'
-    expect(page).to have_text 'Agreeableness:'
-    expect(page).to have_text 'Conscientiousness:'
-    expect(page).to have_text 'Extraversion:'
-    expect(page).to have_text 'Openness:'
-    expect(page).to have_text 'Emotional range:'
+    expect(page).to have_text 'Personality Insights:'
+    expect(page).to have_text 'Agreeableness'
+    expect(page).to have_text 'Conscientiousness'
+    expect(page).to have_text 'Extraversion'
+    expect(page).to have_text 'Openness'
+    expect(page).to have_text 'Emotional range'
     expect(page).to have_text 'Values: Self-transcendence'
     
   end

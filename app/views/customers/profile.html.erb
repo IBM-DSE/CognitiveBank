@@ -39,7 +39,7 @@
                   <table class="table">
                     <tr><th>Keywords</th><th>Sentiment</th></tr>
                     <% @keywords.each do |keyword| %>
-                        <tr>
+                        <tr class="<%= 'highlighted' if @relevant_keywords.include? keyword['text'] %>">
                           <td><%= keyword['text'] %></td>
                           <td><%= number_to_percentage keyword['sentiment']['score']*100, precision: 0 %></td>
                         </tr>

@@ -25,6 +25,7 @@ class CustomersController < ApplicationController
       tweets = Twitter.load_tweets
       @personality = @customer.get_personality
       @keywords = @customer.extract_signals tweets
+      @relevant_keywords = NaturalLanguageUnderstanding.relevant_keywords
 
       @customer.update_churn
     else

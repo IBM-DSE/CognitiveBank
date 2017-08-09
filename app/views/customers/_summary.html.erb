@@ -1,12 +1,16 @@
 <h3>Customer Summary:</h3>
 
-<p><strong>Gender: </strong><%= current_customer.gender %></p>
-<% current_customer.attributes.slice('age', 'state', 'education_group', 'negtweets').each do |k,v| %>
-    <p><strong><%= Customer.human_attribute_name k %>: </strong><%= v.to_s %></p>
-<% end %>
-<% current_customer.attributes.slice('income', 'investment', 'yrly_amt').each do |k,v| %>
-    <p><strong><%= Customer.human_attribute_name k %>: </strong><%= number_to_currency v %></p>
-<% end %>
-<p><strong><%= Customer.human_attribute_name :yrly_tx %>: </strong><%= current_customer.yrly_tx %></p>
-<p><strong><%= Customer.human_attribute_name :avg_daily_tx %>: </strong><%= current_customer.avg_daily_tx.round(2) %></p>
-<p><strong><%= Customer.human_attribute_name :avg_tx_amt %>: </strong><%= number_to_currency current_customer.avg_tx_amt %></p>
+<table class="table">
+
+  <tr><th>Gender</th><td><%= current_customer.gender %></td></tr>
+  <% current_customer.attributes.slice('age', 'state', 'education_group').each do |k,v| %>
+      <tr><th><%= Customer.human_attribute_name k %></th><td><%= v.to_s %></td></tr>
+  <% end %>
+  <% current_customer.attributes.slice('income', 'investment', 'yrly_amt').each do |k,v| %>
+      <tr><th><%= Customer.human_attribute_name k %></th><td><%= number_to_currency v %></td></tr>
+  <% end %>
+  <tr><th><%= Customer.human_attribute_name :yrly_tx %></th><td><%= current_customer.yrly_tx %></td></tr>
+  <tr><th><%= Customer.human_attribute_name :avg_daily_tx %></th><td><%= current_customer.avg_daily_tx.round(2) %></td></tr>
+  <tr><th><%= Customer.human_attribute_name :avg_tx_amt %></th><td><%= number_to_currency current_customer.avg_tx_amt %></td></tr>
+  
+</table>

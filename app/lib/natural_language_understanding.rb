@@ -12,6 +12,14 @@ class NaturalLanguageUnderstanding
     STDERR.puts "Watson Natural Language Understanding ERROR: #{e}"
     Util.handle_nlu_error
   end
+  
+  def self.relevant_keywords
+    [
+      'credit card',
+      'foreign exchange fees',
+      'atm fee'
+    ]
+  end
 
   private
 

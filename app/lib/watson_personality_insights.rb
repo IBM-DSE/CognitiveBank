@@ -7,10 +7,10 @@ class WatsonPersonalityInsights
     tweets       = Twitter.load_tweets
     
     # call WPI api with twitter data as input
-    jsonProfile  = call_wpi_api(tweets)
+    @jsonProfile  = call_wpi_api(tweets)
     
     # traverse WPI (json) output tree to extract results 
-    traverse_json(jsonProfile, 0)
+    traverse_json(@jsonProfile, 0)
     
     @personality = @personality.sort_by { |_key, value| value }.reverse.to_h
   end
@@ -18,9 +18,13 @@ class WatsonPersonalityInsights
   def to_h
     {
         personality: @personality,
-        needs:       @needs,
-        values:      @values
+        needs:       @needs.keys.first,
+        values:      @values.keys.first
     }
+  end
+  
+  def raw_json
+    @jsonProfile
   end
   
   private
@@ -67,11 +71,9 @@ class WatsonPersonalityInsights
         if data[0]['category'] == 'personality'
           traverse_json(data[0]['children'], level+1)
         elsif data[0]['category'] == 'needs'
-          @needs = data[0]['name']
-#       @needs['percentage'] = data[0]['percentage'] 
+          @needs = { data[0]['name'] => data[0]['percentage'] } 
         elsif data[0]['category'] == 'values'
-          @values = data[0]['name']
-#       @values['percentage'] = data[0]['percentage'] 
+          @values = { data[0]['name'] => data[0]['percentage'] } 
           return
         end
       

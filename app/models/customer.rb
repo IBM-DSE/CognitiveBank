@@ -11,20 +11,14 @@ class Customer < ApplicationRecord
   
   def get_personality
     puts ' '
-    puts "Fetching Personality Insights for #{self.name}..."
-    personality = WatsonPersonalityInsights.new
-    personality = personality.to_h
-    puts 'Customer Personality:'
-    p personality
-    personality
+    puts "Fetching Personality Insights from #{self.name}'s tweets..."
+    WatsonPersonalityInsights.new
   end
   
   def extract_signals(tweets)
     puts ' '
     puts "Fetching Signals from #{self.name}'s tweets..."
-    keywords = NaturalLanguageUnderstanding.extract_keywords(tweets)['keywords']
-    keywords.each { |kw| p kw }
-    keywords
+    NaturalLanguageUnderstanding.extract_keywords(tweets)
   end
   
   def update_churn

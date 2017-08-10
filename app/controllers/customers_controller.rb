@@ -23,8 +23,11 @@ class CustomersController < ApplicationController
       @twitter_username = @customer.twitter_personality.username
       
       tweets = Twitter.load_tweets
-      @personality = @customer.get_personality
-      @keywords = @customer.extract_signals tweets
+      personality = @customer.get_personality
+      @pi_output = personality.raw_json
+      @personality = personality.to_h
+      
+      @nlu_output = @customer.extract_signals tweets
       @relevant_keywords = NaturalLanguageUnderstanding.relevant_keywords
 
       @customer.update_churn

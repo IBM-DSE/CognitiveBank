@@ -97,5 +97,6 @@
   </div>
 </div>
 
+<%= render 'messages/chat_window' if logged_in? and is_customer? %>
 <%= hidden_field_tag 'chat_window_delay', ENV['CHAT_WINDOW_DELAY'] || 10 %>
 <%= javascript_include_tag 'auto_chat' %>

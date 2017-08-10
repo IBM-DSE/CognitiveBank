@@ -1,14 +1,15 @@
 require 'csv'
 
-
-# Load the twitter personalities
+puts
+puts 'Loading the Twitter personalities...'
 CSV.foreach('db/bruce_twitter.csv', headers: true) do |row|
-  tp = TwitterPersonality.create(row.to_hash.except('category'))
+  tp = TwitterPersonality.new(row.to_hash.except('category'))
   tp.save
+  puts "#{1}:@#{tp.username}:#{tp.inspect}"
 end
 puts "Loaded #{TwitterPersonality.count} twitter personalities."
 
-
+puts
 puts 'Loading the customers and transactions...'
 csv_text = File.read('db/bruce_profile.csv')
 usernames = []

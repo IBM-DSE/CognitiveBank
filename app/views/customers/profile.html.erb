@@ -1,73 +1,72 @@
 <div class="container">
   <% if logged_in? %>
 
-      <h2><%= current_user.name %>'s Profile:</h2>
-      <br>
-      
-      <table class="table">
-        <tr>
-          <td>
-            
-            <div>
-              <%= render partial: 'summary' %>
-            </div>
-            
-            <% if @customer.churn_prediction %>
-                <br>
-                <h3>Customer Churn:</h3>
-                <table class="table">
-                  <tr><th>Prediction: </th><td><%= @customer.churn_prediction.to_s %></td></tr>
-                  <tr><th>Probability: </th><td><%= number_to_percentage(@customer.churn_probability*100, precision: 1) %></td></tr>
-                  <tr><th>Last Scoring Call: </th><td><%= local_time(@customer.updated_at) %></td></tr>
-                </table>
+  <h2><%= current_user.name %>'s Profile:</h2>
+  <br>
+  
+  <div class="col-md-4">
+    
+    <div>
+      <%= render partial: 'summary' %>
+    </div>
+    
+    <% if @customer.churn_prediction %>
+        <br>
+        <div style="float: left; line-height: 82px;"><%= image_tag 'ml_logo' %></div>
+        <div style="float: left; margin-left: 1rem;">
+          <h3>IBM Machine Learning</h3>
+          <h4>Customer Churn Model:</h4>
+        </div>
+        <table class="table">
+          <tr><th>Prediction: </th><td><%= @customer.churn_prediction.to_s %></td></tr>
+          <tr><th>Probability: </th><td><%= number_to_percentage(@customer.churn_probability*100, precision: 1) %></td></tr>
+          <tr><th>Last Scoring Call: </th><td><%= local_time(@customer.updated_at) %></td></tr>
+        </table>
+    <% end %>
+    
+  </div>
+  
+  <div class="col-md-8">
+
+    <h3>Twitter Profile:</h3>
+    <h3><a href="https://twitter.com/<%= @twitter_username %>" target="_blank"><%= image_tag 'twitter_avatar', class: 'twitter-pic-icon' %> @<%= @twitter_username %></a></h3>
+    <br>
+    
+    <div class="row">
+
+      <div class="col-md-6 bordered">
+        <% if @keywords %>
+          <h4><%= image_tag 'NLU', class: 'watson-service-icon' %> Natural Language Understanding: </h4><br>
+          <p><strong>Negative Tweets: </strong> <%= @customer.negtweets %></p>
+          <table class="table">
+            <tr><th>Keywords</th><th>Sentiment</th></tr>
+            <% @keywords.each do |keyword| %>
+                <tr class="<%= 'highlighted' if @relevant_keywords.include? keyword['text'] %>">
+                  <td><%= keyword['text'] %></td>
+                  <td class="<%= keyword['sentiment']['score'] < 0.5 ? 'red' : 'green' %>-sentiment"><%= number_to_percentage keyword['sentiment']['score']*100, precision: 0 %></td>
+                </tr>
             <% end %>
-            
-          </td>
-          
-          <td>
-
-            <h3>Twitter Profile:</h3>
-            <h3><a href="https://twitter.com/<%= @twitter_username %>" target="_blank"><%= image_tag 'twitter_avatar', class: 'twitter-pic-icon' %> @<%= @twitter_username %></a></h3>
-            <br>
-            
-            <div class="row">
-
-              <div class="col-md-6 bordered">
-                <% if @keywords %>
-                  <h4><%= image_tag 'NLU', class: 'watson-service-icon' %> Natural Language Understanding: </h4><br>
-                  <p><strong>Negative Tweets: </strong> <%= @customer.negtweets %></p>
-                  <table class="table">
-                    <tr><th>Keywords</th><th>Sentiment</th></tr>
-                    <% @keywords.each do |keyword| %>
-                        <tr class="<%= 'highlighted' if @relevant_keywords.include? keyword['text'] %>">
-                          <td><%= keyword['text'] %></td>
-                          <td><%= number_to_percentage keyword['sentiment']['score']*100, precision: 0 %></td>
-                        </tr>
-                    <% end %>
-                  </table>
-                <% end %>
-              </div>
-              
-              <div class="col-md-6 bordered">
-                <% if @personality %>
-                    <h4><%= image_tag 'PersonalityInsights', class: 'watson-service-icon' %> Personality Insights: </h4><br>
-                    <%= bar_chart @personality[:personality].to_a, adapter: 'google', library: {
-                        chartArea:{left:120,top:0,width:'58%',height:'90%'},
-                        hAxis: { format: 'percent' }
-                    } %>
-                    <table class="table">
-                      <tr><th>Needs: </th><td><%= @personality[:needs] %></td></tr>
-                      <tr><th>Values: </th><td><%= @personality[:values] %></td></tr>
-                    </table>
-                <% end %>
-              </div>
-              
-            </div>
-            
-          </td>
-          
-        </tr>
-      </table>
+          </table>
+        <% end %>
+      </div>
       
+      <div class="col-md-6 bordered">
+        <% if @personality %>
+            <h4><%= image_tag 'PersonalityInsights', class: 'watson-service-icon' %> Personality Insights: </h4><br>
+            <%= bar_chart @personality[:personality].to_a, adapter: 'google', library: {
+                chartArea:{left:120,top:0,width:'58%',height:'90%'},
+                hAxis: { format: 'percent' }
+            } %>
+            <table class="table">
+              <tr><th>Needs: </th><td><%= @personality[:needs] %></td></tr>
+              <tr><th>Values: </th><td><%= @personality[:values] %></td></tr>
+            </table>
+        <% end %>
+      </div>
+      
+    </div>
+    
+  </div>
+          
   <% end %>
 </div>

@@ -88,7 +88,7 @@ RSpec.feature 'Bruce', type: :feature, js: true do
     expect(page).to have_text 'Keywords Sentiment'
     expect(page).to have_text 'foreign exchange fees 0%'
     
-    expect(page).to have_text 'Customer Churn:'
+    expect(page).to have_text 'IBM Machine Learning Customer Churn Model:'
     expect(page).to have_text 'Prediction: true'
     expect(page).to have_text 'Probability:'
     expect(page).to have_text 'Last Scoring Call:'

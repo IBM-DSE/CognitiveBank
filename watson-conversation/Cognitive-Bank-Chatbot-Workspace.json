@@ -162,27 +162,27 @@
       "description": null
     }
   ],
-  "updated": "2017-08-02T14:55:27.114Z",
+  "updated": "2017-08-10T21:13:12.505Z",
   "entities": [
     {
-      "entity": "start",
+      "entity": "category",
       "values": [
         {
-          "value": "begin",
+          "value": "restaurants",
           "created": "2017-03-23T17:06:44.166Z",
           "updated": "2017-03-23T17:06:44.166Z",
           "metadata": null,
           "synonyms": []
         },
         {
-          "value": "offers",
+          "value": "travel",
           "created": "2017-03-23T17:06:44.166Z",
           "updated": "2017-03-23T17:06:44.166Z",
           "metadata": null,
           "synonyms": []
         },
         {
-          "value": "start",
+          "value": "clothing",
           "created": "2017-03-23T17:06:44.166Z",
           "updated": "2017-03-23T17:06:44.166Z",
           "metadata": null,
@@ -195,24 +195,24 @@
       "description": null
     },
     {
-      "entity": "category",
+      "entity": "start",
       "values": [
         {
-          "value": "clothing",
+          "value": "begin",
           "created": "2017-03-23T17:06:44.166Z",
           "updated": "2017-03-23T17:06:44.166Z",
           "metadata": null,
           "synonyms": []
         },
         {
-          "value": "restaurants",
+          "value": "start",
           "created": "2017-03-23T17:06:44.166Z",
           "updated": "2017-03-23T17:06:44.166Z",
           "metadata": null,
           "synonyms": []
         },
         {
-          "value": "travel",
+          "value": "offers",
           "created": "2017-03-23T17:06:44.166Z",
           "updated": "2017-03-23T17:06:44.166Z",
           "metadata": null,
@@ -578,10 +578,10 @@
       },
       "parent": "node_4_1486398255085",
       "context": {
-        "month": "@sys-date.literal"
+        "month": "<? @sys-date.reformatDateTime('MMMMM') ?>"
       },
       "created": "2017-03-23T17:06:44.166Z",
-      "updated": "2017-03-23T17:06:44.166Z",
+      "updated": "2017-08-10T21:13:12.505Z",
       "metadata": null,
       "next_step": null,
       "conditions": null,
@@ -592,5 +592,5 @@
   ],
   "workspace_id": "1da29412-971a-454d-b498-59989d6ed00b",
   "counterexamples": [],
-  "learning_opt_out": null
+  "learning_opt_out": false
 }

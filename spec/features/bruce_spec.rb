@@ -50,7 +50,7 @@ RSpec.feature 'Bruce', type: :feature, js: true do
 
       expect(page).to have_text 'Great, which month are you planning?'
 
-      input.native.send_keys('April', :enter)
+      input.native.send_keys('aPril', :enter)
 
       expect(page).to have_text 'Great, I have an offer that you might be interested in: 50% discount on 1-day Entrance Ticket to Corbett National Park in the foothills of the Himalayas'
       expect(page).to have_text 'Since you are traveling in April, can I make another offer?'

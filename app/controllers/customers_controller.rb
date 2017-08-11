@@ -17,9 +17,13 @@ class CustomersController < ApplicationController
   end
   
   def profile
-    if is_customer?
-      
+    if params[:id] and is_admin?
+      @customer = Customer.find params[:id]
+    elsif is_customer?
       @customer = current_customer
+    end
+      
+    if @customer
       @twitter_username = @customer.twitter_personality.username
       
       tweets = Twitter.load_tweets
@@ -29,8 +33,6 @@ class CustomersController < ApplicationController
       
       @nlu_output = @customer.extract_signals tweets
       @relevant_keywords = NaturalLanguageUnderstanding.relevant_keywords
-
-      @customer.update_churn
     else
       redirect_to login_path, flash: { danger: 'You must log in as customer to view your profile' }
     end

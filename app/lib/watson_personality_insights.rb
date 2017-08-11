@@ -37,10 +37,9 @@ class WatsonPersonalityInsights
       WPI_USERNAME = convo_creds['username']
       WPI_PASSWORD = convo_creds['password']
     end
-  else
-    WPI_USERNAME = ENV['WPI_USERNAME']
-    WPI_PASSWORD = ENV['WPI_PASSWORD']
   end
+  WPI_USERNAME = ENV['WPI_USERNAME'] unless defined? WPI_USERNAME
+  WPI_PASSWORD = ENV['WPI_PASSWORD'] unless defined? WPI_PASSWORD
   
   # Watson Personality Insights Resource for making REST calls
   WPI_RESOURCE = RestClient::Resource.new WPI_URL, user: WPI_USERNAME, password: WPI_PASSWORD if WPI_USERNAME and WPI_PASSWORD

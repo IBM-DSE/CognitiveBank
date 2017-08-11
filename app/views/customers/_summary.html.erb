@@ -2,15 +2,15 @@
 
 <table class="table">
 
-  <tr><th>Gender:</th><td><%= current_customer.gender %></td></tr>
-  <% current_customer.attributes.slice('age', 'state', 'education_group').each do |k,v| %>
+  <tr><th>Gender:</th><td><%= @customer.gender %></td></tr>
+  <% @customer.attributes.slice('age', 'state', 'education_group').each do |k,v| %>
       <tr><th><%= Customer.human_attribute_name k %>:</th><td><%= v.to_s %></td></tr>
   <% end %>
-  <% current_customer.attributes.slice('income', 'investment', 'yrly_amt').each do |k,v| %>
+  <% @customer.attributes.slice('income', 'investment', 'yrly_amt').each do |k,v| %>
       <tr><th><%= Customer.human_attribute_name k %>:</th><td><%= number_to_currency v %></td></tr>
   <% end %>
-  <tr><th><%= Customer.human_attribute_name :yrly_tx %>:</th><td><%= current_customer.yrly_tx %></td></tr>
-  <tr><th><%= Customer.human_attribute_name :avg_daily_tx %>:</th><td><%= current_customer.avg_daily_tx.round(2) %></td></tr>
-  <tr><th><%= Customer.human_attribute_name :avg_tx_amt %>:</th><td><%= number_to_currency current_customer.avg_tx_amt %></td></tr>
+  <tr><th><%= Customer.human_attribute_name :yrly_tx %>:</th><td><%= @customer.yrly_tx %></td></tr>
+  <tr><th><%= Customer.human_attribute_name :avg_daily_tx %>:</th><td><%= @customer.avg_daily_tx.round(2) %></td></tr>
+  <tr><th><%= Customer.human_attribute_name :avg_tx_amt %>:</th><td><%= number_to_currency @customer.avg_tx_amt %></td></tr>
   
 </table>

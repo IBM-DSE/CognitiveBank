@@ -31,10 +31,9 @@ class NaturalLanguageUnderstanding
       NLU_USERNAME = convo_creds['username']
       NLU_PASSWORD = convo_creds['password']
     end
-  else
-    NLU_USERNAME = ENV['NLU_USERNAME']
-    NLU_PASSWORD = ENV['NLU_PASSWORD']
   end
+  NLU_USERNAME = ENV['NLU_USERNAME'] unless defined? NLU_USERNAME
+  NLU_PASSWORD = ENV['NLU_PASSWORD'] unless defined? NLU_PASSWORD
 
   # Watson Personality Insights Resource for making REST calls
   NLU_RESOURCE = RestClient::Resource.new NLU_URL, user: NLU_USERNAME, password: NLU_PASSWORD if NLU_USERNAME && NLU_PASSWORD

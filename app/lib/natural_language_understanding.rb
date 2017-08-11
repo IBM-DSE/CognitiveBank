@@ -25,14 +25,15 @@ class NaturalLanguageUnderstanding
 
   # Watson Personality Insights URL and credentials
   NLU_URL      = 'https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2017-02-27'
-  NLU_USERNAME = ENV['NLU_USERNAME']
-  NLU_PASSWORD = ENV['NLU_PASSWORD']
   if ENV['VCAP_SERVICES']
     convo_creds = CF::App::Credentials.find_by_service_label('natural-language-understanding')
     if convo_creds
       NLU_USERNAME = convo_creds['username']
       NLU_PASSWORD = convo_creds['password']
     end
+  else
+    NLU_USERNAME = ENV['NLU_USERNAME']
+    NLU_PASSWORD = ENV['NLU_PASSWORD']
   end
 
   # Watson Personality Insights Resource for making REST calls

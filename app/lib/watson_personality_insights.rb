@@ -31,14 +31,15 @@ class WatsonPersonalityInsights
   
   # Watson Personality Insights URL and credentials
   WPI_URL      = 'https://gateway.watsonplatform.net/personality-insights/api/v2/profile'
-  WPI_USERNAME = ENV['WPI_USERNAME']
-  WPI_PASSWORD = ENV['WPI_PASSWORD']
   if ENV['VCAP_SERVICES']
     convo_creds = CF::App::Credentials.find_by_service_label('personality_insights')
     if convo_creds
       WPI_USERNAME = convo_creds['username']
       WPI_PASSWORD = convo_creds['password']
     end
+  else
+    WPI_USERNAME = ENV['WPI_USERNAME']
+    WPI_PASSWORD = ENV['WPI_PASSWORD']
   end
   
   # Watson Personality Insights Resource for making REST calls

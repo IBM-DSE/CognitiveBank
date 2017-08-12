@@ -55,9 +55,11 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
-    Rails.application.load_seed # loading seeds
+  unless ENV['APP_URL']
+    config.before(:suite) do
+      DatabaseCleaner.clean_with(:truncation)
+      Rails.application.load_seed # loading seeds
+    end
   end
 
 end

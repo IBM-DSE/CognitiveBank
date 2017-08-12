@@ -16,6 +16,12 @@
 
 require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
+if ENV['APP_URL']
+  puts 'Testing against ' + ENV['APP_URL']
+  Capybara.current_driver = :selenium
+  Capybara.app_host = ENV['APP_URL']
+  Capybara.run_server = false
+end
 Capybara.default_max_wait_time = 12
 
 RSpec.configure do |config|

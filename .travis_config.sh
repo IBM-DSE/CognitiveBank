@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo Travis Branch: $TRAVIS_BRANCH
 

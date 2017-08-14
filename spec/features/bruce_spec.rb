@@ -87,11 +87,16 @@ RSpec.feature 'Bruce', type: :feature, js: true do
     expect(page).to have_text 'Negative Tweets: 12'
     expect(page).to have_text 'Keywords Sentiment'
     expect(page).to have_text 'foreign exchange fees 0%'
-    
-    expect(page).to have_text 'IBM Machine Learning Customer Churn Model:'
-    expect(page).to have_text 'Prediction: true'
-    expect(page).to have_text 'Probability:'
-    expect(page).to have_text 'Last Scoring Call:'
+
+    within '#ml-churn' do
+      expect(page).to have_text 'IBM Machine Learning Customer Churn Model:'
+      expect(page).to have_text 'Prediction:'
+      expect(page).to have_text 'Probability:'
+      expect(page).to have_text 'Last Scoring Call:'
+      visit current_path # refresh the page so that ML Scoring call completes
+      within('#churn-prediction'){ expect(page).to have_text 'true' }
+      within('#churn-probability'){ expect(page).to have_text '%' }
+    end
     
     expect(page).to have_text 'Personality Insights:'
     expect(page).to have_text 'Agreeableness'

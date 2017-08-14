@@ -10,19 +10,22 @@
       <%= render partial: 'summary' %>
     </div>
     
-    <% if @customer.churn_prediction %>
-        <br>
-        <div style="float: left; line-height: 82px;"><%= image_tag 'ml_logo.svg' %></div>
-        <div style="float: left; margin-left: 1rem;">
-          <h3>IBM Machine Learning</h3>
-          <h4>Customer Churn Model:</h4>
-        </div>
-        <table class="table">
-          <tr><th>Prediction: </th><td><%= @customer.churn_prediction.to_s %></td></tr>
-          <tr><th>Probability: </th><td><%= number_to_percentage(@customer.churn_probability*100, precision: 1) %></td></tr>
-          <tr><th>Last Scoring Call: </th><td><%= local_time(@customer.updated_at) %></td></tr>
-        </table>
-    <% end %>
+    <br>
+    <div id="ml-churn">
+    <div style="float: left; line-height: 82px; margin-right: 1rem;">
+      <%= image_tag 'ml_logo.svg' %></div>
+    <div style="margin-left: 1rem;">
+      <h3>IBM Machine Learning</h3>
+      <h4>Customer Churn Model:</h4>
+    </div>
+    <table class="table">
+      <tr><th>Prediction: </th><td id="churn-prediction"><%= @customer.churn_prediction.to_s %></td></tr>
+      <tr><th>Probability: </th><td id="churn-probability">
+        <%= number_to_percentage(@customer.churn_probability*100, precision: 1) if @customer.churn_probability %></td></tr>
+      <tr><th>Last Scoring Call: </th><td id="last-scoring-call">
+        <%= local_time(@customer.updated_at) if @customer.churn_prediction %></td></tr>
+    </table>
+    </div>
     
   </div>
   

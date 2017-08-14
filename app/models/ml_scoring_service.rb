@@ -44,7 +44,7 @@ class MlScoringService < ApplicationRecord
   TOKEN_PREFIX  = 'eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9'
   SCORING_ATTRS = %w(age activity education sex state negtweets income)
   SAMPLE_RECORD = [26, 2, 3, 'M', 'NY', 0, 483620]
-  SCORING_CALL_TIMEOUT = (ENV['ML_SCORING_TIMEOUT'] || 2).to_i
+  SCORING_CALL_TIMEOUT = (ENV['ML_SCORING_TIMEOUT'] || 3).to_i
   
   def ldap_url
     "http://#{self.hostname}:#{self.ldap_port}/v2/identity/ldap"

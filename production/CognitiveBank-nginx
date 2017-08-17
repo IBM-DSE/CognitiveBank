@@ -1,0 +1,26 @@
+
+server {
+	
+	listen 80;
+	listen [::]:80;
+	
+	server_name <DOMAIN_NAME>;
+	
+	root /CognitiveBank/public;
+	try_files $uri @railsapp;
+	
+	location ^~ /assets/ {
+		gzip_static on;
+		expires 1d;
+		add_header Cache-Control public;
+	}
+	
+	location @railsapp {
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto https;
+		proxy_set_header Host $http_host;
+		proxy_redirect   off;
+		proxy_pass       http://localhost:3000;
+	}
+}

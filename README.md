@@ -73,7 +73,7 @@ Modify any files in `/app` and refresh browser to view updates
 - Run [certbot](https://certbot.eff.org/) on your server to get an SSL certificate
 - Build and run the docker container
     ```bash
-    docker build -t cognitivebank_prod --build-args RAILS_ENV=production https://github.ibm.com/ATAT/CognitiveBank.git
-    docker run -it -p 3000:3000 --env-file .env -v CognitiveBank:/CognitiveBank/public cognitivebank_prod
+    docker build -t cognitivebank_prod --build-arg RAILS_ENV=production https://github.ibm.com/ATAT/CognitiveBank.git
+    docker run -d -p 3000:3000 --env-file .env -v CognitiveBank:/CognitiveBank/public cognitivebank_prod
     ```
 - Visit your domain name from a browser

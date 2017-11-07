@@ -1,6 +1,6 @@
 class MlScoringService < ApplicationRecord
   after_save { MlScoringService.init_main }
-  validate :test_ldap
+  validate :test_ml_scoring_service
   validates :username, presence: true
   validates :password, presence: true
   validates :deployment, presence: true
@@ -103,6 +103,10 @@ class MlScoringService < ApplicationRecord
   LOCAL = 2
   MLZOS = 3
   
+  def test_ml_scoring_service
+    test_score if test_ldap
+  end
+  
   def type
     if scoring_port
       MLZOS
@@ -148,8 +152,12 @@ class MlScoringService < ApplicationRecord
           get_token_mlz
       end
     rescue RuntimeError => e
-      errors.add(:username, e.message)
-      errors.add(:password, e.message)
+      if e.message == 'Net::HTTPNotFound'
+        errors.add(:hostname, e.message.demodulize)
+      else
+        errors.add(:username, e.message.demodulize)
+        errors.add(:password, e.message.demodulize)
+      end
     rescue SocketError => e
       errors.add(:hostname, e.message)
     end

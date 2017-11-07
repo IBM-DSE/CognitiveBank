@@ -11,7 +11,7 @@
             <div class="col-md-2"></div><div class="col-md-10">
               <h4>
                 <div class="alert alert-danger">
-                  <% if ml_scoring_service.errors.messages[:username].include? 'Net::HTTPUnauthorized' %>
+                  <% if ml_scoring_service.errors.messages[:username].include? 'HTTPUnauthorized' %>
                     Authorization Failure Against <%= ml_scoring_service.hostname %>
                   <% else %>
                     Errors prevented this Machine Learning Service from being created:

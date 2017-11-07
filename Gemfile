@@ -80,3 +80,7 @@ end
 gem 'thor', '0.19.1'
 
 gem 'local_time'
+
+gem 'couchrest'
+
+gem 'ibm-ml'

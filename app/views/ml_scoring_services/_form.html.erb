@@ -1,0 +1,17 @@
+<div class="container">
+
+  <%= link_to admin_path, class: 'btn btn-lg btn-danger' do %>
+      <%= content_tag :span, nil, class: 'glyphicon glyphicon-remove' %>
+  <% end %>
+
+  <%= form_for ml_scoring_service, html: {class: 'form-horizontal'} do |f| %>
+
+      <% ml_scoring_service.attribute_names.each do |attr| %>
+          <%= render partial: 'text_field', locals: {f: f, action: attr.to_sym} %>
+      <% end %>
+
+      <%= f.submit class: 'btn btn-lg btn-primary' %>
+
+  <% end %>
+
+</div>

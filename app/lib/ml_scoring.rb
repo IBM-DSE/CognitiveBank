@@ -7,7 +7,7 @@ class MlScoring
     # get score from MlScoringService
     score = MlScoringService.get_score(customer) || default_score
     if score
-      process_score score
+      @result = MlScoringService.process_score(score)
       print_churn_result
     end
   end
@@ -26,12 +26,12 @@ class MlScoring
   
   private
   
-  def process_score(score)
-    puts score
-    churn   = score['prediction'] == 1.0
-    prob    = score['probability']['values'][score['prediction']]
-    @result = { prediction: churn, probability: (prob*100.0).round(2).to_s+'%' }
-  end
+  # def process_score(score)
+  #   puts score
+  #   churn   = score['prediction'] == 1.0
+  #   prob    = score['probability']['values'][score['prediction']]
+  #   @result = { churn_prediction: churn, churn_probability: prob }
+  # end
   
   def print_churn_result
     puts ' '

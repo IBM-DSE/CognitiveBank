@@ -66,7 +66,7 @@ gem 'rest-client'
 gem 'chartkick'
 
 gem 'dotenv-rails', groups: [:development, :test]
-gem 'cf-app-utils', group: :production
+gem 'cf-app-utils'
 
 # Testing gems
 group :test do

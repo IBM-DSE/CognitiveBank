@@ -1,42 +1,35 @@
-<div class="container">
 
-  <%= link_to admin_path, class: 'btn btn-lg btn-danger' do %>
-      <%= content_tag :span, nil, class: 'glyphicon glyphicon-remove' %>
-  <% end %>
-  
-  <%= form_for ml_scoring_service, html: {class: 'form-horizontal'} do |f| %>
+<%= form_for ml_scoring_service, html: {class: 'form-horizontal'} do |f| %>
 
-      <% if ml_scoring_service.errors.any? %>
-          <div id="error_explanation">
-            <div class="col-md-2"></div><div class="col-md-10">
-              <h4>
-                <div class="alert alert-danger">
-                  <% if ml_scoring_service.errors.messages[:username].include? 'HTTPUnauthorized' %>
-                    Authorization Failure Against <%= ml_scoring_service.hostname %>
-                  <% else %>
-                    Errors prevented this Machine Learning Service from being created:
-                  <% end %>
-                </div>
-              </h4>
-            </div>
+    <% if ml_scoring_service.errors.any? %>
+        <div id="error_explanation">
+          <div class="col-md-2"></div><div class="col-md-10">
+            <h4>
+              <div class="alert alert-danger">
+                <% if ml_scoring_service.errors.messages[:username].include? 'HTTPUnauthorized' %>
+                  Authorization Failure Against <%= ml_scoring_service.hostname %>
+                <% else %>
+                  Errors prevented this Machine Learning Service from being created:
+                <% end %>
+              </div>
+            </h4>
           </div>
-      <% end %>
+        </div>
+    <% end %>
 
-      <% MlScoringService.standard_attrs.each do |attr| %>
-          <%= render partial: 'text_field', locals: {f: f, action: attr.to_sym,
-                                                     errors: ml_scoring_service.errors.messages[attr.to_sym]} %>
-      <% end %>
-      
-      <div class="col-md-2"></div><div class="col-md-10">
-        <h4>MLZ Settings</h4>
-      </div>
-      <% MlScoringService.mlz_attrs.each do |attr| %>
-          <%= render partial: 'text_field', locals: {f: f, action: attr.to_sym,
-                                                     errors: ml_scoring_service.errors.messages[attr.to_sym]} %>
-      <% end %>
+    <% MlScoringService.standard_attrs.each do |attr| %>
+        <%= render partial: 'text_field', locals: {f: f, action: attr.to_sym,
+                                                   errors: ml_scoring_service.errors.messages[attr.to_sym]} %>
+    <% end %>
+    
+    <div class="col-md-2"></div><div class="col-md-10">
+      <h4>MLZ Settings</h4>
+    </div>
+    <% MlScoringService.mlz_attrs.each do |attr| %>
+        <%= render partial: 'text_field', locals: {f: f, action: attr.to_sym,
+                                                   errors: ml_scoring_service.errors.messages[attr.to_sym]} %>
+    <% end %>
 
-      <%= f.submit class: 'btn btn-lg btn-primary' %>
+    <%= f.submit class: 'btn btn-lg btn-primary' %>
 
-  <% end %>
-  
-</div>
+<% end %>

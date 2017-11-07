@@ -1,9 +1,13 @@
+# frozen_string_literal: true
+
 class MlScoringService < ApplicationRecord
-  after_save { MlScoringService.init_main }
-  validate :test_ml_scoring_service
+  validates :hostname, presence: true
   validates :username, presence: true
   validates :password, presence: true
   validates :deployment, presence: true
+  validate :test_ml_scoring_service
+
+  after_save { MlScoringService.init_main }
 
   def self.init_main
     @@main ||= MlScoringService.first
@@ -15,6 +19,31 @@ class MlScoringService < ApplicationRecord
 
   def self.get_main
     @@main
+  end
+  
+  def self.detect_wml_services
+    if ENV['VCAP_SERVICES']
+      convo_creds = CF::App::Credentials.find_by_service_label('pm-20')
+      if convo_creds
+        hostname = 'ibm-watson-ml.mybluemix.net'
+        username = convo_creds['username']
+        password = convo_creds['password']
+        
+        # detect first deployment
+        service = IBM::ML::Cloud.new username, password
+        deployments = service.deployments
+
+        name = 'WML Service'
+        deployment = nil
+        if deployments['count'].positive?
+          deployment = deployments['resources'][0]['metadata']['guid']
+          name = deployments['resources'][0]['entity']['name']
+        end
+        
+        return new(name: name, hostname: hostname, username: username, password: password, deployment: deployment)
+      end
+    end
+    new
   end
   
   def self.get_score(customer)
@@ -36,30 +65,30 @@ class MlScoringService < ApplicationRecord
   
   def get_score(customer)
     case type
-      when CLOUD
-        ml_cloud.score self.deployment, customer.attributes.slice(*SCORING_ATTRS)
-      when LOCAL
-        record = customer.attributes.slice(*SCORING_ATTRS).map { |k,v| [k.upcase, v] }.to_h
-        ml_local.score self.deployment, record
-      when MLZOS
-        get_score_mlz(customer)
+    when CLOUD
+      ml_cloud.score deployment, customer.attributes.slice(*SCORING_ATTRS)
+    when LOCAL
+      record = customer.attributes.slice(*SCORING_ATTRS).map { |k, v| [k.upcase, v] }.to_h
+      ml_local.score deployment, record
+    when MLZOS
+      get_score_mlz(customer)
     end
   end
 
   def process_score(score)
     case type
-      when CLOUD, LOCAL
-        {
-          churn_prediction: @service.query_score(score, 'prediction'),
-          churn_probability: @service.query_score(score, 'probability')[1]
-        }
-      when MLZOS
-        self.process_score_mlz(score)
+    when CLOUD, LOCAL
+      {
+        churn_prediction: @service.query_score(score, 'prediction'),
+        churn_probability: @service.query_score(score, 'probability')[1]
+      }
+    when MLZOS
+      process_score_mlz(score)
     end
   end
   
   def get_score_mlz(customer)
-    token          = get_token
+    token = get_token
     return false unless token
     customer_attrs = customer.attributes.slice(*SCORING_ATTRS).values
     post_to_scoring_ml token, customer_attrs
@@ -78,23 +107,23 @@ class MlScoringService < ApplicationRecord
   
   def test_score
     score = get_score SAMPLE_RECORD
-    score.is_a?(Hash) and (
-      type == MLZOS and score.keys.include? 'values' and
-        [1, 0].include? score['prediction'] and
-        score.keys.include? 'probability' and
-        (0..1) === score['probability']['values'][score['prediction']]
-    ) or (
-      @service.query_score(score, 'prediction') and 
+    score.is_a?(Hash) && (
+      (type == MLZOS) && score.keys.include?('values') &&
+        [1, 0].include?(score['prediction']) &&
+        score.keys.include?('probability') &&
+        ((0..1) === score['probability']['values'][score['prediction']])
+    ) || (
+      @service.query_score(score, 'prediction') && 
       @service.query_score(score, 'probability')[0]
     )
   end
 
   def self.standard_attrs
-    %w(name hostname username password deployment)
+    %w[name hostname username password deployment]
   end
 
   def self.mlz_attrs
-    %w(ldap_port scoring_hostname scoring_port)
+    %w[ldap_port scoring_hostname scoring_port]
   end
   
   private
@@ -104,7 +133,10 @@ class MlScoringService < ApplicationRecord
   MLZOS = 3
   
   def test_ml_scoring_service
-    test_score if test_ldap
+    if hostname.present? && username.present? && password.present?
+      test_score if test_ldap && deployment.present?
+    end
+    false
   end
   
   def type
@@ -125,12 +157,12 @@ class MlScoringService < ApplicationRecord
     @service = IBM::ML::Cloud.new username, password
   end
   
-  SCORING_ATTRS = %w(age activity education sex state negtweets income)
+  SCORING_ATTRS = %w[age activity education sex state negtweets income].freeze
   SAMPLE_RECORD = Customer.first
   SCORING_CALL_TIMEOUT = (ENV['ML_SCORING_TIMEOUT'] || 3).to_i
   
   def ldap_url
-    "http://#{self.hostname}:#{self.ldap_port}/v2/identity/ldap"
+    "http://#{hostname}:#{ldap_port}/v2/identity/ldap"
   end
   
   def creds
@@ -138,39 +170,39 @@ class MlScoringService < ApplicationRecord
   end
   
   def scoring_url
-    "http://#{self.scoring_hostname || self.hostname}:#{self.scoring_port}/iml/scoring/spark/deployments/#{self.deployment}/predict"
+    "http://#{scoring_hostname || hostname}:#{scoring_port}/iml/scoring/spark/deployments/#{deployment}/predict"
   end
 
   def get_token
-    begin
-      case type
-        when CLOUD
-          ml_cloud.fetch_token
-        when LOCAL
-          ml_local.fetch_token
-        when MLZOS
-          get_token_mlz
-      end
-    rescue RuntimeError => e
-      if e.message == 'Net::HTTPNotFound'
-        errors.add(:hostname, e.message.demodulize)
-      else
-        errors.add(:username, e.message.demodulize)
-        errors.add(:password, e.message.demodulize)
-      end
-    rescue SocketError => e
-      errors.add(:hostname, e.message)
+    
+    case type
+    when CLOUD
+      ml_cloud.fetch_token
+    when LOCAL
+      ml_local.fetch_token
+    when MLZOS
+      get_token_mlz
     end
+  rescue RuntimeError => e
+    if e.message == 'Net::HTTPNotFound'
+      errors.add(:hostname, e.message.demodulize)
+    else
+      errors.add(:username, e.message.demodulize)
+      errors.add(:password, e.message.demodulize)
+    end
+  rescue SocketError => e
+    errors.add(:hostname, e.message)
+    
   end
   
   def get_token_mlz
-    begin
-      response = RestClient::Request.execute method: :post, url: ldap_url, payload: creds.to_json, headers: {content_type: :json}, 
-                                             read_timeout: SCORING_CALL_TIMEOUT, open_timeout: SCORING_CALL_TIMEOUT
-      JSON.parse(response)['token']
-    rescue => e
-      handle_error e
-    end
+    
+    response = RestClient::Request.execute method: :post, url: ldap_url, payload: creds.to_json, headers: { content_type: :json }, 
+                                           read_timeout: SCORING_CALL_TIMEOUT, open_timeout: SCORING_CALL_TIMEOUT
+    JSON.parse(response)['token']
+  rescue => e
+    handle_error e
+    
   end
   
   def post_to_scoring_ml(token, customer_attrs)
@@ -195,12 +227,11 @@ class MlScoringService < ApplicationRecord
   
   def handle_error(e)
     STDERR.puts "ML Scoring ERROR: #{e}"
-    STDERR.puts e.backtrace.select{ |l| l.start_with? Rails.root.to_s }[0]
+    STDERR.puts e.backtrace.select { |l| l.start_with? Rails.root.to_s }[0]
     false
   end
   
   def valid_token(token)
-    token.is_a?(String) and token.length > 256
+    token.is_a?(String) && (token.length > 256)
   end
-
 end

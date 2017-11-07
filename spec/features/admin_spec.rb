@@ -29,6 +29,13 @@ feature 'Admin' do
     expect(page).to have_text 'MLZ Settings Ldap port: Scoring hostname: Scoring port:'
     expect(page).to have_button 'Create Machine Learning Scoring Service'
 
+    # Fill in new Machine Learning Service with bad hostname and timeout
+    fill_in 'Hostname:', with: 'not!a-reeal-howssstname'
+    click_button 'Create Machine Learning Scoring Service'
+    expect_new_ml_service_page
+    expect(page).to have_text 'Hostname: Failed to open TCP connection to not!a-reeal-howssstname:443 (getaddrinfo: nodename nor servname provided, or not known)'
+    expect(page).to have_text "Username: can't be blank Password: can't be blank Deployment: can't be blank"
+    
     # Fill in new Machine Learning Service with WML and bad credentials
     fill_in 'Name:', with: 'test'
     fill_in 'Hostname:', with: 'ibm-watson-ml.mybluemix.net'

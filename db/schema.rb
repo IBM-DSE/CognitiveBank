@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170731212141) do
+ActiveRecord::Schema.define(version: 20171106203309) do
 
   create_table "customers", force: :cascade do |t|
     t.integer  "user_id"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20170731212141) do
     t.string   "username"
     t.string   "password"
     t.integer  "scoring_port"
-    t.integer  "deployment"
+    t.string   "deployment"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.string   "scoring_hostname"

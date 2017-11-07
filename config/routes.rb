@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   get 'admin/profile/:id', to: 'customers#profile', as: 'customer_profile'
   
   scope '/admin' do
-    resources :ml_scoring_services
+    resources :ml_scoring_services do
+      collection do
+        get 'detect'
+      end
+    end
   end
 
   get 'dashboard', to: 'customers#dashboard'

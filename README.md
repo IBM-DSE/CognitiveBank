@@ -39,9 +39,20 @@ The essential pieces that you need are to install ruby, then bundler, then rails
 copy `.env.example` to `.env` in your working directory and fill it in with your Bluemix service values
 
 #### Quick Deploy in Development Mode
+With `docker` from GitHub:
 ```bash
 docker build -t cognitivebank_dev https://github.ibm.com/ATAT/CognitiveBank.git
 docker run -it -p 3000:3000 --env-file .env cognitivebank_dev
+```
+With `docker` from local code:
+```bash
+docker build -t cognitivebank_dev .
+docker run -it -p 3000:3000 --env-file .env cognitivebank_dev
+```
+With `docker-compose` from local code:
+```bash
+docker-compose build
+docker-compose up
 ```
 Visit [http://localhost:3000](http://localhost:3000) from a browser
 

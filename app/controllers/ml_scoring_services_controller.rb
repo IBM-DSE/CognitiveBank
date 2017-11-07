@@ -19,6 +19,11 @@ class MlScoringServicesController < ApplicationController
     redirect_to admin_path
   end
   
+  def destroy
+    MlScoringService.delete params[:id]
+    redirect_to admin_path
+  end
+  
   private
   
   def current_ml_service

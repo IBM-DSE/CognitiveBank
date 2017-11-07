@@ -84,7 +84,7 @@ RSpec.feature 'Bruce', type: :feature, js: true do
 
     expect(page).to have_text 'Twitter Profile:'
     expect(page).to have_text '@bruce_wayne64'
-    expect(page).to have_text 'Negative Tweets: 12'
+    expect(page).to have_text 'Negative Tweets:'
     expect(page).to have_text 'Keywords Sentiment'
     expect(page).to have_text 'foreign exchange fees 0%'
 

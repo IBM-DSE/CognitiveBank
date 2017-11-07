@@ -7,4 +7,6 @@
     blacklist: %w(username password ldap_port scoring_port scoring_hostname created_at updated_at)
 } %>
 
-<%= link_to 'New Machine Learning Service', new_ml_scoring_service_path %>
+<%= link_to new_ml_scoring_service_path, class: 'btn btn-lg btn-success' do %>
+  <span class="glyphicon glyphicon-plus"></span> New Machine Learning Service
+<% end %>

@@ -1,3 +1,7 @@
 // Place all the styles related to the ml_scoring_service controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.field_with_errors > input {
+  margin-bottom: 0;
+}

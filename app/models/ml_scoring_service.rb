@@ -1,6 +1,9 @@
 class MlScoringService < ApplicationRecord
   after_save { MlScoringService.init_main }
   validate :test_ldap
+  validates :username, presence: true
+  validates :password, presence: true
+  validates :deployment, presence: true
 
   def self.init_main
     @@main ||= MlScoringService.first
@@ -147,6 +150,8 @@ class MlScoringService < ApplicationRecord
     rescue RuntimeError => e
       errors.add(:username, e.message)
       errors.add(:password, e.message)
+    rescue SocketError => e
+      errors.add(:hostname, e.message)
     end
   end
   

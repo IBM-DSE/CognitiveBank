@@ -1,5 +1,6 @@
 class MlScoringService < ApplicationRecord
   after_save { MlScoringService.init_main }
+  validate :test_ldap
 
   def self.init_main
     @@main ||= MlScoringService.first
@@ -134,13 +135,18 @@ class MlScoringService < ApplicationRecord
   end
 
   def get_token
-    case type
-      when CLOUD
-        ml_cloud.fetch_token
-      when LOCAL
-        ml_local.fetch_token
-      when MLZOS
-        get_token_mlz
+    begin
+      case type
+        when CLOUD
+          ml_cloud.fetch_token
+        when LOCAL
+          ml_local.fetch_token
+        when MLZOS
+          get_token_mlz
+      end
+    rescue RuntimeError => e
+      errors.add(:username, e.message)
+      errors.add(:password, e.message)
     end
   end
   

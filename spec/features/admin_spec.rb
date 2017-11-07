@@ -24,20 +24,22 @@ feature 'Admin' do
     
     # Create new machine learning service
     click_link 'New Machine Learning Service'
-    expect(page).to_not have_link 'New Machine Learning Service'
-    expect(page).to have_text 'New Machine Learning Service'
+    expect_new_ml_service_page
     expect(page).to have_text 'Name: Hostname: Username: Password: Deployment:'
     expect(page).to have_text 'MLZ Settings Ldap port: Scoring hostname: Scoring port:'
     expect(page).to have_button 'Create Machine Learning Scoring Service'
 
-    # Fill in new Machine Learning Service
-    # fill_in 'Name:', with: 'test'
-    # fill_in 'Hostname:', with: 'ibm-watson-ml.mybluemix.net'
-    # fill_in 'Username:', with: 'test'
-    # fill_in 'Password:', with: 'test'
-    # fill_in 'Deployment:', with: 'test'
-    # click_button 'Create Machine Learning Scoring Service'
-    # expect_admin_panel
+    # Fill in new Machine Learning Service with WML and bad credentials
+    fill_in 'Name:', with: 'test'
+    fill_in 'Hostname:', with: 'ibm-watson-ml.mybluemix.net'
+    fill_in 'Username:', with: 'test'
+    fill_in 'Password:', with: 'test'
+    fill_in 'Deployment:', with: 'test'
+    click_button 'Create Machine Learning Scoring Service'
+    expect_new_ml_service_page
+    expect(page).to have_text 'Authorization Failure Against ibm-watson-ml.mybluemix.net'
+    expect(page).to have_text 'Username: Net::HTTPUnauthorized Password: Net::HTTPUnauthorized'
+    
   end
   
 end
@@ -54,4 +56,9 @@ def expect_admin_panel
   expect(page).to have_text 'Machine Learning Services:'
   expect(page).to have_text 'Id Name Hostname Deployment Authentication ML Scoring Actions'
   expect(page).to have_link 'New Machine Learning Service'
+end
+
+def expect_new_ml_service_page
+  expect(page).to_not have_link 'New Machine Learning Service'
+  expect(page).to have_text 'New Machine Learning Service'
 end

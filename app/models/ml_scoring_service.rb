@@ -18,7 +18,7 @@ class MlScoringService < ApplicationRecord
     puts
     hostname = @@main ? @@main.hostname : 'default'
     puts "Scoring against #{hostname}..."
-    @@main.get_score customer if @@main
+    @@main&.get_score customer
   end
 
   def self.process_score(score)

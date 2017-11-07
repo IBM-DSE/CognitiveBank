@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Bruce', type: :feature, js: true do
+feature 'Bruce', js: true do
 
   background do
 

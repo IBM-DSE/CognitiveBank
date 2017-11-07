@@ -34,5 +34,5 @@ en:
         education_group: "Education Level"
       ml_scoring_service:
         ldap_port: "LDAP Port"
-        ldap_test: "LDAP Test"
-        ml_scoring_test: "ML Scoring Test"
+        ldap_test: "Authentication"
+        ml_scoring_test: "ML Scoring"

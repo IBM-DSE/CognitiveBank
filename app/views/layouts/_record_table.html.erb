@@ -8,6 +8,7 @@
     <% helpers.each do |helper| %>
       <th><%= records.klass.human_attribute_name helper %></th>
     <% end %>
+    <th>Actions</th>
   </tr>
   <% records.each do |rec| %>
     <tr>
@@ -17,6 +18,18 @@
       <% helpers.each do |helper| %>
           <%= method(helper).call(rec) %>
       <% end %>
+      <td>
+        <% actions.each do |action| %>
+          <p>
+          <% if action == 'destroy' %>
+            <%= button_to action, { action: action, controller: rec.class.to_s.tableize, id: rec.id },
+                                    method: action.to_sym, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          <% else %>
+            <%= link_to action, [action.to_sym, rec], class: 'btn btn-warning' %>
+          <% end %>
+          </p>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>

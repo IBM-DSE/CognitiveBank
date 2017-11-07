@@ -5,6 +5,10 @@ Rails.application.routes.draw do
 
   get 'admin', to: 'users#admin'
   get 'admin/profile/:id', to: 'customers#profile', as: 'customer_profile'
+  
+  scope '/admin' do
+    resources :ml_scoring_services
+  end
 
   get 'dashboard', to: 'customers#dashboard'
   get 'profile', to: 'customers#profile'

@@ -1,7 +1,0 @@
-<h3>Machine Learning Scoring Services:</h3>
-
-<%= render partial: 'layouts/record_table', locals: { 
-    records: MlScoringService.all,
-    helpers: %w(ldap_test ml_scoring_test),
-    blacklist: %w(username password created_at updated_at)
-} %>

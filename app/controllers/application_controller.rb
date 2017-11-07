@@ -7,10 +7,20 @@ class ApplicationController < ActionController::Base
   # Confirms a logged-in user.
   def logged_in_user
     unless logged_in?
-      store_location
-      flash[:danger] = 'Please log in.'
-      redirect_to login_url
+      login_page
     end
+  end
+
+  def admin_user
+    unless logged_in? && is_admin?
+      login_page
+    end
+  end
+  
+  def login_page
+    store_location
+    flash[:danger] = 'Please log in.'
+    redirect_to login_url
   end
   
 end

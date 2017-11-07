@@ -15,8 +15,12 @@ class MlScoringServicesController < ApplicationController
   end
 
   def create
-    MlScoringService.create! ml_scoring_service_params
-    redirect_to admin_path
+    @ml_scoring_service = MlScoringService.new ml_scoring_service_params
+    if @ml_scoring_service.save
+      redirect_to admin_path
+    else
+      render 'new'
+    end
   end
   
   def destroy

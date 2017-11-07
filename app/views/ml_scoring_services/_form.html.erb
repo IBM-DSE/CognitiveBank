@@ -6,7 +6,14 @@
 
   <%= form_for ml_scoring_service, html: {class: 'form-horizontal'} do |f| %>
 
-      <% ml_scoring_service.attribute_names.each do |attr| %>
+      <% MlScoringService.standard_attrs.each do |attr| %>
+          <%= render partial: 'text_field', locals: {f: f, action: attr.to_sym} %>
+      <% end %>
+      
+      <div class="col-md-2"></div><div class="col-md-10">
+        <h4>MLZ Settings</h4>
+      </div>
+      <% MlScoringService.mlz_attrs.each do |attr| %>
           <%= render partial: 'text_field', locals: {f: f, action: attr.to_sym} %>
       <% end %>
 

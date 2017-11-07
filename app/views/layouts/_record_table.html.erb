@@ -22,8 +22,8 @@
         <% actions.each do |action| %>
           <p>
           <% if action == 'destroy' %>
-            <%= button_to action, { action: action, controller: rec.class.to_s.tableize, id: rec.id },
-                                    method: action.to_sym, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+            <%= button_to 'delete', rec, method: :delete, class: 'btn btn-danger',
+                          data: { confirm: 'Are you sure you want to delete this Machine Learning Service?' } %>
           <% else %>
             <%= link_to action, [action.to_sym, rec], class: 'btn btn-warning' %>
           <% end %>

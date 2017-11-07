@@ -15,6 +15,9 @@ class MlScoringService < ApplicationRecord
   
   def self.get_score(customer)
     MlScoringService.init_main
+    puts
+    hostname = @@main ? @@main.hostname : 'default'
+    puts "Scoring against #{hostname}..."
     @@main.get_score customer if @@main
   end
 
@@ -32,7 +35,8 @@ class MlScoringService < ApplicationRecord
       when CLOUD
         ml_cloud.score self.deployment, customer.attributes.slice(*SCORING_ATTRS)
       when LOCAL
-        ml_local.score self.deployment, customer.attributes.slice(*SCORING_ATTRS)
+        record = customer.attributes.slice(*SCORING_ATTRS).map { |k,v| [k.upcase, v] }.to_h
+        ml_local.score self.deployment, record
       when MLZOS
         get_score_mlz(customer)
     end
@@ -80,6 +84,14 @@ class MlScoringService < ApplicationRecord
       @service.query_score(score, 'probability')[0]
     )
   end
+
+  def self.standard_attrs
+    %w(name hostname username password deployment)
+  end
+
+  def self.mlz_attrs
+    %w(ldap_port scoring_hostname scoring_port)
+  end
   
   private
   
@@ -105,7 +117,6 @@ class MlScoringService < ApplicationRecord
     @service = IBM::ML::Cloud.new username, password
   end
   
-  TOKEN_PREFIX  = 'eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9'
   SCORING_ATTRS = %w(age activity education sex state negtweets income)
   SAMPLE_RECORD = Customer.first
   SCORING_CALL_TIMEOUT = (ENV['ML_SCORING_TIMEOUT'] || 3).to_i
@@ -170,7 +181,7 @@ class MlScoringService < ApplicationRecord
   end
   
   def valid_token(token)
-    token.is_a?(String) and token.start_with?(TOKEN_PREFIX)
+    token.is_a?(String) and token.length > 256
   end
 
 end

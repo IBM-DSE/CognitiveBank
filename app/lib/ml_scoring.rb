@@ -26,19 +26,12 @@ class MlScoring
   
   private
   
-  # def process_score(score)
-  #   puts score
-  #   churn   = score['prediction'] == 1.0
-  #   prob    = score['probability']['values'][score['prediction']]
-  #   @result = { churn_prediction: churn, churn_probability: prob }
-  # end
-  
   def print_churn_result
-    puts ' '
     puts 'Customer churn result: '
     @result.each do |k, v|
       puts "  #{k.to_s.humanize}: #{v}"
     end
+    puts
   end
   
   def default_score

@@ -5,6 +5,11 @@ class MlScoringServicesController < ApplicationController
     @ml_scoring_service = MlScoringService.new
   end
   
+  def detect
+    @ml_scoring_service = MlScoringService.detect_wml_services
+    render :new
+  end
+  
   def edit
     @ml_scoring_service = current_ml_service
   end
@@ -19,7 +24,7 @@ class MlScoringServicesController < ApplicationController
     if @ml_scoring_service.save
       redirect_to admin_path
     else
-      render 'new'
+      render :new
     end
   end
   

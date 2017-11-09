@@ -1,4 +1,4 @@
-id,sex,age,education,investment,income,activity,yrly_amt,avg_daily_tx,yrly_tx,avg_tx_amt,negtweets,state,education_group
+id,gender,age,education,investment,income,activity,yrly_amt,avg_daily_tx,yrly_tx,avg_tx_amt,negtweets,state,education
 1009530860,F,84,2,114368,3852862,5,700259,0.917808,335,2090.32,3,TX,Bachelor's degree
 1009544000,F,44,2,90298,3849843,1,726977,0.950685,347,2095.04,2,CA,Bachelor's degree
 1009534260,F,23,2,94881,3217364,1,579084,0.920548,336,1723.46,5,CA,Bachelor's degree

@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171109175536) do
+ActiveRecord::Schema.define(version: 20171109192445) do
 
   create_table "customers", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "sex"
+    t.string   "gender"
     t.integer  "age"
-    t.integer  "education"
+    t.integer  "education_code"
     t.integer  "investment"
     t.integer  "income"
     t.integer  "activity"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20171109175536) do
     t.float    "avg_tx_amt"
     t.integer  "negtweets"
     t.string   "state"
-    t.string   "education_group"
+    t.string   "education"
     t.text     "context"
     t.boolean  "churn_prediction"
     t.float    "churn_probability"

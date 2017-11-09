@@ -1,5 +1,3 @@
-<% columns = records.klass.columns.map {|col| col.name} %>
-<% columns = columns - blacklist if defined? blacklist %>
 <table class="table table-bordered table-striped">
   <tr>
     <% columns.each do |col| %>

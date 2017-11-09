@@ -41,7 +41,7 @@ class Customer < ApplicationRecord
   end
   
   def gender
-    sex == 'M' ? 'Male' : 'Female'
+    gender == 'M' ? 'Male' : 'Female'
   end
   
   def reset

@@ -3,7 +3,7 @@
 <table class="table">
 
   <tr><th>Gender:</th><td><%= @customer.gender %></td></tr>
-  <% @customer.attributes.slice('age', 'state', 'education_group').each do |k,v| %>
+  <% @customer.attributes.slice('age', 'state', 'education').each do |k,v| %>
       <tr><th><%= Customer.human_attribute_name k %>:</th><td><%= v.to_s %></td></tr>
   <% end %>
   <% @customer.attributes.slice('income', 'investment', 'yrly_amt').each do |k,v| %>

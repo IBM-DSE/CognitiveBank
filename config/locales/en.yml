@@ -31,7 +31,7 @@ en:
         yrly_tx: "Annual Transactions"
         avg_tx_amt: "Average Transaction Amount"
         negtweets: "Negative Tweets"
-        education_group: "Education Level"
+        education: "Education Level"
       ml_scoring_service:
         ldap_port: "LDAP Port"
         ldap_test: "Authentication"

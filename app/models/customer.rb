@@ -10,10 +10,10 @@ class Customer < ApplicationRecord
   serialize :context, JSON
   
   
-  def get_personality
+  def get_personality(tweets)
     puts ' '
     puts "Fetching Personality Insights from #{self.name}'s tweets..."
-    WatsonPersonalityInsights.new
+    WatsonPersonalityInsights.new(tweets)
   end
   
   def extract_signals(tweets)
@@ -40,7 +40,7 @@ class Customer < ApplicationRecord
     twitter_personality.username
   end
   
-  def gender
+  def display_gender
     gender == 'M' ? 'Male' : 'Female'
   end
   

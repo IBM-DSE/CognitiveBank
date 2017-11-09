@@ -74,7 +74,7 @@ feature 'Bruce', js: true do
     expect(page).to have_text 'Gender: Male'
     expect(page).to have_text 'Age: 41'
     expect(page).to have_text 'State: TX'
-    expect(page).to have_text "Education Level: Master's degree"
+    expect(page).to have_text 'Education Level: Masters degree'
     expect(page).to have_text 'Income: $316,530.00'
     expect(page).to have_text 'Investment:'
     expect(page).to have_text 'Annual Spending:'

@@ -1,10 +1,7 @@
 class WatsonPersonalityInsights
   
-  def initialize
+  def initialize(tweets)
     @personality = {}
-    
-    # load tweets from a specific user
-    tweets       = Twitter.load_tweets
     
     # call WPI api with twitter data as input
     @jsonProfile  = call_wpi_api(tweets)

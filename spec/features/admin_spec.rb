@@ -109,7 +109,7 @@ def expect_admin_panel
   expect(page).to have_text 'You are logged in as administrator'
 
   expect(page).to have_text 'Customers:'
-  expect(page).to have_text 'Name Churn Prediction: Churn Probability: Last Scoring Call: Profile'
+  expect(page).to have_text 'Name Churn Prediction: Churn Probability: ML Service: Last Scoring Call: Profile'
   expect(page).to have_text 'Bruce View Profile'
 
   expect(page).to have_text 'Machine Learning Services:'

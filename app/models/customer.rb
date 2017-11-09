@@ -5,6 +5,7 @@ class Customer < ApplicationRecord
   has_one :twitter_personality
   has_many :transactions
   has_many :messages
+  belongs_to :ml_scoring_service, optional: true
   
   serialize :context, JSON
   
@@ -23,26 +24,24 @@ class Customer < ApplicationRecord
   
   def update_churn
     churn = MlScoring.new self
-    if churn.result
-      self.update! churn.result
-    end
+    update! churn.result if churn.result
   end
   
   def will_churn?
     update_churn
-    self.churn_prediction
+    churn_prediction
   end
   
   def name
-    self.user.name
+    user.name
   end
   
   def twitter_id
-    self.twitter_personality.username
+    twitter_personality.username
   end
   
   def gender
-    self.sex == 'M' ? 'Male' : 'Female'
+    sex == 'M' ? 'Male' : 'Female'
   end
   
   def reset
@@ -65,6 +64,7 @@ class Customer < ApplicationRecord
   def clear_prediction
     self.churn_prediction = nil
     self.churn_probability = nil
+    self.ml_scoring_service_id = nil
     self.save!
   end
   

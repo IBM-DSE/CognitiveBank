@@ -7,18 +7,8 @@ class MlScoringService < ApplicationRecord
   validates :deployment, presence: true
   validate :test_ml_scoring_service
 
-  after_save { MlScoringService.init_main }
-
-  def self.init_main
-    @@main ||= MlScoringService.first
-  end
-  
-  def self.set_main(service)
-    @@main = service
-  end
-
-  def self.get_main
-    @@main
+  def self.main
+    MlScoringService.first
   end
   
   def self.detect_wml_services
@@ -46,30 +36,20 @@ class MlScoringService < ApplicationRecord
     new
   end
   
-  def self.get_score(customer)
-    MlScoringService.init_main
+  def self.get_result(customer)
     puts
-    hostname = @@main ? @@main.hostname : 'default'
+    hostname = main ? main.hostname : 'default'
     puts "Scoring against #{hostname}..."
-    @@main&.get_score customer
+    main&.process_score main&.get_score(customer)
   end
 
-  def self.process_score(score)
-    MlScoringService.init_main
-    if @@main
-      @@main.process_score score
-    else
-      process_score_mlz score
-    end
-  end
-  
   def get_score(customer)
     case type
     when CLOUD
-      ml_cloud.score deployment, customer.attributes.slice(*SCORING_ATTRS)
+      @service.score deployment, customer.attributes.slice(*SCORING_ATTRS)
     when LOCAL
       record = customer.attributes.slice(*SCORING_ATTRS).map { |k, v| [k.upcase, v] }.to_h
-      ml_local.score deployment, record
+      @service.score deployment, record
     when MLZOS
       get_score_mlz(customer)
     end
@@ -80,7 +60,8 @@ class MlScoringService < ApplicationRecord
     when CLOUD, LOCAL
       {
         churn_prediction: @service.query_score(score, 'prediction'),
-        churn_probability: @service.query_score(score, 'probability')[1]
+        churn_probability: @service.query_score(score, 'probability')[1],
+        ml_scoring_service_id: id
       }
     when MLZOS
       process_score_mlz(score)
@@ -126,6 +107,10 @@ class MlScoringService < ApplicationRecord
     %w[ldap_port scoring_hostname scoring_port]
   end
   
+  def display_name
+    name || hostname
+  end
+  
   private
   
   CLOUD = 1
@@ -143,8 +128,10 @@ class MlScoringService < ApplicationRecord
     if scoring_port
       MLZOS
     elsif hostname == 'ibm-watson-ml.mybluemix.net'
+      ml_cloud
       CLOUD
     else
+      ml_local
       LOCAL
     end
   end
@@ -176,10 +163,8 @@ class MlScoringService < ApplicationRecord
   def get_token
     
     case type
-    when CLOUD
-      ml_cloud.fetch_token
-    when LOCAL
-      ml_local.fetch_token
+    when CLOUD, LOCAL
+      @service.fetch_token
     when MLZOS
       get_token_mlz
     end

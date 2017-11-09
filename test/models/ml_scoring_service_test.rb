@@ -26,22 +26,22 @@ class MlScoringServiceTest < ActiveSupport::TestCase
   end
   
   test 'bad_hostname_fetch_ml_score' do
-    score = @bad_hostname_scoring_service.get_score @bruce
+    score = @bad_hostname_scoring_service.get_result @bruce
     assert_kind_of FalseClass, score
   end
   
   test 'bad_ldap_port_fetch_ml_score' do
-    score = @bad_ldap_port_scoring_service.get_score @bruce
+    score = @bad_ldap_port_scoring_service.get_result @bruce
     assert_kind_of FalseClass, score
   end
 
   test 'bad_scoring_port_fetch_ml_score' do
-    score = @bad_scoring_port_service.get_score @bruce
+    score = @bad_scoring_port_service.get_result @bruce
     assert_kind_of FalseClass, score
   end
 
   test 'fetch_ml_score' do
-    score = @scoring_service.get_score @bruce
+    score = @scoring_service.get_result @bruce
     assert_not_kind_of FalseClass, score
     assert_kind_of Hash, score
     SCORING_ATTRS.each do |attr|

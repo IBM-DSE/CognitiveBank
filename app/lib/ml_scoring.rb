@@ -5,11 +5,8 @@ class MlScoring
   
   def initialize(customer)
     # get score from MlScoringService
-    score = MlScoringService.get_score(customer) || default_score
-    if score
-      @result = MlScoringService.process_score(score)
-      print_churn_result
-    end
+    @result = MlScoringService.get_result(customer) || default_score
+    print_churn_result if @result
   end
   
   def to_h
@@ -35,6 +32,6 @@ class MlScoring
   end
   
   def default_score
-    Util.handle_score_error
+    Util.default_score
   end
 end

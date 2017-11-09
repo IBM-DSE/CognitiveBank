@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171106203309) do
+ActiveRecord::Schema.define(version: 20171109175536) do
 
   create_table "customers", force: :cascade do |t|
     t.integer  "user_id"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20171106203309) do
     t.float    "churn_probability"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "ml_scoring_service_id"
+    t.index ["ml_scoring_service_id"], name: "index_customers_on_ml_scoring_service_id"
     t.index ["user_id"], name: "index_customers_on_user_id"
   end
 

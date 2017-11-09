@@ -45,7 +45,7 @@ feature 'Admin' do
     fill_in 'Deployment:', with: 'test'
     click_button 'Create Machine Learning Scoring Service'
     expect_new_ml_service_page
-    expect(page).to have_text 'Hostname: Failed to open TCP connection to not!a-reeal-howssstname:443 (getaddrinfo: nodename nor servname provided, or not known)'
+    expect(page).to have_text 'Hostname: Failed to open TCP connection to not!a-reeal-howssstname:443'
 
     # Fill in new Machine Learning Service with good hostname but not ML service
     # fill_in 'Hostname:', with: 'www.ibm.com'

@@ -27,7 +27,7 @@ class CustomersController < ApplicationController
       @twitter_username = @customer.twitter_personality.username
       
       tweets = Twitter.load_tweets
-      personality = @customer.get_personality
+      personality = @customer.get_personality tweets
       @pi_output = personality.raw_json
       @personality = personality.to_h
       

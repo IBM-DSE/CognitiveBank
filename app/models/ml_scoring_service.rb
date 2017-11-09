@@ -26,8 +26,13 @@ class MlScoringService < ApplicationRecord
         name = 'WML Service'
         deployment = nil
         if deployments['count'].positive?
-          deployment = deployments['resources'][0]['metadata']['guid']
-          name = deployments['resources'][0]['entity']['name']
+          deployments['resources'].each do |dep|
+            name = dep['entity']['name'].downcase
+            if name.include?('bank') && name.include?('churn')
+              deployment = dep['metadata']['guid']
+              name = dep['entity']['name']  
+            end
+          end
         end
         
         return new(name: name, hostname: hostname, username: username, password: password, deployment: deployment)
@@ -144,7 +149,7 @@ class MlScoringService < ApplicationRecord
     @service = IBM::ML::Cloud.new username, password
   end
   
-  SCORING_ATTRS = %w[age activity education sex state negtweets income].freeze
+  SCORING_ATTRS = %w[age activity education gender state negtweets income].freeze
   SAMPLE_RECORD = Customer.first
   SCORING_CALL_TIMEOUT = (ENV['ML_SCORING_TIMEOUT'] || 3).to_i
   

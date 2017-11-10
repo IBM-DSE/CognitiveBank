@@ -1,2 +1,38 @@
-<h1>Transactions#index</h1>
-<p>Find me in app/views/transactions/index.html.erb</p>
+<h1>Transactions</h1>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>ID</th>
+    <th>Time</th>
+    <th>Amount</th>
+    <th>Features</th>
+    <th>Fraud Detection</th>
+  </tr>
+  <% @transactions.each do |transaction| %>
+    <tr>
+      <td><%= transaction.id + 10068924 %></td>
+      <td><%= Time.now - 172800 + transaction.time %></td>
+      <td><%= number_to_currency transaction.amount %></td>
+      <td>
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#transaction-<%= transaction.id %>">Components</button>
+        <div id="transaction-<%= transaction.id %>" class="collapse">
+          <pre>
+            <% (1..28).each do |i| %>
+              V<%= i.to_s %> = <%= transaction.send('v'+i.to_s) %>
+            <% end %>
+          </pre>
+        </div>
+      </td>
+      <td>
+        <div id="fraud-<%= transaction.id %>">
+        <%= form_for transaction, url: { action: 'detect_fraud' }, method: :post, remote: true do |f| %>
+          <%= f.hidden_field :id %>
+          <%= f.submit 'Detect', class: 'btn btn-primary' %>
+        <% end %>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= javascript_include_tag 'transactions' %>

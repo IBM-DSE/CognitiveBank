@@ -12,6 +12,12 @@ Rails.application.routes.draw do
         get 'detect'
       end
     end
+
+    resources :transactions, only: :index do
+      collection do
+        post 'detect_fraud'
+      end
+    end
   end
 
   get 'dashboard', to: 'customers#dashboard'

@@ -53,4 +53,9 @@ User.create!(name:     'Avijit Chatterjee', email: 'avijit@example.com',
              password: 'password', password_confirmation: 'password',
              admin:    true)
 
-puts "Loaded #{MlScoringService.count} ML Scoring Services."
+
+# Load transaction fraud data
+CSV.foreach('db/data/fraud.csv', headers: true) do |row|
+  p row.to_h
+  FraudTransaction.create!(row.to_h)
+end

@@ -28,7 +28,7 @@ class MlScoringService < ApplicationRecord
         if deployments['count'].positive?
           deployments['resources'].each do |dep|
             name = dep['entity']['name'].downcase
-            if name.include?('bank') && name.include?('churn')
+            if name.include?('churn')
               deployment = dep['metadata']['guid']
               name = dep['entity']['name']  
             end

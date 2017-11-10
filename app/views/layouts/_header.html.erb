@@ -25,6 +25,7 @@
               <li><%= link_to 'Dashboard', dashboard_path if is_customer? %></li>
               <li><%= link_to 'Profile', profile_path if is_customer? %></li>
               <li><%= link_to 'Admin', admin_path if is_admin? %></li>
+              <li><%= link_to 'Transactions', transactions_path if is_admin? %></li>
                 <li class="divider"></li>
                 <li><%= link_to 'Log out', logout_path, method: 'delete' %></li>
               </ul>

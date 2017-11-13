@@ -11,6 +11,10 @@ class MlScoringService < ApplicationRecord
     MlScoringService.first
   end
   
+  def self.scoring_attrs
+    SCORING_ATTRS
+  end
+  
   def self.detect_wml_services
     if ENV['VCAP_SERVICES']
       convo_creds = CF::App::Credentials.find_by_service_label('pm-20')

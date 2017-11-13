@@ -2,7 +2,9 @@
   <% if logged_in? %>
 
   <h2><%= @customer.name %>'s Profile:</h2>
+  <%= link_to 'Edit Customer', edit_customer_path(@customer), class: 'btn btn-warning' if is_admin? %>
   <br>
+      
   
   <div class="col-md-4">
     

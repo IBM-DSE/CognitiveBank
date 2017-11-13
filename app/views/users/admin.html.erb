@@ -23,7 +23,7 @@
           <td><%= number_to_percentage(customer.churn_probability*100, precision: 1) if customer.churn_probability %></td>
           <td><%= customer.ml_scoring_service.display_name if customer.ml_scoring_service %></td>
           <td><%= local_time(customer.updated_at) if customer.churn_prediction %></td>
-          <td><%= link_to 'View Profile', customer_profile_path(customer.id) %></td>
+          <td><%= link_to 'View Profile', customer_profile_path(customer) %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Edit', edit_customer_path(customer) %></td>
         </tr>
     <% end %>
   </table>

@@ -12,6 +12,8 @@ Rails.application.routes.draw do
         get 'detect'
       end
     end
+    
+    resources :customers, only: [:edit, :update]
 
     resources :transactions, only: :index do
       collection do

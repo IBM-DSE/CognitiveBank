@@ -9,6 +9,10 @@ class Customer < ApplicationRecord
   
   serialize :context, JSON
   
+  def self.editable_attributes
+    MlScoringService.scoring_attrs
+    # [:gender, :age, :state, :education, :income, :investment, :yrly_amt, :yrly_tx,:avg_daily_tx, :avg_tx_amt]
+  end
   
   def get_personality(tweets)
     puts ' '

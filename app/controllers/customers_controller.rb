@@ -38,7 +38,34 @@ class CustomersController < ApplicationController
     end
   end
   
+  def edit
+    if is_admin?
+      @customer = Customer.find params[:id]
+    else
+      redirect_to login_path, flash: { danger: 'You must be logged in as admin to view this' }
+    end
+  end
+  
+  def update
+    if is_admin?
+      @customer = Customer.find params[:id]
+      if @customer
+        if @customer.update customer_params.except(:name)
+          if @customer.user.update customer_params.slice(:name)
+            redirect_to customer_profile_path
+          end
+        end
+      end
+    else
+      redirect_to login_path, flash: { danger: 'You must be logged in as admin to view this' }
+    end
+  end
+  
   private
+
+  def customer_params
+    params.require(:customer).permit([:name] + Customer.editable_attributes)
+  end
   
   def message_params
     params.require(:customer)

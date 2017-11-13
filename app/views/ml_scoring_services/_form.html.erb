@@ -18,7 +18,7 @@
     <% end %>
 
     <% MlScoringService.standard_attrs.each do |attr| %>
-        <%= render partial: 'text_field', locals: {f: f, action: attr.to_sym,
+        <%= render partial: 'shared/text_field', locals: {f: f, action: attr.to_sym,
                                                    errors: ml_scoring_service.errors.messages[attr.to_sym]} %>
     <% end %>
     
@@ -26,7 +26,7 @@
       <h4>MLZ Settings</h4>
     </div>
     <% MlScoringService.mlz_attrs.each do |attr| %>
-        <%= render partial: 'text_field', locals: {f: f, action: attr.to_sym,
+        <%= render partial: 'shared/text_field', locals: {f: f, action: attr.to_sym,
                                                    errors: ml_scoring_service.errors.messages[attr.to_sym]} %>
     <% end %>
 

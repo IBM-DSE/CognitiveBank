@@ -4,8 +4,7 @@ puts
 puts 'Loading the customers and transactions...'
 csv_text = File.read('db/bruce_profile.csv')
 CSV.parse(csv_text, :headers => true) do |row|
-  cust      = Customer.new(row.to_hash.except('name','username'))
-  cust.user = User.new name: row['name']
+  cust = Customer.new(row.to_hash)
   cust.save
   puts "#{1}:#{cust.user.name}:#{cust.inspect}"
 end

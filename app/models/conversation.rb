@@ -1,5 +1,10 @@
 class Conversation
-  
+
+  def self.initialize(current_customer)
+    {
+      cur: I18n.t('number.currency.format.unit', locale: current_customer.locale) 
+    }.to_json.to_s
+  end
   
   # class method for sending string message content and customer context to WC
   def self.send(customer, message, context)

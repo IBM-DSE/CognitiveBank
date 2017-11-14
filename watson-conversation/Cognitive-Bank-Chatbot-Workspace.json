@@ -1,196 +1,207 @@
 {
-  "name": "Cognitive Bank Chatbot",
-  "created": "2017-03-23T17:06:44.166Z",
+  "name": "Cognitive Bank Chatbot - locales",
+  "created": "2017-11-14T02:52:57.168Z",
   "intents": [
     {
-      "intent": "affirmative",
-      "created": "2017-03-23T17:06:44.166Z",
-      "updated": "2017-03-23T17:06:44.166Z",
+      "intent": "negative",
+      "created": "2017-11-14T02:52:57.168Z",
+      "updated": "2017-11-14T02:52:57.168Z",
       "examples": [
         {
-          "text": "yes",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "text": "definitely not",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
-          "text": "sure",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "text": "I'll pass",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
-          "text": "okay",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "text": "nah",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
-          "text": "ok",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "text": "negative",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
-          "text": "indeed",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "text": "absolutely not",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
-          "text": "fine",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "text": "no",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
-          "text": "definitely",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "text": "nope",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
-          "text": "affirmative",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "text": "no thank you",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
-          "text": "absolutely",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "text": "no way",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         }
       ],
       "description": null
     },
     {
       "intent": "appreciation",
-      "created": "2017-03-23T17:06:44.166Z",
-      "updated": "2017-03-23T17:06:44.166Z",
+      "created": "2017-11-14T02:52:57.168Z",
+      "updated": "2017-11-14T02:52:57.168Z",
       "examples": [
         {
           "text": "you rock",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
           "text": "you're so cool",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
           "text": "you're awesome",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
           "text": "thank you so much",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
-        },
-        {
-          "text": "thank you",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
           "text": "thanks a lot",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
           "text": "thanks",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
           "text": "much appreciated",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
           "text": "appreciate it",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
+        },
+        {
+          "text": "thank you",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         }
       ],
       "description": null
     },
     {
-      "intent": "negative",
-      "created": "2017-03-23T17:06:44.166Z",
-      "updated": "2017-03-23T17:06:44.166Z",
+      "intent": "affirmative",
+      "created": "2017-11-14T02:52:57.168Z",
+      "updated": "2017-11-14T02:52:57.168Z",
       "examples": [
         {
-          "text": "no way",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "text": "affirmative",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
-          "text": "no thank you",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "text": "definitely",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
-          "text": "nope",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "text": "fine",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
-          "text": "no",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "text": "indeed",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
-          "text": "negative",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "text": "ok",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
-          "text": "nah",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "text": "okay",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
-          "text": "I'll pass",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "text": "sure",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
-          "text": "definitely not",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "text": "yes",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         },
         {
-          "text": "absolutely not",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z"
+          "text": "absolutely",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z"
         }
       ],
       "description": null
     }
   ],
-  "updated": "2017-08-10T21:13:12.505Z",
+  "updated": "2017-11-14T03:07:14.006Z",
   "entities": [
     {
       "entity": "category",
       "values": [
         {
+          "type": "synonyms",
           "value": "restaurants",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z",
           "metadata": null,
           "synonyms": []
         },
         {
+          "type": "synonyms",
           "value": "travel",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z",
           "metadata": null,
           "synonyms": []
         },
         {
+          "type": "synonyms",
           "value": "clothing",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z",
           "metadata": null,
           "synonyms": []
         }
       ],
-      "created": "2017-03-23T17:06:44.166Z",
-      "updated": "2017-03-23T17:06:44.166Z",
+      "created": "2017-11-14T02:52:57.168Z",
+      "updated": "2017-11-14T02:52:57.168Z",
+      "metadata": null,
+      "description": null
+    },
+    {
+      "entity": "sys-date",
+      "values": [],
+      "created": "2017-11-14T02:52:57.168Z",
+      "updated": "2017-11-14T02:52:57.168Z",
       "metadata": null,
       "description": null
     },
@@ -198,37 +209,32 @@
       "entity": "start",
       "values": [
         {
+          "type": "synonyms",
           "value": "begin",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z",
           "metadata": null,
           "synonyms": []
         },
         {
+          "type": "synonyms",
           "value": "start",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z",
           "metadata": null,
           "synonyms": []
         },
         {
+          "type": "synonyms",
           "value": "offers",
-          "created": "2017-03-23T17:06:44.166Z",
-          "updated": "2017-03-23T17:06:44.166Z",
+          "created": "2017-11-14T02:52:57.168Z",
+          "updated": "2017-11-14T02:52:57.168Z",
           "metadata": null,
           "synonyms": []
         }
       ],
-      "created": "2017-03-23T17:06:44.166Z",
-      "updated": "2017-03-23T17:06:44.166Z",
-      "metadata": null,
-      "description": null
-    },
-    {
-      "entity": "sys-date",
-      "values": [],
-      "created": "2017-03-23T17:06:44.166Z",
-      "updated": "2017-03-23T17:06:44.166Z",
+      "created": "2017-11-14T02:52:57.168Z",
+      "updated": "2017-11-14T02:52:57.168Z",
       "metadata": null,
       "description": null
     }
@@ -244,64 +250,7 @@
   "description": "Chat bot to help users find the best offer at Cognitive Bank. References locally hosted server images",
   "dialog_nodes": [
     {
-      "title": null,
-      "output": {},
-      "parent": null,
-      "context": null,
-      "created": "2017-03-23T17:06:44.166Z",
-      "updated": "2017-03-23T17:06:44.166Z",
-      "metadata": null,
-      "next_step": {
-        "behavior": "jump_to",
-        "selector": "body",
-        "dialog_node": "Conversation Start"
-      },
-      "conditions": "@start",
-      "description": null,
-      "dialog_node": "node_1_1486486162815",
-      "previous_sibling": "Conversation Start"
-    },
-    {
-      "title": null,
-      "output": {},
-      "parent": "node_3_1486398209118",
-      "context": null,
-      "created": "2017-03-23T17:06:44.166Z",
-      "updated": "2017-03-23T17:06:44.166Z",
-      "metadata": null,
-      "next_step": {
-        "behavior": "jump_to",
-        "selector": "body",
-        "dialog_node": "Second Offer"
-      },
-      "conditions": "@sys-date",
-      "description": null,
-      "dialog_node": "node_4_1486398255085",
-      "previous_sibling": null
-    },
-    {
-      "title": null,
-      "output": {
-        "text": {
-          "values": [
-            "Great, which month are you planning?"
-          ],
-          "selection_policy": "sequential"
-        }
-      },
-      "parent": "node_2_1486398110273",
-      "context": null,
-      "created": "2017-03-23T17:06:44.166Z",
-      "updated": "2017-03-23T17:06:44.166Z",
-      "metadata": null,
-      "next_step": null,
-      "conditions": "#affirmative",
-      "description": null,
-      "dialog_node": "node_3_1486398209118",
-      "previous_sibling": null
-    },
-    {
-      "title": null,
+      "title": "End Conversation",
       "output": {
         "text": {
           "values": [
@@ -312,127 +261,14 @@
       },
       "parent": "Additional Offer",
       "context": null,
-      "created": "2017-08-02T14:54:44.977Z",
-      "updated": "2017-08-02T14:55:10.737Z",
+      "created": "2017-11-14T02:52:57.168Z",
+      "updated": "2017-11-14T02:52:57.168Z",
       "metadata": null,
       "next_step": null,
       "conditions": "true",
       "description": null,
       "dialog_node": "End Conversation",
       "previous_sibling": "Anti-Churn Offer"
-    },
-    {
-      "title": null,
-      "output": {
-        "text": {
-          "values": [
-            "Looks like you enjoy adventurous trips! I see you were in Kenya last year. Are you interested in a safari again?"
-          ],
-          "selection_policy": "sequential"
-        }
-      },
-      "parent": "Yes",
-      "context": null,
-      "created": "2017-03-23T17:06:44.166Z",
-      "updated": "2017-03-23T17:06:44.166Z",
-      "metadata": null,
-      "next_step": null,
-      "conditions": "@category:travel",
-      "description": null,
-      "dialog_node": "node_2_1486398110273",
-      "previous_sibling": null
-    },
-    {
-      "title": null,
-      "output": {
-        "text": {
-          "values": [
-            "Okay, I see you'd like some restaurant offers. Here's one I found that you might be interested in:<br><br><strong style=\"font-size: 20px\">Vegan Empanada Meal for Two or Four for Pickup at The V-Spot (Up to 50% Off)</strong><br><br><img class='msg' src='/images/vegan-empanada-meal.jpg'>"
-          ],
-          "selection_policy": "sequential"
-        }
-      },
-      "parent": "Yes",
-      "context": null,
-      "created": "2017-03-23T17:06:44.166Z",
-      "updated": "2017-03-23T17:06:44.166Z",
-      "metadata": null,
-      "next_step": null,
-      "conditions": "@category:restaurants",
-      "description": null,
-      "dialog_node": "node_1_1489776746056",
-      "previous_sibling": "node_2_1486398110273"
-    },
-    {
-      "title": null,
-      "output": {
-        "text": {
-          "values": [
-            "Since you are traveling in $month, can I make another offer?"
-          ],
-          "selection_policy": "sequential"
-        }
-      },
-      "parent": "node_4_1486398255085",
-      "context": null,
-      "created": "2017-03-23T17:06:44.166Z",
-      "updated": "2017-08-02T14:51:14.006Z",
-      "metadata": null,
-      "next_step": null,
-      "conditions": null,
-      "description": null,
-      "dialog_node": "Second Offer",
-      "previous_sibling": null
-    },
-    {
-      "title": null,
-      "output": {
-        "text": {
-          "values": [
-            "Sorry, didn't catch your travel time period. When are you planning to travel?"
-          ],
-          "selection_policy": "sequential"
-        }
-      },
-      "parent": "node_3_1486398209118",
-      "context": null,
-      "created": "2017-03-23T17:06:44.166Z",
-      "updated": "2017-03-23T17:06:44.166Z",
-      "metadata": null,
-      "next_step": {
-        "behavior": "jump_to",
-        "selector": "user_input",
-        "dialog_node": "node_4_1486398255085"
-      },
-      "conditions": "true",
-      "description": null,
-      "dialog_node": "node_1_1486444677167",
-      "previous_sibling": "node_4_1486398255085"
-    },
-    {
-      "title": "Additional Offer",
-      "output": {
-        "text": {
-          "values": [
-            "Since you're going during the rainy season, I found a good offer for you:<br><br><strong>Marmot Minimalist Rain Jacket - Men's \\$139.73 <strike>\\$200.00</strike> Save \\$60.27 (30%)</strong><br><img src='/images/red-raincoat.png'>"
-          ],
-          "selection_policy": "sequential"
-        }
-      },
-      "parent": "Second Offer",
-      "context": null,
-      "created": "2017-03-23T17:06:44.166Z",
-      "updated": "2017-08-02T14:53:17.897Z",
-      "metadata": null,
-      "next_step": {
-        "behavior": "jump_to",
-        "selector": "condition",
-        "dialog_node": "Anti-Churn Offer"
-      },
-      "conditions": "#affirmative",
-      "description": null,
-      "dialog_node": "Additional Offer",
-      "previous_sibling": null
     },
     {
       "title": "Anti-Churn Offer",
@@ -446,8 +282,8 @@
       },
       "parent": "Additional Offer",
       "context": null,
-      "created": "2017-03-23T17:06:44.166Z",
-      "updated": "2017-08-02T14:55:27.114Z",
+      "created": "2017-11-14T02:52:57.168Z",
+      "updated": "2017-11-14T03:02:58.239Z",
       "metadata": null,
       "next_step": {
         "behavior": "jump_to",
@@ -458,48 +294,6 @@
       "description": null,
       "dialog_node": "Anti-Churn Offer",
       "previous_sibling": null
-    },
-    {
-      "title": "Conversation Start",
-      "output": {
-        "text": {
-          "values": [
-            "Hi there, I'm the Cognitive Bank Virtual Assistant! I can help you find a good offer. Interested?"
-          ],
-          "selection_policy": "sequential"
-        }
-      },
-      "parent": null,
-      "context": null,
-      "created": "2017-03-23T17:06:44.166Z",
-      "updated": "2017-03-23T17:06:44.166Z",
-      "metadata": null,
-      "next_step": null,
-      "conditions": "conversation_start",
-      "description": null,
-      "dialog_node": "Conversation Start",
-      "previous_sibling": null
-    },
-    {
-      "title": "Fallback",
-      "output": {
-        "text": {
-          "values": [
-            "I am here to serve you!"
-          ],
-          "selection_policy": "sequential"
-        }
-      },
-      "parent": null,
-      "context": null,
-      "created": "2017-03-23T17:06:44.166Z",
-      "updated": "2017-03-23T17:06:44.166Z",
-      "metadata": null,
-      "next_step": null,
-      "conditions": "anything_else",
-      "description": null,
-      "dialog_node": "Fallback",
-      "previous_sibling": "node_1_1486486162815"
     },
     {
       "title": "No",
@@ -513,8 +307,8 @@
       },
       "parent": "Conversation Start",
       "context": null,
-      "created": "2017-03-23T17:06:44.166Z",
-      "updated": "2017-03-23T17:06:44.166Z",
+      "created": "2017-11-14T02:52:57.168Z",
+      "updated": "2017-11-14T02:52:57.168Z",
       "metadata": null,
       "next_step": null,
       "conditions": "#negative",
@@ -534,8 +328,8 @@
       },
       "parent": "Conversation Start",
       "context": null,
-      "created": "2017-03-23T17:06:44.166Z",
-      "updated": "2017-03-23T17:06:44.166Z",
+      "created": "2017-11-14T02:52:57.168Z",
+      "updated": "2017-11-14T02:52:57.168Z",
       "metadata": null,
       "next_step": null,
       "conditions": "#affirmative",
@@ -556,8 +350,8 @@
       },
       "parent": "node_4_1486398255085",
       "context": null,
-      "created": "2017-03-23T17:06:44.166Z",
-      "updated": "2017-03-23T17:06:44.166Z",
+      "created": "2017-11-14T02:52:57.168Z",
+      "updated": "2017-11-14T02:52:57.168Z",
       "metadata": null,
       "next_step": null,
       "conditions": null,
@@ -580,17 +374,229 @@
       "context": {
         "month": "<? @sys-date.reformatDateTime('MMMMM') ?>"
       },
-      "created": "2017-03-23T17:06:44.166Z",
-      "updated": "2017-08-10T21:13:12.505Z",
+      "created": "2017-11-14T02:52:57.168Z",
+      "updated": "2017-11-14T02:52:57.168Z",
       "metadata": null,
       "next_step": null,
       "conditions": null,
       "description": null,
       "dialog_node": "node_6_1486400454240",
       "previous_sibling": "Second Offer"
+    },
+    {
+      "title": "Second Offer",
+      "output": {
+        "text": {
+          "values": [
+            "Since you are traveling in $month, can I make another offer?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_4_1486398255085",
+      "context": null,
+      "created": "2017-11-14T02:52:57.168Z",
+      "updated": "2017-11-14T02:58:01.742Z",
+      "metadata": null,
+      "next_step": null,
+      "conditions": null,
+      "description": null,
+      "dialog_node": "Second Offer",
+      "previous_sibling": null
+    },
+    {
+      "title": "Additional Offer",
+      "output": {
+        "text": {
+          "values": [
+            "Since you're going during the rainy season, I found a good offer for you:<br><br><strong>Marmot Minimalist Rain Jacket - Men's <?$cur?>139.73 <strike><?$cur?>200.00</strike> Save <?$cur?>60.27 (30%)</strong><br><img src='/images/red-raincoat.png'>"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "Second Offer",
+      "context": null,
+      "created": "2017-11-14T02:52:57.168Z",
+      "updated": "2017-11-14T03:07:14.006Z",
+      "metadata": null,
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "Anti-Churn Offer"
+      },
+      "conditions": "#affirmative",
+      "description": null,
+      "dialog_node": "Additional Offer",
+      "previous_sibling": null
+    },
+    {
+      "title": null,
+      "output": {
+        "text": {
+          "values": [
+            "Great, which month are you planning?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_2_1486398110273",
+      "context": null,
+      "created": "2017-11-14T02:52:57.168Z",
+      "updated": "2017-11-14T02:52:57.168Z",
+      "metadata": null,
+      "next_step": null,
+      "conditions": "#affirmative",
+      "description": null,
+      "dialog_node": "node_3_1486398209118",
+      "previous_sibling": null
+    },
+    {
+      "title": null,
+      "output": {
+        "text": {
+          "values": [
+            "Sorry, didn't catch your travel time period. When are you planning to travel?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_3_1486398209118",
+      "context": null,
+      "created": "2017-11-14T02:52:57.168Z",
+      "updated": "2017-11-14T02:52:57.168Z",
+      "metadata": null,
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_4_1486398255085"
+      },
+      "conditions": "true",
+      "description": null,
+      "dialog_node": "node_1_1486444677167",
+      "previous_sibling": "node_4_1486398255085"
+    },
+    {
+      "title": null,
+      "output": {},
+      "parent": "node_3_1486398209118",
+      "context": null,
+      "created": "2017-11-14T02:52:57.168Z",
+      "updated": "2017-11-14T02:52:57.168Z",
+      "metadata": null,
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "Second Offer"
+      },
+      "conditions": "@sys-date",
+      "description": null,
+      "dialog_node": "node_4_1486398255085",
+      "previous_sibling": null
+    },
+    {
+      "title": null,
+      "output": {
+        "text": {
+          "values": [
+            "Okay, I see you'd like some restaurant offers. Here's one I found that you might be interested in:<br><br><strong style=\"font-size: 20px\">Vegan Empanada Meal for Two or Four for Pickup at The V-Spot (Up to 50% Off)</strong><br><br><img class='msg' src='/images/vegan-empanada-meal.jpg'>"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "Yes",
+      "context": null,
+      "created": "2017-11-14T02:52:57.168Z",
+      "updated": "2017-11-14T02:52:57.168Z",
+      "metadata": null,
+      "next_step": null,
+      "conditions": "@category:restaurants",
+      "description": null,
+      "dialog_node": "node_1_1489776746056",
+      "previous_sibling": "node_2_1486398110273"
+    },
+    {
+      "title": null,
+      "output": {
+        "text": {
+          "values": [
+            "Looks like you enjoy adventurous trips! I see you were in Kenya last year. Are you interested in a safari again?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "Yes",
+      "context": null,
+      "created": "2017-11-14T02:52:57.168Z",
+      "updated": "2017-11-14T02:52:57.168Z",
+      "metadata": null,
+      "next_step": null,
+      "conditions": "@category:travel",
+      "description": null,
+      "dialog_node": "node_2_1486398110273",
+      "previous_sibling": null
+    },
+    {
+      "title": "Fallback",
+      "output": {
+        "text": {
+          "values": [
+            "I am here to serve you!"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": null,
+      "context": null,
+      "created": "2017-11-14T02:52:57.168Z",
+      "updated": "2017-11-14T02:52:57.168Z",
+      "metadata": null,
+      "next_step": null,
+      "conditions": "anything_else",
+      "description": null,
+      "dialog_node": "Fallback",
+      "previous_sibling": "node_1_1486486162815"
+    },
+    {
+      "title": null,
+      "output": {},
+      "parent": null,
+      "context": null,
+      "created": "2017-11-14T02:52:57.168Z",
+      "updated": "2017-11-14T02:52:57.168Z",
+      "metadata": null,
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "Conversation Start"
+      },
+      "conditions": "@start",
+      "description": null,
+      "dialog_node": "node_1_1486486162815",
+      "previous_sibling": "Conversation Start"
+    },
+    {
+      "title": "Conversation Start",
+      "output": {
+        "text": {
+          "values": [
+            "Hi there, I'm the Cognitive Bank Virtual Assistant! I can help you find a good offer. Interested?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": null,
+      "context": null,
+      "created": "2017-11-14T02:52:57.168Z",
+      "updated": "2017-11-14T02:52:57.168Z",
+      "metadata": null,
+      "next_step": null,
+      "conditions": "conversation_start",
+      "description": null,
+      "dialog_node": "Conversation Start",
+      "previous_sibling": null
     }
   ],
-  "workspace_id": "1da29412-971a-454d-b498-59989d6ed00b",
+  "workspace_id": "22ce6128-57df-467e-942d-1a0a2b75f3f8",
   "counterexamples": [],
   "learning_opt_out": false
 }

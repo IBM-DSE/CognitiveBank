@@ -16,16 +16,25 @@ class Customer < ApplicationRecord
   required_attributes.each do |req_attr|
     validates req_attr, presence: true
   end
+
+  after_initialize :set_defaults, unless: :persisted?
+  # The set_defaults will only work if the object is new
+
+  def set_defaults
+    self.user ||= User.new
+    self.twitter_personality ||= TwitterPersonality.new
+  end
   
   before_save :default_values
   def default_values
     puts 'Loading Twitter personality...'
     personality = CSV.table('db/bruce_twitter.csv')[0].to_h.except(:username, :category)
     twitter_personality.update personality
+    self.locale ||= 'en'
   end
 
   def self.optional_attributes
-    [:investment, :yrly_amt, :yrly_tx,:avg_daily_tx, :avg_tx_amt]
+    [:investment, :yrly_amt, :yrly_tx,:avg_daily_tx, :avg_tx_amt, :locale]
   end
   
   def self.form_attributes
@@ -53,13 +62,29 @@ class Customer < ApplicationRecord
     update_churn
     churn_prediction
   end
+
+  def user
+    super || build_user
+  end
   
   def name
     user.name
   end
+
+  def name=(name)
+    user.name = name
+  end
+
+  def twitter_personality
+    super || build_twitter_personality
+  end
   
   def twitter_id
     twitter_personality.username
+  end
+
+  def twitter_id=(handle)
+    twitter_personality.username = handle
   end
   
   def display_gender

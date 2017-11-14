@@ -14,7 +14,7 @@ module CustomersHelper
   MIN_SAFARI=800
   MAX_SAFARI=1200
   
-  def rand_dollar(category)
+  def rand_dollar(category, locale)
     
     dollars = case category
                 when 'Airfare'
@@ -29,7 +29,7 @@ module CustomersHelper
                   rand * MAX
               end
     
-    '$ '+dollars.round(2).to_s
+    number_to_currency dollars.round(2), locale: locale
   end
 
 end

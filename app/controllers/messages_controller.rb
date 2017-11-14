@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
 
   # Send message to Watson
   def create
-    context = JSON.parse(message_params[:context].presence || '{}') # set the context variable as a Hash
+    context = JSON.parse(message_params[:context].presence || Conversation.initialize(current_customer)) # set the context variable as a Hash
     
     response = Conversation.send current_customer, message_params[:content], context  # send message and context to Watson Conversation
     

@@ -103,6 +103,10 @@ input {
   display: flex;
 }
 
+.centered {
+  align-items: baseline;
+}
+
 .form-group .control-label {
   text-align: right;
 }

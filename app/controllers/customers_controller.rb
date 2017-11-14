@@ -1,6 +1,7 @@
 class CustomersController < ApplicationController
   before_action :logged_in_user, only: [:dashboard, :show]
   before_action :admin_user, except: [:dashboard, :show]
+  before_action :store_location, only: [:show]
   
   def dashboard
     
@@ -20,6 +21,7 @@ class CustomersController < ApplicationController
   def show
     if params[:id] and is_admin?
       @customer = Customer.find params[:id]
+      @modifiable = @customer != Customer.first
     elsif is_customer?
       @customer = current_customer
     end
@@ -54,7 +56,7 @@ class CustomersController < ApplicationController
   
   def edit
     if is_admin?
-      @customer = Customer.find params[:id]
+      find_customer_to_modify
     else
       redirect_to login_path, flash: { danger: 'You must be logged in as admin to view this' }
     end
@@ -62,8 +64,7 @@ class CustomersController < ApplicationController
   
   def update
     if is_admin?
-      @customer = Customer.find params[:id]
-      if @customer&.update customer_params.except(:name)
+      if find_customer_to_modify && @customer&.update(customer_params.except(:name))
         return redirect_to customer_path(@customer) if @customer.user.update customer_params.slice(:name)
       end
       redirect_to login_path, flash: { danger: 'You must be logged in as admin to view this' }
@@ -71,8 +72,10 @@ class CustomersController < ApplicationController
   end
   
   def destroy
-    Customer.destroy params[:id]
-    redirect_to admin_path
+    if find_customer_to_modify
+      @customer.destroy
+      redirect_to admin_path
+    end
   end
   
   private
@@ -83,6 +86,15 @@ class CustomersController < ApplicationController
   
   def message_params
     params.require(:customer)
+  end
+  
+  def find_customer_to_modify
+    @customer = Customer.find params[:id]
+    if @customer == Customer.first
+      redirect_back_or admin_path, flash: { warning: "#{@customer.name} cannot be modified." }
+      return false
+    end
+    true
   end
   
 end

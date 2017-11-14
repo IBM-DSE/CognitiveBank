@@ -6,7 +6,7 @@ class Twitter
       load_tweets_cloudant
     rescue => e
       STDERR.puts "Twitter ERROR: #{e}"
-      File.open('db/Bruce_tweets.txt', 'r').read  # load tweets from file
+      File.open('data/Bruce_tweets.txt', 'r').read  # load tweets from file
     end
   end
   

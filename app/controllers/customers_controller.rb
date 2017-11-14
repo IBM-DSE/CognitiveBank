@@ -1,5 +1,6 @@
 class CustomersController < ApplicationController
-  before_action :logged_in_user
+  before_action :logged_in_user, only: [:dashboard, :show]
+  before_action :admin_user, except: [:dashboard, :show]
   
   def dashboard
     

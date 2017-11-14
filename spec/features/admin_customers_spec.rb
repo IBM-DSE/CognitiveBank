@@ -21,19 +21,20 @@ feature 'Administrate Customers' do
 
     # Required fields
     expect(page).to have_text 'Name*: Twitter Handle*: Age*: Activity*:'
-    expect(page).to have_text 'Education Level*: Gender*: State*: Negative Tweets*: Income*:'
+    expect(page).to have_text "Education Level*: High School Degree Associate's Degree Bachelor's Degree Master's Degree Doctor's Degree"
+    expect(page).to have_text 'Gender*: Male Female State*: Negative Tweets*: Income*:'
   
     # Optional fields
     expect(page).to have_text 'Investment: Annual Spending: Annual Transactions:'
-    expect(page).to have_text 'Average Daily Transactions: Average Transaction Amount: Locale:'
-    expect(page).to have_text 'en'
+    expect(page).to have_text 'Average Daily Transactions: Average Transaction Amount:'
+    expect(page).to have_text 'Nationality: United States ($) India (₹)'
 
     fill_in 'Name', with: 'Sally'
     fill_in 'Twitter Handle', with: 'sally_may_22'
     fill_in 'Age', with: '22'
     fill_in 'Activity', with: '3'
-    fill_in 'Education Level', with: 'Doctors degree'
-    fill_in 'Gender', with: 'F'
+    select  "Doctor's Degree", from: 'Education Level'
+    select  'Female', from: 'Gender'
     fill_in 'State', with: 'FL'
     fill_in 'Negative Tweets', with: '3'
     fill_in 'Income', with: '130500'
@@ -47,7 +48,7 @@ feature 'Administrate Customers' do
     expect(page).to have_text 'Gender: Female'
     expect(page).to have_text 'Age: 22'
     expect(page).to have_text 'State: FL'
-    expect(page).to have_text 'Education Level: Doctors degree'
+    expect(page).to have_text 'Education Level: Doctorate'
     expect(page).to have_text 'Income: $130,500.00'
     expect(page).to have_text 'Investment:'
     expect(page).to have_text 'Annual Spending:'

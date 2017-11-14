@@ -1,0 +1,17 @@
+<% errors ||= [] %>
+<% required ||= false %>
+<% text = defined?(model_class) ? model_class.human_attribute_name(action) : t(action) %>
+<% options = defined?(model_class) ? (action.to_s+'_options').to_sym : nil %>
+<div class="row form-group <%= 'has-error' if errors.length>0 %>">
+  <%= f.label action, text+(required ? '*' : '')+':', class: 'control-label col-sm-3' %>
+  <div class="col-sm-6">
+    <% if options && model_class&.methods.include?(options) %>
+        <%= f.select action, model_class.send(options), {include_blank: true}, class: 'form-control' %>
+    <% else %>
+        <%= f.text_field action, class: 'form-control' %>
+    <% end %>
+    <% if errors.length>0 %>
+        <%= f.label action, errors[0], class: 'control-label' %>
+    <% end %>
+  </div>
+</div>

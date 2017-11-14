@@ -53,7 +53,7 @@ class MlScoringService < ApplicationRecord
       Timeout::timeout(SCORING_CALL_TIMEOUT) {
         main&.process_score main&.get_score(customer)
       }
-    rescue TimeoutError
+    rescue Timeout::Error
       nil
     end
   end
@@ -140,6 +140,9 @@ class MlScoringService < ApplicationRecord
   LOCAL = 2
   MLZOS = 3
   
+  SCORING_ATTRS        = %w[age activity education gender state negtweets income].freeze
+  SCORING_CALL_TIMEOUT = (ENV['ML_SCORING_TIMEOUT'] || 5).to_i
+  
   def test_ml_scoring_service
     if hostname.present? && username.present? && password.present?
       test_score if test_ldap && deployment.present?
@@ -167,9 +170,6 @@ class MlScoringService < ApplicationRecord
     @service = IBM::ML::Cloud.new username, password
   end
   
-  SCORING_ATTRS        = %w[age activity education gender state negtweets income].freeze
-  SCORING_CALL_TIMEOUT = (ENV['ML_SCORING_TIMEOUT'] || 2).to_i
-
   def sample_record
     Customer.first
   end

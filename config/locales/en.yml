@@ -33,6 +33,7 @@ en:
         avg_tx_amt: "Average Transaction Amount"
         negtweets: "Negative Tweets"
         education: "Education Level"
+        locale: "Nationality"
       ml_scoring_service:
         ldap_port: "LDAP port"
         ldap_test: "Authentication"

@@ -28,6 +28,30 @@ class Customer < ApplicationRecord
     required_attributes + optional_attributes
   end
   
+  def self.gender_options
+    {
+      'Male': 'M',
+      'Female': 'F'
+    }.to_a
+  end
+  
+  def self.education_options
+    {
+      'High School Degree': 'High school graduate',
+      "Associate's Degree": 'Associate degree',
+      "Bachelor's Degree":  'Bachelors degree',
+      "Master's Degree":    'Masters degree',
+      "Doctor's Degree":    'Doctorate'
+    }.to_a
+  end
+
+  def self.locale_options
+    {
+      'United States ($)': 'en',
+      'India (₹)': 'en-IN'
+    }.to_a
+  end
+  
   def get_personality(tweets)
     puts ' '
     puts "Fetching Personality Insights from #{name}'s tweets..."

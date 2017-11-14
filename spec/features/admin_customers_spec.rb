@@ -20,12 +20,12 @@ feature 'Administrate Customers' do
     click_link 'New Customer'
 
     # Required fields
-    expect(page).to have_text 'Name* : Twitter Handle* : Age* : Activity* :'
-    expect(page).to have_text 'Education Level* : Gender* : State* : Negative Tweets* : Income* :'
+    expect(page).to have_text 'Name*: Twitter Handle*: Age*: Activity*:'
+    expect(page).to have_text 'Education Level*: Gender*: State*: Negative Tweets*: Income*:'
   
     # Optional fields
-    expect(page).to have_text 'Investment : Annual Spending : Annual Transactions :'
-    expect(page).to have_text 'Average Daily Transactions : Average Transaction Amount : Locale :'
+    expect(page).to have_text 'Investment: Annual Spending: Annual Transactions:'
+    expect(page).to have_text 'Average Daily Transactions: Average Transaction Amount: Locale:'
     expect(page).to have_text 'en'
 
     fill_in 'Name', with: 'Sally'

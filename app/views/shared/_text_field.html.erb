@@ -1,8 +1,9 @@
 <% errors ||= [] %>
 <% required ||= false %>
+<% text = defined?(model_class) ? model_class.human_attribute_name(action) : t(action) %>
 <div class="form-group <%= 'has-error' if errors.length>0 %>">
-  <%= f.label action, action.to_s.humanize+(required ? '*' : '')+' : ', class: 'control-label col-sm-2' %>
-  <div class="col-sm-10">
+  <%= f.label action, text+(required ? '*' : '')+' : ', class: 'control-label col-sm-3' %>
+  <div class="col-sm-9">
     <%= f.text_field action, class: 'form-control' %>
     <% if errors.length>0 %>
       <%= f.label action, errors[0], class: 'control-label' %>

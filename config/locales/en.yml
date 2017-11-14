@@ -26,6 +26,7 @@ en:
       ml_scoring_service: "Machine Learning Scoring Service"
     attributes:
       customer:
+        twitter_id: "Twitter Handle"
         yrly_amt: "Annual Spending"
         avg_daily_tx: "Average Daily Transactions"
         yrly_tx: "Annual Transactions"

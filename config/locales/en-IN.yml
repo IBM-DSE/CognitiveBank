@@ -20,24 +20,14 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 
-en:
-  activerecord:
-    models:
-      ml_scoring_service: "Machine Learning Scoring Service"
-    attributes:
-      customer:
-        twitter_id: "Twitter Handle"
-        yrly_amt: "Annual Spending"
-        avg_daily_tx: "Average Daily Transactions"
-        yrly_tx: "Annual Transactions"
-        avg_tx_amt: "Average Transaction Amount"
-        negtweets: "Negative Tweets"
-        education: "Education Level"
-      ml_scoring_service:
-        ldap_port: "LDAP Port"
-        ldap_test: "Authentication"
-        ml_scoring_test: "ML Scoring"
+en-IN:
   number:
     currency:
       format:
+        delimiter: ","
+        format: "%u%n"
+        precision: 2
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
         unit: "₹"

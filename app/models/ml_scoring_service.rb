@@ -12,7 +12,7 @@ class MlScoringService < ApplicationRecord
   end
   
   def self.scoring_attrs
-    SCORING_ATTRS
+    SCORING_ATTRS.map &:to_sym
   end
   
   def self.detect_wml_services

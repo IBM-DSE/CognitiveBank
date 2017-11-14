@@ -21,7 +21,6 @@ User.create!(name:     'Avijit Chatterjee', email: 'avijit@example.com',
 
 
 # Load transaction fraud data
-CSV.foreach('db/data/fraud.csv', headers: true) do |row|
-  p row.to_h
+CSV.foreach('data/fraud.csv', headers: true) do |row|
   FraudTransaction.create!(row.to_h)
 end

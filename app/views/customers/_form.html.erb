@@ -1,0 +1,12 @@
+<div class="container">
+
+  <div class="row"><%= render 'shared/x_admin' %></div>
+
+  <%= form_for @customer do |f| %>
+      <%= render partial: 'shared/text_field', locals: {f: f, action: :name} %>
+      <% Customer.editable_attributes.each do |attr| %>
+          <%= render partial: 'shared/text_field', locals: {f: f, action: attr} %>
+      <% end %>
+      <%= f.submit class: 'btn btn-lg btn-primary' %>
+  <% end %>
+</div>

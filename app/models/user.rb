@@ -1,15 +1,29 @@
 class User < ApplicationRecord
+  before_validation :default_values
+  
   validates :name, presence: true, length: { maximum: 50 }
   
-  before_save { email.downcase! }
+  before_save :format_email
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
-            format:           { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
+            format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   
   has_secure_password
-  # validates :password, presence: true, length: { minimum: 6 }
   
-  has_one :customer
+  has_one :customer, dependent: :destroy
+  
+  def default_values
+    self.name = 'Customer ' + Customer.maximum(:id).next.to_s if name.blank?
+    self.email = name.parameterize + '@example.com' if email.blank?
+    if password.blank?
+      self.password ||= 'password'
+      self.password_confirmation ||= 'password'
+    end
+  end
+  
+  def format_email
+    email.downcase!
+  end
   
   # Returns the hash digest of the given string.
   def User.digest(string)

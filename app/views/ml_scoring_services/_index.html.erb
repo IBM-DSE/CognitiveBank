@@ -3,10 +3,9 @@
 <%= render partial: 'layouts/record_table', locals: { 
     records: MlScoringService.all,
     helpers: %w(ldap_test ml_scoring_test),
-    actions: %w(edit destroy),
     columns: %w(id name hostname deployment)
 } %>
 
-<%= link_to new_ml_scoring_service_path, class: 'btn btn-lg btn-success' do %>
+<%= link_to new_ml_scoring_service_path, class: 'btn btn-success' do %>
   <span class="glyphicon glyphicon-plus"></span> New Machine Learning Service
 <% end %>

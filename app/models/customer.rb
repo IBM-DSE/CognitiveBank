@@ -1,13 +1,20 @@
+require 'csv'
+
 class Customer < ApplicationRecord
-  belongs_to :user
-  
-  # TODO: point from customer to twitter_personality
-  has_one :twitter_personality
+  belongs_to :user, dependent: :destroy
+  has_one :twitter_personality, dependent: :destroy
   has_many :transactions
   has_many :messages
   belongs_to :ml_scoring_service, optional: true
   
   serialize :context, JSON
+
+  before_save :default_values
+  def default_values
+    puts 'Loading Twitter personality...'
+    personality = CSV.table('db/bruce_twitter.csv')[0].to_h.except(:category)
+    self.twitter_personality = TwitterPersonality.new personality
+  end
   
   def self.editable_attributes
     MlScoringService.scoring_attrs
@@ -16,13 +23,13 @@ class Customer < ApplicationRecord
   
   def get_personality(tweets)
     puts ' '
-    puts "Fetching Personality Insights from #{self.name}'s tweets..."
+    puts "Fetching Personality Insights from #{name}'s tweets..."
     WatsonPersonalityInsights.new(tweets)
   end
   
   def extract_signals(tweets)
     puts ' '
-    puts "Fetching Signals from #{self.name}'s tweets..."
+    puts "Fetching Signals from #{name}'s tweets..."
     NaturalLanguageUnderstanding.extract_keywords(tweets)
   end
   

@@ -1,16 +1,17 @@
 class Conversation
-
-  def self.initialize(current_customer)
+  
+  # initialize conversation context with:
+  # - customer currency
+  # - churn prediction
+  def self.initialize(customer)
     {
-      cur: I18n.t('number.currency.format.unit', locale: current_customer.locale) 
+      cur: I18n.t('number.currency.format.unit', locale: customer.locale),
+      will_churn: customer.will_churn?
     }.to_json.to_s
   end
   
   # class method for sending string message content and customer context to WC
   def self.send(customer, message, context)
-    
-    # if this is the first message in the conversation, check to see if the customer will churn
-    context[:will_churn] = customer.will_churn? if context.empty?
     
     # construct payload from input message and context
     body = { input: { text: message }, context: context }.to_json

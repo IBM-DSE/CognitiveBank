@@ -26,7 +26,7 @@ feature 'Administrate MlScoringServices' do
     click_link 'New Machine Learning Service'
     expect_new_ml_service_page
     expect(page).to have_text 'Name: Hostname: Username: Password: Deployment:'
-    expect(page).to have_text 'MLZ Settings Ldap port: Scoring hostname: Scoring port:'
+    expect(page).to have_text 'MLZ Settings LDAP port: Scoring port: Scoring hostname:'
     expect(page).to have_button 'Create Machine Learning Scoring Service'
     
   end
@@ -83,18 +83,22 @@ feature 'Administrate MlScoringServices' do
 
     if ENV['VCAP_SERVICES']
       
+      vcap = JSON.parse(ENV['VCAP_SERVICES'])
+      creds = vcap['pm-20'][0]['credentials']
+      hostname = creds['url'].split('//')[1]
+      
       click_link 'Detect Bluemix WML Service'
 
-      expect(page).to have_field('Hostname:', with: ENV['ML_HOSTNAME'])
-      expect(page).to have_field('Username:', with: ENV['ML_USERNAME'])
-      expect(page).to have_field('Password:', with: ENV['ML_PASSWORD'])
-      expect(page).to have_field('Deployment:', with: ENV['ML_DEPLOYMENT'])
+      expect(page).to have_field('Hostname:', with: hostname)
+      expect(page).to have_field('Username:', with: creds['username'])
+      expect(page).to have_field('Password:', with: creds['password'])
+      deployment = find_field('Deployment')['value']
 
       click_button 'Create Machine Learning Scoring Service'
       expect_admin_panel
-      expect(page).to have_text "#{ENV['ML_HOSTNAME']} #{ENV['ML_DEPLOYMENT']} Successful Successful"
-      expect(page).to have_link 'edit'
-      expect(page).to have_button 'delete'
+      expect(page).to have_text "#{hostname} #{deployment} Successful Successful"
+      expect(page).to have_link 'Edit'
+      expect(page).to have_button 'Delete'
       
     end
     

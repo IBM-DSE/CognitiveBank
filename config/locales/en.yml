@@ -34,7 +34,7 @@ en:
         negtweets: "Negative Tweets"
         education: "Education Level"
       ml_scoring_service:
-        ldap_port: "LDAP Port"
+        ldap_port: "LDAP port"
         ldap_test: "Authentication"
         ml_scoring_test: "ML Scoring"
   number:

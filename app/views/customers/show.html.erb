@@ -2,10 +2,9 @@
   <% if logged_in? %>
 
   <h2><%= @customer.name %>'s Profile:</h2>
-  <%= link_to 'Edit Customer', edit_customer_path(@customer), class: 'btn btn-warning' if is_admin? %>
   <br>
       
-  
+  <div class="row">
   <div class="col-md-4">
     
     <div>
@@ -74,6 +73,15 @@
     </div>
     
   </div>
-          
+  </div>
+
+  <% if is_admin? %>
+  <div class="flex">
+    <%= link_to 'Edit Customer', edit_customer_path(@customer), class: 'btn btn-warning'%>&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= button_to 'Delete Customer', @customer, method: :delete, class: 'btn btn-danger',
+                  data: { confirm: 'Are you sure you want to delete this customer?' } %>
+  </div>
+  <% end %>
+      
   <% end %>
 </div>

@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   get 'offers', to: 'cognitive_bank#offers'
 
   get 'admin', to: 'users#admin'
-  get 'admin/profile/:id', to: 'customers#profile', as: 'customer_profile'
   
   scope '/admin' do
     resources :ml_scoring_services do
@@ -13,7 +12,7 @@ Rails.application.routes.draw do
       end
     end
     
-    resources :customers, only: [:edit, :update]
+    resources :customers
 
     resources :transactions, only: :index do
       collection do
@@ -23,7 +22,7 @@ Rails.application.routes.draw do
   end
 
   get 'dashboard', to: 'customers#dashboard'
-  get 'profile', to: 'customers#profile'
+  get 'profile', to: 'customers#show'
   post 'messages', to: 'messages#create'
   
   get 'login', to: 'sessions#new'

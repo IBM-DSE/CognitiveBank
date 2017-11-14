@@ -1,37 +1,15 @@
 require 'csv'
 
 puts
-puts 'Loading the Twitter personalities...'
-CSV.foreach('db/bruce_twitter.csv', headers: true) do |row|
-  tp = TwitterPersonality.new(row.to_hash.except('category'))
-  tp.save
-  puts "#{1}:@#{tp.username}:#{tp.inspect}"
-end
-puts "Loaded #{TwitterPersonality.count} twitter personalities."
-
-puts
 puts 'Loading the customers and transactions...'
 csv_text = File.read('db/bruce_profile.csv')
-usernames = []
 CSV.parse(csv_text, :headers => true) do |row|
   cust      = Customer.new(row.to_hash.except('name','username'))
-  cust.user = User.new(name:     row['name'],
-                       email:    row['name'].downcase + '@example.com',
-                       password: 'password', password_confirmation: 'password')
-  cust.twitter_personality = TwitterPersonality.find_by_username row['username']
+  cust.user = User.new name: row['name']
   cust.save
   puts "#{1}:#{cust.user.name}:#{cust.inspect}"
 end
 puts "Loaded #{Customer.count} customers."
-
-
-# # Load the transaction categories
-# CSV.foreach('db/transaction_categories.csv', headers: true) do |row|
-#   TransactionCategory.create!(id: row[1], name: row[0])
-# end
-# puts "Loaded #{TransactionCategory.count} transaction categories."
-# 
-# 
 
 
 customer = Customer.first

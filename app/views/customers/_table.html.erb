@@ -17,9 +17,11 @@
         <td>
           <div class="flex">
             <%= link_to 'View Profile', customer_path(customer), class: 'btn btn-primary' %>&nbsp;&nbsp;&nbsp;&nbsp;
-            <%= link_to 'Edit', edit_customer_path(customer), class: 'btn btn-warning' %>&nbsp;&nbsp;&nbsp;&nbsp;
-            <%= button_to 'Delete', customer, method: :delete, class: 'btn btn-danger',
-                          data: { confirm: 'Are you sure you want to delete this customer?' } %>
+            <% if customer.name != 'Bruce' %>
+              <%= link_to 'Edit', edit_customer_path(customer), class: 'btn btn-warning' %>&nbsp;&nbsp;&nbsp;&nbsp;
+              <%= button_to 'Delete', customer, method: :delete, class: 'btn btn-danger',
+                            data: { confirm: 'Are you sure you want to delete this customer?' } %>
+            <% end %>
           </div>
         </td>
       </tr>

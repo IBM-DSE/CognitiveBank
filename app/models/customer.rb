@@ -9,16 +9,27 @@ class Customer < ApplicationRecord
   
   serialize :context, JSON
 
+  def self.required_attributes
+    [:name] + MlScoringService.scoring_attrs
+  end
+  
+  required_attributes.each do |req_attr|
+    validates req_attr, presence: true
+  end
+  
   before_save :default_values
   def default_values
     puts 'Loading Twitter personality...'
     personality = CSV.table('db/bruce_twitter.csv')[0].to_h.except(:category)
     self.twitter_personality = TwitterPersonality.new personality
   end
+
+  def self.optional_attributes
+    [:investment, :yrly_amt, :yrly_tx,:avg_daily_tx, :avg_tx_amt]
+  end
   
-  def self.editable_attributes
-    MlScoringService.scoring_attrs
-    # [:gender, :age, :state, :education, :income, :investment, :yrly_amt, :yrly_tx,:avg_daily_tx, :avg_tx_amt]
+  def self.form_attributes
+    required_attributes + optional_attributes
   end
   
   def get_personality(tweets)

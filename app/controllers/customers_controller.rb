@@ -44,14 +44,11 @@ class CustomersController < ApplicationController
   end
   
   def create
-    user = User.new customer_params.slice(:name)
-    user.customer = Customer.new customer_params.except(:name)
-    if user.save
-      @customer = user.customer
+    @customer = Customer.new customer_params.except(:name)
+    @customer.user = User.new customer_params.slice(:name)
+    if @customer.save
       redirect_to customer_path(@customer)
     else
-      @customer = Customer.new
-      @customer.user = User.new
       render :new
     end
   end
@@ -82,7 +79,7 @@ class CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit([:name] + Customer.editable_attributes)
+    params.require(:customer).permit(Customer.form_attributes)
   end
   
   def message_params

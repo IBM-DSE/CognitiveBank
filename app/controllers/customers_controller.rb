@@ -41,11 +41,13 @@ class CustomersController < ApplicationController
   def new
     @customer = Customer.new
     @customer.user = User.new
+    @customer.twitter_personality = TwitterPersonality.new
   end
   
   def create
-    @customer = Customer.new customer_params.except(:name)
+    @customer = Customer.new customer_params.except(:name, :twitter_id)
     @customer.user = User.new customer_params.slice(:name)
+    @customer.twitter_personality = TwitterPersonality.new username: customer_params[:twitter_id]
     if @customer.save
       redirect_to customer_path(@customer)
     else

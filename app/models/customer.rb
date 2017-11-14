@@ -10,7 +10,7 @@ class Customer < ApplicationRecord
   serialize :context, JSON
 
   def self.required_attributes
-    [:name] + MlScoringService.scoring_attrs
+    [:name, :twitter_id] + MlScoringService.scoring_attrs
   end
   
   required_attributes.each do |req_attr|
@@ -20,8 +20,8 @@ class Customer < ApplicationRecord
   before_save :default_values
   def default_values
     puts 'Loading Twitter personality...'
-    personality = CSV.table('db/bruce_twitter.csv')[0].to_h.except(:category)
-    self.twitter_personality = TwitterPersonality.new personality
+    personality = CSV.table('db/bruce_twitter.csv')[0].to_h.except(:username, :category)
+    twitter_personality.update personality
   end
 
   def self.optional_attributes

@@ -107,3 +107,7 @@ input {
   margin-top: 45px;
   @include box_sizing;
 }
+
+.flex {
+  display: flex;
+}

@@ -16,7 +16,7 @@ class CustomersController < ApplicationController
     
   end
   
-  def profile
+  def show
     if params[:id] and is_admin?
       @customer = Customer.find params[:id]
     elsif is_customer?
@@ -38,6 +38,24 @@ class CustomersController < ApplicationController
     end
   end
   
+  def new
+    @customer = Customer.new
+    @customer.user = User.new
+  end
+  
+  def create
+    user = User.new customer_params.slice(:name)
+    user.customer = Customer.new customer_params.except(:name)
+    if user.save
+      @customer = user.customer
+      redirect_to customer_path(@customer)
+    else
+      @customer = Customer.new
+      @customer.user = User.new
+      render :new
+    end
+  end
+  
   def edit
     if is_admin?
       @customer = Customer.find params[:id]
@@ -49,16 +67,16 @@ class CustomersController < ApplicationController
   def update
     if is_admin?
       @customer = Customer.find params[:id]
-      if @customer
-        if @customer.update customer_params.except(:name)
-          if @customer.user.update customer_params.slice(:name)
-            redirect_to customer_profile_path
-          end
-        end
+      if @customer&.update customer_params.except(:name)
+        return redirect_to customer_path(@customer) if @customer.user.update customer_params.slice(:name)
       end
-    else
       redirect_to login_path, flash: { danger: 'You must be logged in as admin to view this' }
     end
+  end
+  
+  def destroy
+    Customer.destroy params[:id]
+    redirect_to admin_path
   end
   
   private

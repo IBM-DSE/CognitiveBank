@@ -17,16 +17,11 @@
           <%= method(helper).call(rec) %>
       <% end %>
       <td>
-        <% actions.each do |action| %>
-          <p>
-          <% if action == 'destroy' %>
-            <%= button_to 'delete', rec, method: :delete, class: 'btn btn-danger',
-                          data: { confirm: 'Are you sure you want to delete this Machine Learning Service?' } %>
-          <% else %>
-            <%= link_to action, [action.to_sym, rec], class: 'btn btn-warning' %>
-          <% end %>
-          </p>
-        <% end %>
+        <div class="flex">
+        <%= link_to 'Edit', [:edit, rec], class: 'btn btn-warning' %>&nbsp;&nbsp;
+        <%= button_to 'Delete', rec, method: :delete, class: 'btn btn-danger',
+                      data: { confirm: 'Are you sure you want to delete this Machine Learning Service?' } %>
+        </div>
       </td>
     </tr>
   <% end %>

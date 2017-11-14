@@ -40,13 +40,9 @@ class Customer < ApplicationRecord
     NaturalLanguageUnderstanding.extract_keywords(tweets)
   end
   
-  def update_churn
+  def will_churn?
     churn = MlScoring.new self
     update! churn.result if churn.result
-  end
-  
-  def will_churn?
-    update_churn
     churn_prediction
   end
   

@@ -15,12 +15,12 @@
       <% end %>
       
       <% Customer.required_attributes.each do |attr| %>
-          <%= render partial: 'shared/text_field', locals: {f: f, action: attr, required: true, model_class: Customer,
-                                                            errors: @customer.errors.messages[attr]} %>
+          <%= render partial: 'shared/input_field', locals: { f:      f, action: attr, required: true, model_class: Customer,
+                                                              errors: @customer.errors.messages[attr]} %>
       <% end %>
       <% Customer.optional_attributes.each do |attr| %>
-          <%= render partial: 'shared/text_field', locals: {f: f, action: attr, model_class: Customer,
-                                                            errors: @customer.errors.messages[attr]} %>
+          <%= render partial: 'shared/input_field', locals: { f:      f, action: attr, model_class: Customer,
+                                                              errors: @customer.errors.messages[attr]} %>
       <% end %>
       <%= f.submit class: 'btn btn-lg btn-primary' %>
   <% end %>

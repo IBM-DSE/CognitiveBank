@@ -120,6 +120,14 @@ class MlScoringService < ApplicationRecord
     name || hostname
   end
   
+  def self.table_columns
+    %w[id name hostname deployment]
+  end
+  
+  def self.table_helpers
+    %w[ldap_test ml_scoring_test]
+  end
+  
   private
   
   CLOUD = 1

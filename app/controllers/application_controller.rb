@@ -6,15 +6,11 @@ class ApplicationController < ActionController::Base
   
   # Confirms a logged-in user.
   def logged_in_user
-    unless logged_in?
-      login_page
-    end
+    login_page unless logged_in?
   end
 
   def admin_user
-    unless logged_in? && is_admin?
-      login_page
-    end
+    login_page unless logged_in? && is_admin?
   end
   
   def login_page

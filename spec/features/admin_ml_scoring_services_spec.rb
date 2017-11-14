@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Admin' do
+feature 'Administrate MlScoringServices' do
   
   background do
 

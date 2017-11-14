@@ -40,4 +40,4 @@ en:
   number:
     currency:
       format:
-        unit: "₹"
+        unit: "$"

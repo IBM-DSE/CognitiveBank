@@ -1,0 +1,27 @@
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Churn Prediction: </th>
+    <th>Churn Probability: </th>
+    <th>ML Service: </th>
+    <th>Last Scoring Call: </th>
+    <th>Profile</th>
+  </tr>
+  <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.name %></td>
+        <td><%= customer.churn_prediction.to_s %></td>
+        <td><%= number_to_percentage(customer.churn_probability*100, precision: 1) if customer.churn_probability %></td>
+        <td><%= customer.ml_scoring_service.display_name if customer.ml_scoring_service %></td>
+        <td><%= local_time(customer.updated_at) if customer.churn_prediction %></td>
+        <td>
+          <div class="flex">
+            <%= link_to 'View Profile', customer_path(customer), class: 'btn btn-primary' %>&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= link_to 'Edit', edit_customer_path(customer), class: 'btn btn-warning' %>&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= button_to 'Delete', customer, method: :delete, class: 'btn btn-danger',
+                          data: { confirm: 'Are you sure you want to delete this customer?' } %>
+          </div>
+        </td>
+      </tr>
+  <% end %>
+</table>

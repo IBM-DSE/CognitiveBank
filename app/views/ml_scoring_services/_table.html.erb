@@ -1,19 +1,19 @@
 <table class="table table-bordered table-striped">
   <tr>
-    <% columns.each do |col| %>
-      <th><%= records.klass.human_attribute_name col %></th>
+    <% MlScoringService.table_columns.each do |col| %>
+      <th><%= MlScoringService.human_attribute_name col %></th>
     <% end %>
-    <% helpers.each do |helper| %>
-      <th><%= records.klass.human_attribute_name helper %></th>
+    <% MlScoringService.table_helpers.each do |helper| %>
+      <th><%= MlScoringService.human_attribute_name helper %></th>
     <% end %>
     <th>Actions</th>
   </tr>
-  <% records.each do |rec| %>
+  <% @ml_scoring_services.each do |rec| %>
     <tr>
-      <% columns.each do |col| %>
+      <% MlScoringService.table_columns.each do |col| %>
         <td><%= rec[col] %></td>
       <% end %>
-      <% helpers.each do |helper| %>
+      <% MlScoringService.table_helpers.each do |helper| %>
           <%= method(helper).call(rec) %>
       <% end %>
       <td>

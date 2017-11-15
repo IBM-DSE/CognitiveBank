@@ -108,7 +108,7 @@ end
 
 def expect_admin_panel
   expect(page).to have_text 'Admin Panel'
-  expect(page).to have_text 'Welcome, David Thomason!'
+  expect(page).to have_text 'Welcome, David!'
   expect(page).to have_text 'You are logged in as administrator'
 
   expect(page).to have_text 'Customers:'

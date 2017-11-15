@@ -74,7 +74,7 @@ class MlScoringService < ApplicationRecord
     case type
       when CLOUD, LOCAL
         {
-          churn_prediction:      @service.query_score(score, 'prediction'),
+          churn_prediction:      @service.query_score(score, 'prediction') == 1,
           churn_probability:     @service.query_score(score, 'probability')[1],
           ml_scoring_service_id: id
         }
@@ -132,6 +132,17 @@ class MlScoringService < ApplicationRecord
   
   def self.table_helpers
     %w[ldap_test ml_scoring_test]
+  end
+  
+  def display_type
+    case type
+      when CLOUD
+        'Watson Machine Learning (Cloud)'
+      when LOCAL
+        'IBM Data Science Experience Local'
+      when MLZOS
+        'IBM Machine Learning for z/OS'
+    end
   end
   
   private

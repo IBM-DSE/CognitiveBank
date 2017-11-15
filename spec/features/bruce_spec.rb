@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 feature 'Bruce', js: true do
-
   background do
-
     # Visit home page and click 'Log in'
     visit '/'
     expect(page).to have_text 'Cognitive Bank'
@@ -69,21 +67,28 @@ feature 'Bruce', js: true do
     click_link 'Profile'
 
     expect(page).to have_text "Bruce's Profile:"
+    expect(page).to have_text 'bruce@example.com'
     
     expect(page).to have_text 'Gender: Male'
     expect(page).to have_text 'Age: 41'
     expect(page).to have_text 'State: TX'
     expect(page).to have_text 'Education Level: Masters degree'
-    expect(page).to have_text 'Income: $316,530.00'
-    expect(page).to have_text 'Investment:'
-    expect(page).to have_text 'Annual Spending:'
-    expect(page).to have_text 'Annual Transactions:'
-    expect(page).to have_text 'Average Daily Transactions:'
-    expect(page).to have_text 'Average Transaction Amount:'
+    expect(page).to have_text 'Income: $ 316,530.00'
+    expect(page).to have_text 'Investment: $ 108,972.00'
+    expect(page).to have_text 'Annual Spending: $ 70,662.63'
+    expect(page).to have_text 'Annual Transactions: 362'
+    expect(page).to have_text 'Average Daily Transactions: 0.99'
+    expect(page).to have_text 'Average Transaction Amount: $ 195.20'
 
     expect(page).to have_text 'Twitter Profile:'
     expect(page).to have_text '@bruce_wayne64'
-    expect(page).to have_text 'Negative Tweets:'
+
+    expect(page).to have_text 'Recent Tweets:'
+    expect(page).to have_text "These foreign exchange fees are higher than Trump's wall #kenya #africa #borderwall #AmEx #bankrobbery — Bruce (@bruce_wayne64) December 14, 2016"
+    expect(page).to have_text 'A stunning safari sunset in Mara Naboisho Conservancy#sunset #nofilter #africa #kenya #safari #maranaboisho — Bruce (@bruce_wayne64) December 13, 2016'
+    expect(page).to have_text 'Traveling to Kenya DBX>NBO #kenya #outofafrica #emirates — Bruce (@bruce_wayne64) December 11, 2016'
+    
+    expect(page).to have_text 'Negative Finance-Related Tweets:'
     expect(page).to have_text 'Keywords Sentiment'
     expect(page).to have_text 'foreign exchange fees 0%'
 
@@ -92,7 +97,7 @@ feature 'Bruce', js: true do
       expect(page).to have_text 'Customer Churn Prediction:'
       expect(page).to have_text 'Prediction:'
       expect(page).to have_text 'Probability:'
-      expect(page).to have_text 'Last Scoring Call:'
+      expect(page).to have_text 'Scoring Time:'
       visit current_path # refresh the page so that ML Scoring call completes
       expect(page).to have_text 'Will Churn'
       expect(page).to have_text '%'

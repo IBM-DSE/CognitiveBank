@@ -48,7 +48,7 @@ feature 'Administrate Customers' do
     expect(page).to have_text 'Age: 22'
     expect(page).to have_text 'State: FL'
     expect(page).to have_text 'Education Level: Doctorate'
-    expect(page).to have_text 'Income: $130,500.00'
+    expect(page).to have_text 'Income: $ 130,500.00'
     expect(page).to have_text 'Investment:'
     expect(page).to have_text 'Annual Spending:'
     expect(page).to have_text 'Annual Transactions:'
@@ -57,7 +57,7 @@ feature 'Administrate Customers' do
 
     expect(page).to have_text 'Twitter Profile:'
     expect(page).to have_text '@sally_may_22'
-    expect(page).to have_text 'Negative Tweets: 3'
+    expect(page).to have_text 'Negative Finance-Related Tweets: 3'
     expect(page).to have_text 'Keywords'
     expect(page).to have_text 'Sentiment'
     expect(page).to have_text 'foreign exchange fees 0%'
@@ -116,7 +116,7 @@ def expect_admin_panel
   expect(page).to have_text 'You are logged in as administrator'
 
   expect(page).to have_text 'Customers:'
-  expect(page).to have_text 'Name Churn Prediction: Churn Probability: ML Service: Last Scoring Call: Profile'
+  expect(page).to have_text 'Name Churn Prediction: Churn Probability: ML Service: Scoring Time: Profile'
   expect(page).to have_text 'Bruce View Profile'
 
   expect(page).to have_text 'Machine Learning Services:'

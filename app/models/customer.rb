@@ -8,6 +8,7 @@ class Customer < ApplicationRecord
   belongs_to :ml_scoring_service, optional: true
   
   serialize :context, JSON
+  serialize :score, JSON
   
   def self.required_attributes
     [:name, :twitter_id] + MlScoringService.scoring_attrs

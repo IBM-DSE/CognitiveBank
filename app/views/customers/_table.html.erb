@@ -4,14 +4,14 @@
     <th>Churn Prediction: </th>
     <th>Churn Probability: </th>
     <th>ML Service: </th>
-    <th>Last Scoring Call: </th>
+    <th>Scoring Time: </th>
     <th>Profile</th>
   </tr>
   <% @customers.each do |customer| %>
       <tr>
         <td><%= customer.name %></td>
         <%= rg_churn_cell customer.churn_prediction %>
-        <td><%= number_to_percentage(customer.churn_probability*100, precision: 1) if customer.churn_probability %></td>
+        <%= rg_prob_cell customer.churn_probability %>
         <td><%= customer.ml_scoring_service.display_name if customer.ml_scoring_service %></td>
         <td><%= local_time(customer.updated_at) unless customer.churn_prediction.nil? %></td>
         <td><%= link_to 'View Profile', customer_path(customer), class: 'btn btn-primary' %></td>

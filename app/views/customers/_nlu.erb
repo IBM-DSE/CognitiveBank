@@ -3,17 +3,19 @@
       <h4><%= image_tag 'NLU.png', class: 'watson-service-icon' %> Natural Language Understanding: </h4><br>
       <table class="table">
         <tr>
-          <th>Keywords</th>
+          <th>Top Keywords</th>
           <th>Sentiment</th>
         </tr>
         <% @nlu_output['keywords'].each do |keyword| %>
-            <tr class="<%= 'highlighted' if @relevant_keywords.include? keyword['text'] %>">
+            <tr class="<%= 'highlighted-cell' if @relevant_keywords.include? keyword['text'] %>">
               <td><%= keyword['text'] %></td>
-              <td class="<%= keyword['sentiment']['score'] < 0.5 ? 'red' : 'green' %>-sentiment"><%= number_to_percentage keyword['sentiment']['score']*100, precision: 0 %></td>
+              <%= rg_table_cell (keyword['sentiment']['score'] > 0.5), number_to_percentage(keyword['sentiment']['score']*100, precision: 0) %>
             </tr>
         <% end %>
       </table>
-      <h4><strong>Negative Tweets: </strong> <%= @customer.negtweets %></h4>
-      <%= render partial: 'raw_json', locals: { id: 'nlu-json', data: @nlu_output } %>
+      <h4><strong>Negative Finance-Related Tweets: </strong> <%= @customer.negtweets %></h4>
+      <div class="float-right">
+        <%= render partial: 'full_json', locals: { id: 'nlu-json', data: @nlu_output } %>
+      </div>
   <% end %>
 </div>

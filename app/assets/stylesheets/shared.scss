@@ -42,3 +42,21 @@
 .float-right {
   float: right;
 }
+
+.green-cell, .red-cell {
+  font-weight: bold;
+}
+
+.green-cell {
+  background-color: #00FF00;
+}
+
+.red-cell {
+  color: white;
+  background-color: red;
+}
+
+.highlighted-cell {
+  background-color: lightyellow;
+  font-weight: bold;
+}

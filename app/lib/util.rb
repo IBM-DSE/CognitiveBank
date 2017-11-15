@@ -3,7 +3,7 @@
 class Util
   def self.default_score
     file = File.read('data/churn_result.json')
-    MlScoringService.process_score_mlz(JSON.parse(file))
+    MlScoringService.analyze_score(JSON.parse(file))
   end
 
   def self.handle_wpi_error

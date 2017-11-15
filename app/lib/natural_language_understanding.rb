@@ -17,7 +17,9 @@ class NaturalLanguageUnderstanding
     [
       'credit card',
       'foreign exchange fees',
-      'atm fee'
+      'atm fee',
+      'dollars',
+      'Kenya shillings'
     ]
   end
 

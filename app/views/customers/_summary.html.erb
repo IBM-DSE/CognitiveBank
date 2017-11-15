@@ -1,16 +1,9 @@
-<h3>Customer Summary:</h3>
-
 <table class="table">
-
+  
   <tr><th>Gender: </th><td><%= @customer.display_gender %></td></tr>
   <% @customer.attributes.slice('age', 'state', 'education').each do |k,v| %>
       <tr><th><%= Customer.human_attribute_name k %>: </th><td><%= v.to_s %></td></tr>
   <% end %>
-  <% @customer.attributes.slice('income', 'investment', 'yrly_amt').each do |k,v| %>
-      <tr><th><%= Customer.human_attribute_name k %>: </th><td><%= number_to_currency v, locale: @customer.locale %></td></tr>
-  <% end %>
-  <tr><th><%= Customer.human_attribute_name :yrly_tx %>: </th><td><%= @customer.yrly_tx %></td></tr>
-  <tr><th><%= Customer.human_attribute_name :avg_daily_tx %>: </th><td><%= @customer.avg_daily_tx&.round(2) %></td></tr>
-  <tr><th><%= Customer.human_attribute_name :avg_tx_amt %>: </th><td><%= number_to_currency @customer.avg_tx_amt, locale: @customer.locale %></td></tr>
+  <tr><th>Income: </th><td><%= number_to_currency @customer.income, locale: @customer.locale %></td></tr>
   
 </table>

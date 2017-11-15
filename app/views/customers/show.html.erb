@@ -1,87 +1,43 @@
+<%= render 'shared/x_admin' if is_admin? %>
 <div class="container">
-  <div class="flex centered">
-    <h2><%= @customer.name %>'s Profile:&nbsp;&nbsp;&nbsp;&nbsp;</h2>
-    <% if is_admin? && @modifiable %>
-        <div>
-          <%= link_to 'Edit Customer', edit_customer_path(@customer), class: 'btn btn-warning'%>&nbsp;&nbsp;&nbsp;&nbsp;
-        </div>
-        <div>
-        <%= button_to 'Delete Customer', @customer, method: :delete, class: 'btn btn-danger',
-                      data: { confirm: 'Are you sure you want to delete this customer?' } %>
-        </div>
-    <% end %>
-  </div>
-  <br>
-  <h4><strong>Email Address: </strong><%= @customer.email %></h4>
-  <div class="row">
-  <div class="col-md-4">
-    
+  <h1><%= @customer.name %>'s Profile:&nbsp;&nbsp;&nbsp;&nbsp;</h1><br>
+  <div class="flex even-spaced align-bottom">
+    <span id="customer-img">
+      <%= image_tag "profiles/#{@customer.gender}/#{@customer.img}" %>
+      <h4><%= @customer.email %></h4>
+    </span>
     <div>
       <%= render partial: 'summary' %>
     </div>
-    
-    <br>
-    <div id="ml-churn">
-    <div style="float: left; line-height: 82px; margin-right: 1rem;">
-      <%= image_tag 'ml_logo.svg' %></div>
-    <div style="margin-left: 1rem;">
-      <h3>IBM Machine Learning</h3>
-      <h4>Customer Churn Model:</h4>
+    <div>
+      <%= render partial: 'financial' %>
     </div>
-    <table class="table">
-      <tr><th>Prediction: </th><td id="churn-prediction"><%= @customer.churn_prediction.to_s %></td></tr>
-      <tr><th>Probability: </th><td id="churn-probability">
-        <%= number_to_percentage(@customer.churn_probability*100, precision: 1) if @customer.churn_probability %></td></tr>
-      <tr><th>Last Scoring Call: </th><td id="last-scoring-call">
-        <%= local_time(@customer.updated_at) if @customer.churn_prediction %></td></tr>
-    </table>
-    </div>
-    
+    <span style="width: 160px;"></span>
   </div>
-  
-  <div class="col-md-8">
 
-    <h3>Twitter Profile:</h3>
-    <h3><a href="https://twitter.com/<%= @twitter_username %>" target="_blank"><%= image_tag 'twitter_avatar.png', class: 'twitter-pic-icon' %> @<%= @twitter_username %></a></h3>
-    <br>
-    
-    <div class="row">
+  <br>
+  <h3>Twitter Profile: @<%= @twitter_username %></h3>
+  <div class="flex even-spaced">
+    <div><h3 class="with-logo"><%= image_tag 'IBM_Watson_Logo_2017.png' %>IBM Watson Analysis</h3></div>
+    <div></div>
+    <div><h3 class="with-logo"><%= image_tag 'ml_logo.svg' %>IBM Machine Learning</h3></div>
+  </div>
+  <div class="flex even-spaced margin">
+    <%= render 'wpi' %>
+    <%= render 'nlu' %>
+    <%= render 'ml_churn' %>
+  </div>
 
-      <div class="col-md-6 bordered">
-        <% if @nlu_output %>
-          <h4><%= image_tag 'NLU.png', class: 'watson-service-icon' %> Natural Language Understanding: </h4><br>
-          <p><strong>Negative Tweets: </strong> <%= @customer.negtweets %></p>
-          <table class="table">
-            <tr><th>Keywords</th><th>Sentiment</th></tr>
-            <% @nlu_output['keywords'].each do |keyword| %>
-                <tr class="<%= 'highlighted' if @relevant_keywords.include? keyword['text'] %>">
-                  <td><%= keyword['text'] %></td>
-                  <td class="<%= keyword['sentiment']['score'] < 0.5 ? 'red' : 'green' %>-sentiment"><%= number_to_percentage keyword['sentiment']['score']*100, precision: 0 %></td>
-                </tr>
-            <% end %>
-          </table>
-          <%= render partial: 'raw_json', locals: {id: 'nlu-json', data: @nlu_output} %>
-        <% end %>
-      </div>
-      
-      <div class="col-md-6 bordered">
-        <% if @pi_output %>
-            <h4><%= image_tag 'PersonalityInsights.png', class: 'watson-service-icon' %> Personality Insights: </h4><br>
-            <%= bar_chart @personality[:personality].to_a, adapter: 'google', library: {
-                chartArea:{left:120,top:0,width:'58%',height:'90%'},
-                hAxis: { format: 'percent' }
-            } %>
-            <table class="table">
-              <tr><th>Needs: </th><td><%= @personality[:needs] %></td></tr>
-              <tr><th>Values: </th><td><%= @personality[:values] %></td></tr>
-            </table>
-            <%= render partial: 'raw_json', locals: {id: 'pi-json', data: @pi_output} %>
-        <% end %>
-      </div>
-      
+  <% if is_admin? && @modifiable %>
+  <div class="flex">
+    <div>
+      <%= link_to 'Edit Customer', edit_customer_path(@customer), class: 'btn btn-warning'%>&nbsp;&nbsp;&nbsp;&nbsp;
     </div>
-    
+    <div>
+      <%= button_to 'Delete Customer', @customer, method: :delete, class: 'btn btn-danger',
+                    data: { confirm: 'Are you sure you want to delete this customer?' } %>
+    </div>
   </div>
-  </div>
+  <% end %>
   
 </div>

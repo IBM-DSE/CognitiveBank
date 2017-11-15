@@ -1,0 +1,20 @@
+<div>
+  <% if @pi_output %>
+      <h4><%= image_tag 'PersonalityInsights.png', class: 'watson-service-icon' %> Personality Insights: </h4><br>
+      <%= bar_chart @personality[:personality].to_a, adapter: 'google', library: {
+          chartArea: { left: 120, top: 0, width: '58%', height: '90%' },
+          hAxis:     { format: 'percent' }
+      } %>
+      <table class="table">
+        <tr>
+          <th>Needs:</th>
+          <td><%= @personality[:needs] %></td>
+        </tr>
+        <tr>
+          <th>Values:</th>
+          <td><%= @personality[:values] %></td>
+        </tr>
+      </table>
+      <%= render partial: 'raw_json', locals: { id: 'pi-json', data: @pi_output } %>
+  <% end %>
+</div>

@@ -1,0 +1,19 @@
+<div>
+  <% if @nlu_output %>
+      <h4><%= image_tag 'NLU.png', class: 'watson-service-icon' %> Natural Language Understanding: </h4><br>
+      <table class="table">
+        <tr>
+          <th>Keywords</th>
+          <th>Sentiment</th>
+        </tr>
+        <% @nlu_output['keywords'].each do |keyword| %>
+            <tr class="<%= 'highlighted' if @relevant_keywords.include? keyword['text'] %>">
+              <td><%= keyword['text'] %></td>
+              <td class="<%= keyword['sentiment']['score'] < 0.5 ? 'red' : 'green' %>-sentiment"><%= number_to_percentage keyword['sentiment']['score']*100, precision: 0 %></td>
+            </tr>
+        <% end %>
+      </table>
+      <h4><strong>Negative Tweets: </strong> <%= @customer.negtweets %></h4>
+      <%= render partial: 'raw_json', locals: { id: 'nlu-json', data: @nlu_output } %>
+  <% end %>
+</div>

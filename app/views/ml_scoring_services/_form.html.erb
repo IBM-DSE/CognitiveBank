@@ -1,36 +1,40 @@
-<%= form_for ml_scoring_service, html: {class: 'form-horizontal'} do |f| %>
-
-    <% if ml_scoring_service.errors.any? %>
+<%= form_for @ml_scoring_service, html: { class: 'form-horizontal' } do |f| %>
+    
+    <% if @ml_scoring_service.errors.any? %>
         <div id="error_explanation">
-          <div class="col-md-2"></div><div class="col-md-10">
+          <div class="col-md-2"></div>
+          <div class="col-md-10">
             <h4>
               <div class="alert alert-danger">
-                <% if ml_scoring_service.errors.messages[:username].include? 'HTTPUnauthorized' %>
-                  Authorization Failure Against <%= ml_scoring_service.hostname %>
+                <% if @ml_scoring_service.errors.messages[:username].include? 'HTTPUnauthorized' %>
+                    Authorization Failure Against <%= @ml_scoring_service.hostname %>
                 <% else %>
-                  Errors prevented this Machine Learning Service from being created:
+                    Errors prevented this Machine Learning Service from being created:
                 <% end %>
               </div>
             </h4>
           </div>
         </div>
     <% end %>
-
+    
     <% MlScoringService.standard_attrs.each do |attr| %>
         <%= render partial: 'shared/input_field', locals: { f:      f, action: attr.to_sym,
-                                                            errors: ml_scoring_service.errors.messages[attr.to_sym]} %>
+                                                            errors: @ml_scoring_service.errors.messages[attr.to_sym] } %>
     <% end %>
     
-    <div class="row"><div class="col-md-3"></div><div class="col-md-6">
-      <h4>MLZ Settings</h4>
-    </div></div>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <h4>MLZ Settings</h4>
+      </div>
+    </div>
     <% MlScoringService.mlz_attrs.each do |attr| %>
         <%= render partial: 'shared/input_field', locals: { f:      f, action: attr.to_sym, model_class: MlScoringService,
-                                                            errors: ml_scoring_service.errors.messages[attr.to_sym]} %>
+                                                            errors: @ml_scoring_service.errors.messages[attr.to_sym] } %>
     <% end %>
-
-    <div class="row"><div class="col-md-3"></div><div class="col-md-6">
-    <%= f.submit class: 'btn btn-lg btn-success' %>
-    </div></div>
+    
+    <div class="center">
+      <%= f.submit class: 'btn btn-lg btn-primary' %>
+    </div>
 
 <% end %>

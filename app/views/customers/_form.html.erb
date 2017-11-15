@@ -18,5 +18,7 @@
         <%= render partial: 'shared/input_field', locals: { f:      f, action: attr, model_class: Customer,
                                                             errors: @customer.errors.messages[attr]} %>
     <% end %>
-    <div class="row"><div class="col-md-3"></div><div class="col-md-6"><%= f.submit class: 'btn btn-lg btn-primary' %></div></div>
+    <div class="center">
+      <%= f.submit class: 'btn btn-lg btn-primary' %>
+    </div>
 <% end %>

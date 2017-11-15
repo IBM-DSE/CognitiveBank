@@ -42,3 +42,4 @@ en:
     currency:
       format:
         unit: "$"
+        format: "%u %n"

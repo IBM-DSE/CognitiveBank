@@ -4,6 +4,6 @@
   <% @customer.attributes.slice('age', 'state', 'education').each do |k,v| %>
       <tr><th><%= Customer.human_attribute_name k %>: </th><td><%= v.to_s %></td></tr>
   <% end %>
-  <tr><th>Income: </th><td><%= number_to_currency @customer.income, locale: @customer.locale %></td></tr>
+  <tr><th>Income: </th><td><%= num_to_currency @customer.income, locale: @customer.locale %></td></tr>
   
 </table>

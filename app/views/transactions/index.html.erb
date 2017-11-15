@@ -13,7 +13,7 @@
     <tr>
       <td><%= transaction.id + 10068924 %></td>
       <td><%= Time.now - 172800 + transaction.time %></td>
-      <td><%= number_to_currency transaction.amount %></td>
+      <td><%= num_to_currency transaction.amount, locale: 'en-IN' %></td>
       <td>
         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#transaction-<%= transaction.id %>">Components</button>
         <div id="transaction-<%= transaction.id %>" class="collapse">

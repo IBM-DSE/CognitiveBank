@@ -1,9 +1,27 @@
 <%= render 'shared/x_admin' if is_admin? %>
+
+<% if is_admin? && @modifiable %>
+    <div id="customer-settings-button">
+      <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#customer-settings">
+        <%= content_tag :span, nil, class: 'glyphicon glyphicon-cog' %>
+      </button>
+      <div id="customer-settings" class="collapse">
+        <div>
+          <%= link_to 'Edit Customer', edit_customer_path(@customer), class: 'btn btn-warning' %>&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div>
+          <%= button_to 'Delete Customer', @customer, method: :delete, class: 'btn btn-danger',
+                        data:                                 { confirm: 'Are you sure you want to delete this customer?' } %>
+        </div>
+      </div>
+    </div>
+<% end %>
+
 <div class="container">
   <h1><%= @customer.name %>'s Profile:&nbsp;&nbsp;&nbsp;&nbsp;</h1><br>
   <div class="flex even-spaced align-bottom">
     <span id="customer-img">
-      <%= image_tag "profiles/#{@customer.gender}/#{@customer.img}" %>
+      <%= image_tag "profiles/#{@customer.gender}/#{@customer.img}.jpg" %>
       <h4><%= @customer.email %></h4>
     </span>
     <div>
@@ -17,27 +35,21 @@
 
   <br>
   <h3>Twitter Profile: @<%= @twitter_username %></h3>
+  <h4>Recent Tweets</h4>
+  <%= render 'tweets' %>
+
   <div class="flex even-spaced">
     <div><h3 class="with-logo"><%= image_tag 'IBM_Watson_Logo_2017.png' %>IBM Watson Analysis</h3></div>
     <div></div>
-    <div><h3 class="with-logo"><%= image_tag 'ml_logo.svg' %>IBM Machine Learning</h3></div>
+    
   </div>
   <div class="flex even-spaced margin">
     <%= render 'wpi' %>
     <%= render 'nlu' %>
+  </div>
+  <div>
+    <h3 class="with-logo"><%= image_tag 'ml_logo.svg' %>IBM Machine Learning Prediction</h3>
     <%= render 'ml_churn' %>
   </div>
 
-  <% if is_admin? && @modifiable %>
-  <div class="flex">
-    <div>
-      <%= link_to 'Edit Customer', edit_customer_path(@customer), class: 'btn btn-warning'%>&nbsp;&nbsp;&nbsp;&nbsp;
-    </div>
-    <div>
-      <%= button_to 'Delete Customer', @customer, method: :delete, class: 'btn btn-danger',
-                    data: { confirm: 'Are you sure you want to delete this customer?' } %>
-    </div>
-  </div>
-  <% end %>
-  
 </div>

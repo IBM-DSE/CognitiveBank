@@ -63,11 +63,12 @@ class CustomersController < ApplicationController
   end
   
   def update
-    if is_admin?
-      if find_customer_to_modify && @customer&.update(customer_params.except(:name))
-        return redirect_to customer_path(@customer) if @customer.user.update customer_params.slice(:name)
+    if find_customer_to_modify
+      if @customer&.update(customer_params.except(:name))
+        redirect_to customer_path(@customer) if @customer.user.update customer_params.slice(:name)
+      else
+        render :edit
       end
-      redirect_to login_path, flash: { danger: 'You must be logged in as admin to view this' }
     end
   end
   

@@ -49,32 +49,32 @@ body {
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-}
-
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
-}
-
-input, textarea, select, .uneditable-input {
-  border: 1px solid #bbb;
-  width: 100%;
-  margin-bottom: 15px;
-  @include box_sizing;
-}
-
-input {
-  height: auto !important;
-}
+//h1, h2, h3, h4, h5, h6 {
+//  line-height: 1;
+//}
+//
+//h1 {
+//  font-size: 3em;
+//  letter-spacing: -2px;
+//  margin-bottom: 30px;
+//  text-align: center;
+//}
+//
+//p {
+//  font-size: 1.1em;
+//  line-height: 1.7em;
+//}
+//
+//input, textarea, select, .uneditable-input {
+//  border: 1px solid #bbb;
+//  width: 100%;
+//  margin-bottom: 15px;
+//  @include box_sizing;
+//}
+//
+//input {
+//  height: auto !important;
+//}
 
 .offer {
   position: relative;
@@ -103,8 +103,28 @@ input {
   display: flex;
 }
 
-.centered {
+.align-baseline {
   align-items: baseline;
+}
+
+.align-bottom {
+  align-items: flex-end;
+  table {
+    margin-bottom: 0;
+  }
+}
+
+.even-spaced {
+  > div {
+    flex: 1;
+  }
+}
+
+.margin {
+  > div {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
 }
 
 .form-group .control-label {

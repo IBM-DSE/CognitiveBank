@@ -128,6 +128,7 @@ class Customer < ApplicationRecord
                          date:        Date.strptime(row['DATE'], '%m/%d/%Y'),
                          category:    row['CATEGORY'])
     end
+    self.img = Customer.where(gender: gender).count + 1
   end
   
   def clear_conversation

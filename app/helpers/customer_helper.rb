@@ -8,4 +8,13 @@ module CustomerHelper
     end
   end
   
+  def num_to_currency(number, options)
+    amount = number_with_precision(number, precision: 2)
+    if options[:locale] == 'en-IN'
+      '₹ ' + number_with_delimiter(amount, delimiter_pattern: /(\d+?)(?=(\d\d)+(\d)(?!\d))/)
+    else
+      number_to_currency amount, options
+    end
+  end
+  
 end

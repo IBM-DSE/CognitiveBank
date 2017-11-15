@@ -1,24 +1,52 @@
 <div id="ml-churn">
   <h4><%= image_tag 'head.svg', class: 'watson-service-icon' %> Customer Churn Prediction:</h4>
-  <div class="flex margin">
-    <div>
+  <div class="flex margin even-spaced">
+    <span>
       <h4>Customer Attributes:</h4>
       <pre><%= JSON.pretty_generate(@customer.slice(*MlScoringService.scoring_attrs)) %></pre>
+    </span>
+    <div>
+      <h4>ML Scoring Service:</h4>
+      <table class="table">
+  
+        <tr><th>Type: </th>
+          <td>
+            <%= @customer.ml_scoring_service&.display_type ||
+                    ('Watson Machine Learning (Cloud)' unless @customer.churn_prediction.nil?) %>
+          </td>
+        </tr>
+        
+        <tr><th>Name: </th>
+          <td>
+            <%= @customer.ml_scoring_service&.name || ('default' unless @customer.churn_prediction.nil?) %>
+          </td>
+        </tr>
+        
+        <tr>
+          <th>Deployment ID: </th>
+          <td>
+            <%= @customer.ml_scoring_service&.deployment ||
+                    ('27edf87c-9c28-4253-88e9-6e028ffde47d' unless @customer.churn_prediction.nil?) %>
+          </td>
+        </tr>
+        
+      </table>
     </div>
     <div>
       <h4>Churn Prediction:</h4>
       <table class="table">
-        <tr><th>ML Service: </th><td>
-          <%= @customer.ml_scoring_service&.name || ('default' unless @customer.churn_prediction.nil?) %></td></tr>
-        <tr><th>ML Service Type: </th><td>
-          <%= @customer.ml_scoring_service&.display_type || ('Watson Machine Learning (Cloud)' unless @customer.churn_prediction.nil?) %></td></tr>
+        
         <tr><th>Prediction: </th>
           <%= rg_churn_cell @customer.churn_prediction unless @customer.churn_prediction.nil? %></tr>
-        <tr><th>Probability: </th><td id="churn-probability">
-          <%= number_to_percentage(@customer.churn_probability*100, precision: 1) if @customer.churn_probability %></td></tr>
-        <tr><th>Last Scoring Call: </th><td id="last-scoring-call">
+        
+        <tr><th>Probability: </th>
+          <%= rg_prob_cell(@customer.churn_probability) if @customer.churn_probability %></tr>
+        
+        <tr><th>Scoring Time: </th><td id="last-scoring-call">
           <%= local_time(@customer.updated_at) unless @customer.churn_prediction.nil? %></td></tr>
+        
       </table>
+      <%= render partial: 'full_json', locals: { id: 'ml-score', data: @customer.score } %>
     </div>
   </div>
 </div>

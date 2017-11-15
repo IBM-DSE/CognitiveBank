@@ -1,6 +1,6 @@
 <div>
   <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#<%= id %>">
-    <%= defined?(text) ?  text : 'Raw JSON' %>
+    <%= defined?(text) ?  text : 'Full JSON' %>
   </button>
   <div id="<%= id %>" class="collapse">
     <pre><%= JSON.pretty_generate(data) %></pre>

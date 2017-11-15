@@ -59,6 +59,7 @@ class MlScoringService < ApplicationRecord
   end
   
   def get_score(customer)
+    begin
     case type
       when CLOUD
         @service.score deployment, customer.attributes.slice(*SCORING_ATTRS)
@@ -68,6 +69,10 @@ class MlScoringService < ApplicationRecord
       when MLZOS
         get_score_mlz(customer)
     end
+    rescue IBM::ML::ScoringError => e
+      errors.add(:deployment, 'IBM ML Scoring Error: ' + JSON.parse(e.message)['message'])
+      nil
+    end
   end
   
   def process_score(score)
@@ -76,11 +81,17 @@ class MlScoringService < ApplicationRecord
         {
           churn_prediction:      @service.query_score(score, 'prediction') == 1,
           churn_probability:     @service.query_score(score, 'probability')[1],
-          ml_scoring_service_id: id
+          ml_scoring_service_id: id,
+          score: score
         }
       when MLZOS
         process_score_mlz(score)
     end
+  end
+
+  def self.analyze_score(score)
+    svc = new(hostname: 'ibm-watson-ml.mybluemix.net')
+    svc.process_score(score)
   end
   
   def get_score_mlz(customer)
@@ -103,14 +114,12 @@ class MlScoringService < ApplicationRecord
   
   def test_score
     score = get_score sample_record
-    score.is_a?(Hash) && (
-    (type == MLZOS) && score.keys.include?('values') &&
+    score&.is_a?(Hash) && (
+    ((type == MLZOS) && score.keys.include?('values') &&
       [1, 0].include?(score['prediction']) &&
       score.keys.include?('probability') &&
-      ((0..1) === score['probability']['values'][score['prediction']])
-    ) || (
-    @service.query_score(score, 'prediction') &&
-      @service.query_score(score, 'probability')[0]
+      ((0..1) === score['probability']['values'][score['prediction']]) ) || 
+      (@service.query_score(score, 'prediction') && @service.query_score(score, 'probability')[0])
     )
   end
   
@@ -127,7 +136,7 @@ class MlScoringService < ApplicationRecord
   end
   
   def self.table_columns
-    %w[id name hostname deployment]
+    %w[name display_type hostname deployment]
   end
   
   def self.table_helpers

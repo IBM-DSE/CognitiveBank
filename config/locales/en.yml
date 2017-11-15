@@ -35,6 +35,7 @@ en:
         education: "Education Level"
         locale: "Nationality"
       ml_scoring_service:
+        display_type: "Type"
         ldap_port: "LDAP port"
         ldap_test: "Authentication"
         ml_scoring_test: "ML Scoring"

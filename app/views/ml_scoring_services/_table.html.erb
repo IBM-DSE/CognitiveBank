@@ -1,20 +1,16 @@
 <table class="table table-bordered table-striped">
   <tr>
+    <th></th>
     <% MlScoringService.table_columns.each do |col| %>
       <th><%= MlScoringService.human_attribute_name col %></th>
-    <% end %>
-    <% MlScoringService.table_helpers.each do |helper| %>
-      <th><%= MlScoringService.human_attribute_name helper %></th>
     <% end %>
     <th>Actions</th>
   </tr>
   <% @ml_scoring_services.each do |rec| %>
     <tr>
+      <th><%= '*' if rec == MlScoringService.main %></th>
       <% MlScoringService.table_columns.each do |col| %>
-        <td><%= rec[col] %></td>
-      <% end %>
-      <% MlScoringService.table_helpers.each do |helper| %>
-          <%= method(helper).call(rec) %>
+        <td><%= rec.send(col) %></td>
       <% end %>
       <td>
         <div class="flex">

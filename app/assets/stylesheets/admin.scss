@@ -2,23 +2,33 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#x_admin {
-  float: left;
-  > .btn {
-    border-radius: 0;
+.grey_glyph {
+  span {
+    color: darkgrey;
+    font-size: 20px;
   }
 }
 
-#customer-settings-button {
-  float: right;
-  .btn {
-    border-radius: 0;
+#x_admin {
+  float: left;
+  margin: 1rem;
+  
+  @extend .grey_glyph;
+  span:hover {
+    color: grey;
   }
-  #customer-settings {
-    > * {
-      margin-left:auto;
-      margin-right:0;
-    }
+}
+
+#customer-settings-area {
+  float: right;
+  
+  #customer-settings-button {
+    @extend .grey_glyph;
+  }
+  
+  #customer-settings-menu > div > * {
+    margin-left:auto;
+    margin-right:0;
   }
 }
 

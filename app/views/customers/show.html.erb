@@ -1,20 +1,20 @@
 <%= render 'shared/x_admin' if is_admin? %>
 
 <% if is_admin? && @modifiable %>
-    <div id="customer-settings-button">
-      <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#customer-settings">
-        <%= content_tag :span, nil, class: 'glyphicon glyphicon-cog' %>
-      </button>
-      <div id="customer-settings" class="collapse">
-        <div>
-          <%= link_to 'Edit Customer', edit_customer_path(@customer), class: 'btn btn-warning' %>&nbsp;&nbsp;&nbsp;&nbsp;
-        </div>
-        <div>
-          <%= button_to 'Delete Customer', @customer, method: :delete, class: 'btn btn-danger',
-                        data:                                 { confirm: 'Are you sure you want to delete this customer?' } %>
-        </div>
-      </div>
+<div id="customer-settings-area">
+  <button id="customer-settings-button" class="btn btn-default" type="button" data-toggle="collapse" data-target="#customer-settings-menu">
+    <%= content_tag :span, nil, class: 'glyphicon glyphicon-cog' %>
+  </button>
+  <div id="customer-settings-menu" class="collapse">
+    <div>
+      <%= link_to 'Edit Customer', edit_customer_path(@customer), class: 'btn btn-warning' %>
     </div>
+    <div>
+      <%= button_to 'Delete Customer', @customer, method: :delete, class: 'btn btn-danger',
+                    data:                                 { confirm: 'Are you sure you want to delete this customer?' } %>
+    </div>
+  </div>
+</div>
 <% end %>
 
 <div class="container">

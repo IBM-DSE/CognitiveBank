@@ -32,24 +32,30 @@
     </div>
     <span style="width: 160px;"></span>
   </div>
-
+  
   <br>
-  <h3>Twitter Profile: @<%= @twitter_username %></h3>
-  <h4>Recent Tweets</h4>
+  <h3 class="with-logo">
+    <%= image_tag 'Twitter_logo.svg.png' %>Twitter Profile: <a href="https://twitter.com/">@<%= @twitter_username %></a>
+  </h3>
+  <hr>
+  <h4>Recent Tweets:</h4>
   <%= render 'tweets' %>
-
-  <div class="flex even-spaced">
-    <div><h3 class="with-logo"><%= image_tag 'IBM_Watson_Logo_2017.png' %>IBM Watson Analysis</h3></div>
-    <div></div>
-    
-  </div>
+  
+  <br>
+  <h3 class="with-logo">
+    <%= image_tag 'IBM_Watson_Logo_2017.png' %>IBM Watson Analysis
+  </h3>
+  <hr>
   <div class="flex even-spaced margin">
     <%= render 'wpi' %>
     <%= render 'nlu' %>
   </div>
-  <div>
-    <h3 class="with-logo"><%= image_tag 'ml_logo.svg' %>IBM Machine Learning Prediction</h3>
-    <%= render 'ml_churn' %>
-  </div>
+  
+  <br>
+  <h3 class="with-logo">
+    <%= image_tag 'ml_logo.svg' %>IBM Machine Learning Prediction
+  </h3>
+  <hr>
+  <%= render 'ml_churn' %>
 
 </div>

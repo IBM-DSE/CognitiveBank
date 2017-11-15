@@ -10,7 +10,7 @@ module CustomersHelper
   
   MIN_DINING=80
   MAX_DINING=150
-
+  
   MIN_SAFARI=800
   MAX_SAFARI=1200
   
@@ -30,6 +30,38 @@ module CustomersHelper
               end
     
     num_to_currency dollars.round(2), locale: locale
+  end
+  
+  def num_to_currency(number, options)
+    amount = number_with_precision(number, precision: 2)
+    if options[:locale] == 'en-IN'
+      '₹ ' + number_with_delimiter(amount, delimiter_pattern: /(\d+?)(?=(\d\d)+(\d)(?!\d))/)
+    else
+      number_to_currency amount, options
+    end
+  end
+  
+  def rg_churn_cell(churn)
+    no_churn = !churn unless churn.nil?
+    rg_table_cell(no_churn, 'No Churn', 'Will Churn')
+  end
+  
+  def rg_prob_cell(churn_probability)
+    return content_tag :td if churn_probability.nil?
+    
+    churn   = churn_probability > 0.5
+    percent = number_to_percentage(churn_probability * 100, precision: 1)
+    content_tag :td do
+      content_tag :div, class: 'flex' do
+        content_tag(:div,
+                    ('&nbsp;' + (churn ? percent : '')).html_safe,
+                    class: 'red-cell', style: "flex: #{churn_probability}"
+        )+
+          content_tag(:div,
+                      ('&nbsp;' + (churn ? '' : percent)).html_safe,
+                      class: 'green-cell', style: "flex: #{1 - churn_probability}")
+      end
+    end
   end
 
 end

@@ -42,7 +42,7 @@ feature 'Administrate Customers' do
     click_button 'Create Customer'
 
     expect(page).to have_text "Sally's Profile:"
-    expect(page).to have_text 'Email Address: sally@example.com'
+    expect(page).to have_text 'sally@example.com'
 
     expect(page).to have_text 'Customer Summary:'
     expect(page).to have_text 'Gender: Female'

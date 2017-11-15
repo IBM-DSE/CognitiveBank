@@ -58,5 +58,12 @@
 }
 
 .watson-service-icon {
-  height: 3rem;
+  height: 4rem;
+}
+
+#customer-img {
+  margin-right: 4rem;
+  > img {
+    width: 160px;
+  }
 }

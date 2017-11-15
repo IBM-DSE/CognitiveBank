@@ -22,10 +22,10 @@
         <div class="dash-tile center">
           <h4>Current Balance</h4>
           <div class="middle-content">
-            <h3><%= number_to_currency 1265.87, locale: current_customer.locale %></h3>
+            <h3><%= num_to_currency 1265.87, locale: current_customer.locale %></h3>
             <br>
             <h5>Available Credit</h5>
-            <h3><%= number_to_currency 8735.13, locale: current_customer.locale %></h3>
+            <h3><%= num_to_currency 8735.13, locale: current_customer.locale %></h3>
           </div>
           <br>
           <%= link_to 'View Balance Details' %>
@@ -47,7 +47,7 @@
         <div class="dash-tile center">
           <h4>Last Statement Balance:</h4>
           <div class="middle-content">
-            <h3><%= number_to_currency 1932.52, locale: current_customer.locale %></h3>
+            <h3><%= num_to_currency 1932.52, locale: current_customer.locale %></h3>
             <br>
             <h5>Due on</h5>
             <h4>March 1st, 2017</h4>

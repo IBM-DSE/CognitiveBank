@@ -29,7 +29,7 @@ module CustomersHelper
                   rand * MAX
               end
     
-    number_to_currency dollars.round(2), locale: locale
+    num_to_currency dollars.round(2), locale: locale
   end
 
 end

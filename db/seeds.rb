@@ -15,10 +15,13 @@ User.create!(name:     'David Thomason', email: 'david@example.com',
              password: 'password', password_confirmation: 'password',
              admin:    true)
 
-User.create!(name:     'Avijit Chatterjee', email: 'avijit@example.com',
+User.create!(name:     'Avijit', email: 'avijit@example.com',
              password: 'password', password_confirmation: 'password',
              admin:    true)
 
+User.create!(name:     'John', email: 'john@example.com',
+             password: 'password', password_confirmation: 'password',
+             admin:    true)
 
 # Load transaction fraud data
 CSV.foreach('data/fraud.csv', headers: true) do |row|

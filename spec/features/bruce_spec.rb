@@ -70,7 +70,6 @@ feature 'Bruce', js: true do
 
     expect(page).to have_text "Bruce's Profile:"
     
-    expect(page).to have_text 'Customer Summary:'
     expect(page).to have_text 'Gender: Male'
     expect(page).to have_text 'Age: 41'
     expect(page).to have_text 'State: TX'
@@ -88,14 +87,15 @@ feature 'Bruce', js: true do
     expect(page).to have_text 'Keywords Sentiment'
     expect(page).to have_text 'foreign exchange fees 0%'
 
+    expect(page).to have_text 'IBM Machine Learning'
     within '#ml-churn' do
-      expect(page).to have_text 'IBM Machine Learning Customer Churn Model:'
+      expect(page).to have_text 'Customer Churn Prediction:'
       expect(page).to have_text 'Prediction:'
       expect(page).to have_text 'Probability:'
       expect(page).to have_text 'Last Scoring Call:'
       visit current_path # refresh the page so that ML Scoring call completes
-      within('#churn-prediction'){ expect(page).to have_text 'true' }
-      within('#churn-probability'){ expect(page).to have_text '%' }
+      expect(page).to have_text 'Will Churn'
+      expect(page).to have_text '%'
     end
     
     expect(page).to have_text 'Personality Insights:'

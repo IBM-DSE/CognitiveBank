@@ -1,15 +1,24 @@
 <div id="ml-churn">
-  <h4><%= image_tag 'head.svg', class: 'watson-service-icon' %> Customer Churn Prediction:</h4><br>
-  <table class="table">
-    <tr><th>Prediction: </th><td id="churn-prediction">
-      <%= @customer.churn_prediction ? 'Will Churn' : 'No Churn' unless @customer.churn_prediction.nil? %>
-    </td></tr>
-    <tr><th>Probability: </th><td id="churn-probability">
-      <%= number_to_percentage(@customer.churn_probability*100, precision: 1) if @customer.churn_probability %></td></tr>
-    <tr><th>Last Scoring Call: </th><td id="last-scoring-call">
-      <%= local_time(@customer.updated_at) if @customer.churn_prediction %></td></tr>
-    <tr><th>ML Service: </th><td>
-      <%= @customer.ml_scoring_service&.name || ('default' if @customer.churn_prediction) %></td></tr>
-  </table>
-  <%= render partial: 'raw_json', locals: { text: 'Input Record', id: 'ml-churn-json', data: @customer.slice(*MlScoringService.scoring_attrs) } %>
+  <h4><%= image_tag 'head.svg', class: 'watson-service-icon' %> Customer Churn Prediction:</h4>
+  <div class="flex margin">
+    <div>
+      <h4>Customer Attributes:</h4>
+      <pre><%= JSON.pretty_generate(@customer.slice(*MlScoringService.scoring_attrs)) %></pre>
+    </div>
+    <div>
+      <h4>Churn Prediction:</h4>
+      <table class="table">
+        <tr><th>ML Service: </th><td>
+          <%= @customer.ml_scoring_service&.name || ('default' unless @customer.churn_prediction.nil?) %></td></tr>
+        <tr><th>ML Service Type: </th><td>
+          <%= @customer.ml_scoring_service&.display_type || ('Watson Machine Learning (Cloud)' unless @customer.churn_prediction.nil?) %></td></tr>
+        <tr><th>Prediction: </th>
+          <%= rg_churn_cell @customer.churn_prediction unless @customer.churn_prediction.nil? %></tr>
+        <tr><th>Probability: </th><td id="churn-probability">
+          <%= number_to_percentage(@customer.churn_probability*100, precision: 1) if @customer.churn_probability %></td></tr>
+        <tr><th>Last Scoring Call: </th><td id="last-scoring-call">
+          <%= local_time(@customer.updated_at) unless @customer.churn_prediction.nil? %></td></tr>
+      </table>
+    </div>
+  </div>
 </div>

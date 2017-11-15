@@ -1,15 +1,18 @@
-<h1>New Machine Learning Service</h1>
+<%= render 'shared/x_admin' %>
 
 <div class="container">
 
+  <h1>New Machine Learning Service</h1>
+
   <div class="row form-group">
-    <%= render 'shared/x_admin' %>
-  
-    <div class="col-md-10">
+
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
     <%= link_to( { controller: 'ml_scoring_services', action: 'detect', id: @ml_scoring_service }, class: 'btn btn-lg btn-primary') do %>
       <%= content_tag :span, nil, class: 'glyphicon glyphicon-search' %> Detect Bluemix WML Service
     <% end %>
     </div>
+    
   </div>
 
   <%= render partial: 'form', locals: { ml_scoring_service: @ml_scoring_service} %>

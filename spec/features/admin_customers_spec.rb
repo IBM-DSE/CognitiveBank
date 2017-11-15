@@ -44,7 +44,6 @@ feature 'Administrate Customers' do
     expect(page).to have_text "Sally's Profile:"
     expect(page).to have_text 'sally@example.com'
 
-    expect(page).to have_text 'Customer Summary:'
     expect(page).to have_text 'Gender: Female'
     expect(page).to have_text 'Age: 22'
     expect(page).to have_text 'State: FL'

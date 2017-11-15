@@ -8,8 +8,10 @@
   <br>
 
   <h3>Customers:</h3>
+  
   <%= render 'customers/table' %>
-  <%= link_to new_customer_path, class: 'btn btn-success' do %>
+  
+  <%= link_to new_customer_path, class: 'btn btn-success float-right' do %>
       <span class="glyphicon glyphicon-plus"></span> New Customer
   <% end %>
 
@@ -18,7 +20,7 @@
   <h3>Machine Learning Services:</h3>
   <%= render 'ml_scoring_services/table' %>
 
-  <%= link_to new_ml_scoring_service_path, class: 'btn btn-success' do %>
+  <%= link_to new_ml_scoring_service_path, class: 'btn btn-success float-right' do %>
       <span class="glyphicon glyphicon-plus"></span> New Machine Learning Service
   <% end %>
 

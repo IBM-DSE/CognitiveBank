@@ -4,8 +4,6 @@
 
 /* mixins, variables, etc. */
 
-$gray-medium-light: #eaeaea;
-
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
@@ -42,66 +40,10 @@ body {
   vertical-align: -25%
 }
 
-.center {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.offer {
-  position: relative;
-  height: 400px;
-}
-
-.offer-image {
-  max-width: 200px;
-  max-height: 200px;
-}
-
-.offer-buttons {
-  position: absolute;
-  bottom: 2px;
-}
-
 .debug_dump {
   clear: both;
   float: left;
   width: 100%;
   margin-top: 45px;
   @include box_sizing;
-}
-
-.flex {
-  display: flex;
-}
-
-.align-baseline {
-  align-items: baseline;
-}
-
-.align-bottom {
-  align-items: flex-end;
-  table {
-    margin-bottom: 0;
-  }
-}
-
-.even-spaced {
-  > div {
-    flex: 1;
-  }
-}
-
-.margin {
-  > div {
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
-}
-
-.form-group .control-label {
-  text-align: right;
-}
-
-.full-width {
-  width: 100%;
 }

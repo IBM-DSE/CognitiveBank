@@ -5,6 +5,7 @@
 
 .flex {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .align-baseline {
@@ -24,10 +25,20 @@
   }
 }
 
+.flex-center {
+  justify-content: center;
+}
+
 .margin {
   > div {
     margin-left: 1rem;
     margin-right: 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .flex-space {
+    width: 160px;
   }
 }
 
@@ -41,6 +52,10 @@
 
 .float-right {
   float: right;
+}
+
+.right-button > .button-container {
+  text-align: right;
 }
 
 .green-cell, .red-cell {

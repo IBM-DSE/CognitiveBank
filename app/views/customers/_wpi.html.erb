@@ -11,7 +11,8 @@
           <td><%= @personality[:values] %></td>
         </tr>
       </table>
-      <canvas id="myChart"></canvas>
+      <canvas id="myChart" height="170px"></canvas>
+      <br>
       <%= render partial: 'full_json', locals: { id: 'pi-json', data: @personality[:json] } %>
   <% end %>
 </div>
@@ -27,20 +28,13 @@
             labels: <%= raw @personality[:personality].keys %>,
             datasets: [{
                 data: <%= raw @personality[:personality].values %>,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
+                backgroundColor: 'blue',
                 borderWidth: 1
             }]
         },
         options: {
             legend: {display: false},
-            scales: {xAxes: [{ticks: {callback: percentCallback}}]},
+            scales: {xAxes: [{ticks: {beginAtZero: true, callback: percentCallback}}]},
             tooltips: {callbacks: {title: percentTooltip, label: () => null} }
         }
     })

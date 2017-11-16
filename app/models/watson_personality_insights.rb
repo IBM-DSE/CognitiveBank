@@ -10,7 +10,7 @@ class WatsonPersonalityInsights
     traverse_json(@jsonProfile, 0)
     
     @personality = @personality.sort_by {|k, v| v}.reverse.map { |pair|
-      [pair[0], (pair[1]*100).round(1)]
+      [pair[0], (pair[1] * 100).round(1)]
     }.to_h
   end
   

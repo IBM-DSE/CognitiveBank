@@ -104,11 +104,7 @@ feature 'Bruce', js: true do
     end
     
     expect(page).to have_text 'Personality Insights:'
-    expect(page).to have_text 'Agreeableness'
-    expect(page).to have_text 'Conscientiousness'
-    expect(page).to have_text 'Extraversion'
-    expect(page).to have_text 'Openness'
-    expect(page).to have_text 'Emotional range'
+    expect(page).to have_text 'Needs:	Practicality'
     expect(page).to have_text 'Values: Self-transcendence'
     
   end

@@ -80,3 +80,9 @@ blockquote.twitter-tweet a[href^="https://twitter.com"] {
   color: #666;
   font-size: 12px;
 }
+
+.tweets {
+  > div {
+    max-width: 360px;
+  }
+}

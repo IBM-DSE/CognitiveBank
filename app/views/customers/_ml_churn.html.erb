@@ -46,7 +46,9 @@
           <%= local_time(@customer.updated_at) unless @customer.churn_prediction.nil? %></td></tr>
         
       </table>
-      <%= render partial: 'full_json', locals: { id: 'ml-score', data: @customer.score } %>
+      <div class="float-right right-button">
+        <%= render partial: 'full_json', locals: { id: 'ml-score', data: @customer.score } %>
+      </div>
     </div>
   </div>
 </div>

@@ -14,7 +14,7 @@
         <% end %>
       </table>
       <h4><strong>Negative Finance-Related Tweets: </strong> <%= @customer.negtweets %></h4>
-      <div class="float-right">
+      <div class="float-right right-button">
         <%= render partial: 'full_json', locals: { id: 'nlu-json', data: @nlu_output } %>
       </div>
   <% end %>

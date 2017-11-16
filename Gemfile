@@ -61,9 +61,9 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'chartkick'
 gem 'jquery-rails'
 gem 'rest-client'
-gem 'chartkick'
 
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'cf-app-utils'

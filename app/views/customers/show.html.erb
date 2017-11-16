@@ -1,10 +1,12 @@
 <%= render 'shared/x_admin' if is_admin? %>
 
 <% if is_admin? && @modifiable %>
-<div id="customer-settings-area">
-  <button id="customer-settings-button" class="btn btn-default" type="button" data-toggle="collapse" data-target="#customer-settings-menu">
-    <%= content_tag :span, nil, class: 'glyphicon glyphicon-cog' %>
-  </button>
+<div id="customer-settings-area" class="right-button">
+  <div class="button-container">
+    <button id="customer-settings-button" class="btn btn-default" type="button" data-toggle="collapse" data-target="#customer-settings-menu">
+      <%= content_tag :span, nil, class: 'glyphicon glyphicon-cog' %>
+    </button>
+  </div>
   <div id="customer-settings-menu" class="collapse">
     <div>
       <%= link_to 'Edit Customer', edit_customer_path(@customer), class: 'btn btn-warning' %>
@@ -19,7 +21,7 @@
 
 <div class="container">
   <h1><%= @customer.name %>'s Profile:&nbsp;&nbsp;&nbsp;&nbsp;</h1><br>
-  <div class="flex even-spaced align-bottom">
+  <div class="flex even-spaced flex-center">
     <span id="customer-img">
       <%= image_tag "profiles/#{@customer.gender}/#{@customer.img}.jpg" %>
       <h4><%= @customer.email %></h4>
@@ -30,7 +32,7 @@
     <div>
       <%= render partial: 'financial' %>
     </div>
-    <span style="width: 160px;"></span>
+    <span class="flex-space"></span>
   </div>
   
   <br>

@@ -3,7 +3,6 @@
     <th>Name</th>
     <th>Churn Prediction: </th>
     <th>Churn Probability: </th>
-    <th>ML Service: </th>
     <th>Scoring Time: </th>
     <th>Profile</th>
   </tr>
@@ -12,7 +11,6 @@
         <td><%= customer.name %></td>
         <%= rg_churn_cell customer.churn_prediction %>
         <%= rg_prob_cell customer.churn_probability %>
-        <td><%= customer.ml_scoring_service.display_name if customer.ml_scoring_service %></td>
         <td><%= local_time(customer.updated_at) unless customer.churn_prediction.nil? %></td>
         <td><%= link_to 'View Profile', customer_path(customer), class: 'btn btn-primary' %></td>
       </tr>

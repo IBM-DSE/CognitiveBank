@@ -53,7 +53,7 @@ class MlScoringService < ApplicationRecord
       Timeout::timeout(SCORING_CALL_TIMEOUT) {
         main&.process_score main&.get_score(customer)
       }
-    rescue Timeout::Error
+    rescue
       nil
     end
   end

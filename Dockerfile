@@ -2,7 +2,13 @@ FROM ruby:2.4.0
 ARG RAILS_ENV=development
 ENV RAILS_ENV $RAILS_ENV
 
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
+# update & install packages and phantomjs
+RUN apt-get update -qq && \
+    apt-get install -y build-essential libpq-dev nodejs && \
+    mkdir /tmp/phantomjs && \
+    curl -L https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 \
+            | tar -xj --strip-components=1 -C /tmp/phantomjs && \
+    mv /tmp/phantomjs/bin/phantomjs /usr/local/bin
 
 # Set an environment variable to store where the app is installed to inside
 # of the Docker image.

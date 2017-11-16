@@ -5,4 +5,3 @@ before_install:
   - gem install bundler
 cache: bundler
 before_script: source .travis_config.sh
-group: bluezone

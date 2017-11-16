@@ -1,5 +1,5 @@
 <div style="width: 50%">
-  <% if @pi_output %>
+  <% if @personality %>
       <h4><%= image_tag 'PersonalityInsights.png', class: 'watson-service-icon' %> Personality Insights: </h4><br>
       <table class="table">
         <tr>
@@ -11,10 +11,37 @@
           <td><%= @personality[:values] %></td>
         </tr>
       </table>
-      <%= bar_chart @personality[:personality].to_a, adapter: 'google', library: {
-          chartArea: { left: 120, top: 0, width: '58%', height: '90%' },
-          hAxis:     { format: 'percent' }
-      } %>
-      <%= render partial: 'full_json', locals: { id: 'pi-json', data: @pi_output } %>
+      <canvas id="myChart"></canvas>
+      <%= render partial: 'full_json', locals: { id: 'pi-json', data: @personality[:json] } %>
   <% end %>
 </div>
+<script>
+    var ctx = document.getElementById("myChart");
+    const percentCallback = value => value+' %'; // Include a percent sign in the ticks
+    const percentTooltip = (tooltipItem) => {
+        return tooltipItem[0].yLabel+': '+tooltipItem[0].xLabel.toFixed(1)+'%';
+    };
+    new Chart(ctx, {
+        type: 'horizontalBar',
+        data: {
+            labels: <%= raw @personality[:personality].keys %>,
+            datasets: [{
+                data: <%= raw @personality[:personality].values %>,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {display: false},
+            scales: {xAxes: [{ticks: {callback: percentCallback}}]},
+            tooltips: {callbacks: {title: percentTooltip, label: () => null} }
+        }
+    })
+</script>

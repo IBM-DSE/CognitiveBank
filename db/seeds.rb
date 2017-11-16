@@ -27,3 +27,16 @@ User.create!(name:     'John', email: 'john@example.com',
 CSV.foreach('data/fraud.csv', headers: true) do |row|
   FraudTransaction.create!(row.to_h)
 end
+
+if ENV['VCAP_SERVICES']
+  bmix_ml_service = MlScoringService.detect_wml_services
+  bmix_ml_service.save
+end
+
+if ENV['ML_HOSTNAME'] and ENV['ML_USERNAME'] and ENV['ML_PASSWORD'] and ENV['ML_DEPLOYMENT']
+  ml_service = MlScoringService.create! name: ENV['ML_NAME'],
+                                        hostname:   ENV['ML_HOSTNAME'],
+                                        username:   ENV['ML_USERNAME'],
+                                        password:   ENV['ML_PASSWORD'],
+                                        deployment: ENV['ML_DEPLOYMENT']
+end

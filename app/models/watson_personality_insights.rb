@@ -4,30 +4,29 @@ class WatsonPersonalityInsights
     @personality = {}
     
     # call WPI api with twitter data as input
-    @jsonProfile  = call_wpi_api(tweets)
+    @jsonProfile = call_wpi_api(tweets)
     
     # traverse WPI (json) output tree to extract results 
     traverse_json(@jsonProfile, 0)
     
-    @personality = @personality.sort_by { |_key, value| value }.reverse.to_h
+    @personality = @personality.sort_by {|k, v| v}.reverse.map { |pair|
+      [pair[0], (pair[1]*100).round(1)]
+    }.to_h
   end
   
   def to_h
     {
-        personality: @personality,
-        needs:       @needs.keys.first,
-        values:      @values.keys.first
+      personality: @personality,
+      needs:       @needs.keys.first,
+      values:      @values.keys.first,
+      json:        @jsonProfile
     }
-  end
-  
-  def raw_json
-    @jsonProfile
   end
   
   private
   
   # Watson Personality Insights URL and credentials
-  WPI_URL      = 'https://gateway.watsonplatform.net/personality-insights/api/v2/profile'
+  WPI_URL = 'https://gateway.watsonplatform.net/personality-insights/api/v2/profile'
   if ENV['VCAP_SERVICES']
     convo_creds = CF::App::Credentials.find_by_service_label('personality_insights')
     if convo_creds
@@ -68,9 +67,9 @@ class WatsonPersonalityInsights
         if data[0]['category'] == 'personality'
           traverse_json(data[0]['children'], level+1)
         elsif data[0]['category'] == 'needs'
-          @needs = { data[0]['name'] => data[0]['percentage'] } 
+          @needs = { data[0]['name'] => data[0]['percentage'] }
         elsif data[0]['category'] == 'values'
-          @values = { data[0]['name'] => data[0]['percentage'] } 
+          @values = { data[0]['name'] => data[0]['percentage'] }
           return
         end
       

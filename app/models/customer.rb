@@ -56,7 +56,7 @@ class Customer < ApplicationRecord
   def get_personality(tweets)
     puts ' '
     puts "Fetching Personality Insights from #{name}'s tweets..."
-    WatsonPersonalityInsights.new(tweets)
+    wpi = WatsonPersonalityInsights.new(tweets)
   end
   
   def extract_signals(tweets)
@@ -103,11 +103,6 @@ class Customer < ApplicationRecord
     gender == 'M' ? 'Male' : 'Female'
   end
   
-  def reset
-    clear_conversation
-    clear_prediction
-  end
-  
   private
   
   def defaults
@@ -132,16 +127,4 @@ class Customer < ApplicationRecord
     self.img = Customer.where(gender: gender).count + 1
   end
   
-  def clear_conversation
-    self.context = nil
-    self.save
-  end
-  
-  def clear_prediction
-    self.churn_prediction      = nil
-    self.churn_probability     = nil
-    self.ml_scoring_service_id = nil
-    self.save
-  end
-
 end

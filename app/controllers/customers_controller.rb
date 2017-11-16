@@ -27,14 +27,9 @@ class CustomersController < ApplicationController
     end
       
     if @customer
-      @twitter_username = @customer.twitter_personality.username
-      
       tweets = Twitter.load_tweets
-      personality = @customer.get_personality tweets
-      @pi_output = personality.raw_json
-      @personality = personality.to_h
-      
-      @nlu_output = @customer.extract_signals tweets
+      @personality = @customer.get_personality(tweets).to_h
+      @nlu_output = @customer.extract_signals(tweets)
       @relevant_keywords = NaturalLanguageUnderstanding.relevant_keywords
     else
       redirect_to login_path, flash: { danger: 'You must log in as customer to view your profile' }

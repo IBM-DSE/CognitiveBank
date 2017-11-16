@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171115220041) do
+ActiveRecord::Schema.define(version: 20171116163546) do
 
   create_table "customers", force: :cascade do |t|
     t.integer  "user_id"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20171115220041) do
     t.integer  "negtweets"
     t.string   "state"
     t.string   "education"
-    t.text     "context"
     t.boolean  "churn_prediction"
     t.float    "churn_probability"
     t.datetime "created_at"

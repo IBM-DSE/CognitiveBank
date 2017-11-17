@@ -21,13 +21,14 @@ feature 'Administrate Customers' do
 
     # Required fields
     expect(page).to have_text 'Name*: Twitter Handle*: Age*: Activity*:'
-    expect(page).to have_text "Education Level*: High School Degree Associate's Degree Bachelor's Degree Master's Degree Doctor's Degree"
-    expect(page).to have_text 'Gender*: Male Female State*: Negative Tweets*: Income*:'
+    expect(page).to have_text 'Education Level*:'
+    expect(page).to have_text 'Gender*:'
+    expect(page).to have_text 'State*: Negative Tweets*: Income*:'
   
     # Optional fields
     expect(page).to have_text 'Investment: Annual Spending: Annual Transactions:'
     expect(page).to have_text 'Average Daily Transactions: Average Transaction Amount:'
-    expect(page).to have_text 'Nationality: United States ($) India (₹)'
+    expect(page).to have_text 'Nationality:'
 
     fill_in 'Name', with: 'Sally'
     fill_in 'Twitter Handle', with: 'sally_may_22'
@@ -63,11 +64,7 @@ feature 'Administrate Customers' do
     expect(page).to have_text 'foreign exchange fees 0%'
 
     expect(page).to have_text 'Personality Insights:'
-    expect(page).to have_text 'Agreeableness'
-    expect(page).to have_text 'Conscientiousness'
-    expect(page).to have_text 'Extraversion'
-    expect(page).to have_text 'Openness'
-    expect(page).to have_text 'Emotional range'
+    expect(page).to have_text 'Needs:	Practicality'
     expect(page).to have_text 'Values: Self-transcendence'
 
     click_link 'Account'
@@ -83,7 +80,7 @@ feature 'Administrate Customers' do
     expect(page).to have_text 'Current Miles'
     expect(page).to have_text 'Last Statement Balance:'
     
-    expect(page).to have_text 'Transactions:'
+    expect(page).to have_text 'Transactions'
     expect(page).to have_text '2016-12-29	Transportation'
     expect(page).to have_text '2016-12-22	Transportation'
     expect(page).to have_text '2016-12-19	Supermarkets'

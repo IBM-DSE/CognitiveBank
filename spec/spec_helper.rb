@@ -14,15 +14,16 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-require 'capybara/poltergeist'
-Capybara.javascript_driver = :poltergeist
+require 'capybara'
 
-Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, { js_errors: false })
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
 end
 
+Capybara.javascript_driver = :chrome
+
 if ENV['APP_URL']
-  Capybara.default_driver = :poltergeist
+  Capybara.default_driver = :chrome
   Capybara.run_server     = false
   Capybara.app_host       = ENV['APP_URL']
   puts 'Testing against ' + ENV['APP_URL']

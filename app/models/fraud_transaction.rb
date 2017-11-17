@@ -9,7 +9,6 @@ class FraudTransaction < ApplicationRecord
 
     # Create the service object
     ml_service = IBM::ML::Local.new(FRAUD_HOSTNAME, FRAUD_USERNAME, FRAUD_PASSWORD)
-    p ml_service
 
     # Get a score for the given deployment and record
     record = self.attributes.except('id').map { |k, v| [k.titleize, v] }.to_h

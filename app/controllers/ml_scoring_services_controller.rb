@@ -24,7 +24,6 @@ class MlScoringServicesController < ApplicationController
     if @ml_scoring_service.save
       redirect_to admin_path
     else
-      p @ml_scoring_service.errors
       render :new
     end
   end

@@ -22,13 +22,15 @@ feature 'Administrate Customers' do
     # Required fields
     expect(page).to have_text 'Name*: Twitter Handle*: Age*: Activity*:'
     expect(page).to have_text 'Education Level*:'
-    expect(page).to have_text 'Gender*:'
+    expect(page).to have_select 'Education Level*:',
+                                with_options: ['High School Degree', "Associate's Degree", "Bachelor's Degree", "Master's Degree", "Doctor's Degree"]
+    expect(page).to have_select 'Gender*:', with_options: ['Male', 'Female']
     expect(page).to have_text 'State*: Negative Tweets*: Income*:'
   
     # Optional fields
     expect(page).to have_text 'Investment: Annual Spending: Annual Transactions:'
     expect(page).to have_text 'Average Daily Transactions: Average Transaction Amount:'
-    expect(page).to have_text 'Nationality:'
+    expect(page).to have_select 'Nationality:', with_options: ['United States ($)', 'India (₹)']
 
     fill_in 'Name', with: 'Sally'
     fill_in 'Twitter Handle', with: 'sally_may_22'

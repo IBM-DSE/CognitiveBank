@@ -113,7 +113,8 @@ def expect_admin_panel
 
   expect(page).to have_text 'Customers:'
   expect(page).to have_text 'Name Churn Prediction: Churn Probability: Scoring Time: Profile'
-  expect(page).to have_text 'Bruce View Profile'
+  expect(page).to have_text 'Bruce'
+  expect(page).to have_text 'View Profile'
 
   expect(page).to have_text 'Machine Learning Services:'
   expect(page).to have_text 'Name Type Hostname Deployment Actions'

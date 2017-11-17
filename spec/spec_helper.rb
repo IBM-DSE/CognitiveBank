@@ -16,19 +16,22 @@
 
 require 'capybara'
 
-Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
 
-Capybara.javascript_driver = :chrome
-
-if ENV['APP_URL']
-  Capybara.default_driver = :chrome
-  Capybara.run_server     = false
-  Capybara.app_host       = ENV['APP_URL']
-  puts 'Testing against ' + ENV['APP_URL']
+Capybara.configure do |config|
+  
+  # Remote testing
+  if ENV['APP_URL']
+    config.default_driver = :selenium
+    config.run_server     = false
+    config.app_host       = ENV['APP_URL']
+  end
+  
+  config.default_max_wait_time = 10
+  puts 'Testing against ' + (config.app_host || 'localhost') + ' using ' + config.default_driver.to_s
 end
-Capybara.default_max_wait_time = 10
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

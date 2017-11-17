@@ -41,6 +41,8 @@ GEM
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
     ansi (1.5.0)
+    archive-zip (0.7.0)
+      io-like (~> 0.3.0)
     arel (7.1.4)
     autoprefixer-rails (6.7.2)
       execjs
@@ -63,9 +65,11 @@ GEM
       xpath (~> 2.0)
     cf-app-utils (0.6)
     chartkick (2.2.5)
-    childprocess (0.7.0)
+    childprocess (0.8.0)
       ffi (~> 1.0, >= 1.0.11)
-    cliver (0.3.2)
+    chromedriver-helper (1.1.0)
+      archive-zip (~> 0.7.0)
+      nokogiri (~> 1.6)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.2.x)
@@ -98,6 +102,7 @@ GEM
     httpclient (2.8.3)
     i18n (0.8.6)
     ibm-ml (0.2.2)
+    io-like (0.3.0)
     jbuilder (2.6.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -130,10 +135,6 @@ GEM
     nio4r (1.2.1)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
-    poltergeist (1.15.0)
-      capybara (~> 2.1)
-      cliver (~> 0.3.1)
-      websocket-driver (>= 0.2.0)
     public_suffix (2.0.5)
     puma (3.7.0)
     rack (2.0.3)
@@ -207,10 +208,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    selenium-webdriver (3.4.0)
+    selenium-webdriver (3.6.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
-      websocket (~> 1.0)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -239,7 +239,6 @@ GEM
       activemodel (>= 5.0)
       debug_inspector
       railties (>= 5.0)
-    websocket (1.2.4)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -256,6 +255,7 @@ DEPENDENCIES
   capybara
   cf-app-utils
   chartkick
+  chromedriver-helper
   coffee-rails (~> 4.2)
   couchrest
   database_cleaner
@@ -267,7 +267,6 @@ DEPENDENCIES
   local_time
   minitest
   minitest-reporters
-  poltergeist
   puma (~> 3.0)
   rails (~> 5.0.1)
   rails-controller-testing

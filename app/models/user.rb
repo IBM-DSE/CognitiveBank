@@ -14,7 +14,13 @@ class User < ApplicationRecord
   
   def default_values
     self.name = 'Customer ' + Customer.maximum(:id).next.to_s if name.blank?
-    self.email = name.parameterize + '@example.com' if email.blank?
+    if email.blank?
+      self.email = name.parameterize + '@example.com'
+      i = 1
+      while User.find_by_email self.email
+        self.email = name.parameterize + i.to_s + '@example.com'
+      end
+    end
     if password.blank?
       self.password ||= 'password'
       self.password_confirmation ||= 'password'

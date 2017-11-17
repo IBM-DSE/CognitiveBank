@@ -42,10 +42,10 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'capybara'
-  gem 'poltergeist'
   gem 'rake'
   gem 'rspec-rails', '~> 3.6'
   gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
 end
 
 group :development do

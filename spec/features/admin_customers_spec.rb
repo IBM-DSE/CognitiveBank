@@ -1,25 +1,26 @@
 require 'rails_helper'
+require_relative 'shared_stuff'
 
-feature 'Administrate Customers' do
+feature 'Administrate Customers', include_shared: true do
   
   background do
-
+    
     # Visit home page and click 'Log in'
     visit '/'
     expect_home_page
     
-    # Fill in log in credentials
-    login('david@example.com', 'password')
-
-    expect_admin_panel
+    # Log in as administrator
+    login('admin@example.com', @admin_password)
     
+    expect_admin_panel
+  
   end
-
+  
   scenario 'Create Sally' do
     
     # Create first Sally
     create_sally
-
+    
     # Expect her profile
     expect(page).to have_text "Sally's Profile:"
     expect(page).to have_text 'sally@example.com'
@@ -28,10 +29,10 @@ feature 'Administrate Customers' do
     # Go back to admin
     click_link 'x_admin_link'
     expect_admin_panel
-
+    
     # Create second Sally
     create_sally
-
+    
     # Expect her profile
     expect(page).to have_text "Sally's Profile:"
     expect(page).to have_text 'sally1@example.com'
@@ -42,7 +43,7 @@ feature 'Administrate Customers' do
     expect_home_page
     
     login('sally@example.com', 'password')
-
+    
     # Expect the customer dashboard
     expect(page).to have_text 'Welcome back, Sally!'
     expect(page).to have_text 'Cognitive Traveler Rewards Card'
@@ -55,40 +56,9 @@ feature 'Administrate Customers' do
     expect(page).to have_text '2016-12-22	Transportation'
     expect(page).to have_text '2016-12-19	Supermarkets'
     expect(page).to have_text 'Last Statement Balance:'
-
-  end
   
-end
-
-def expect_home_page
-  expect(page).to have_text 'Cognitive Bank'
-  expect(page).to have_text 'Log in'
-end
-
-def login(email, password)
-  click_link 'Log in'
-  within('h1') { expect(page).to have_text 'Log in' }
-  within 'form' do
-    expect(page).to have_text 'Email'
-    expect(page).to have_text 'Password'
-    fill_in 'Email', with: email
-    fill_in 'Password', with: password
-    click_button 'Log in'
   end
-end
 
-def expect_admin_panel
-  expect(page).to have_text 'Admin Panel'
-  expect(page).to have_text 'Welcome, David!'
-  expect(page).to have_text 'You are logged in as administrator'
-
-  expect(page).to have_text 'Customers:'
-  expect(page).to have_text 'Name Churn Prediction: Churn Probability: Scoring Time: Profile'
-  expect(page).to have_text 'Bruce View Profile'
-
-  expect(page).to have_text 'Machine Learning Services:'
-  expect(page).to have_text 'Name Type Hostname Deployment Actions'
-  expect(page).to have_link 'New Machine Learning Service'
 end
 
 def create_sally
@@ -113,8 +83,8 @@ def create_sally
   fill_in 'Twitter Handle', with: 'sally_may_22'
   fill_in 'Age', with: '22'
   fill_in 'Activity', with: '3'
-  select  "Doctor's Degree", from: 'Education Level'
-  select  'Female', from: 'Gender'
+  select "Doctor's Degree", from: 'Education Level'
+  select 'Female', from: 'Gender'
   fill_in 'State', with: 'FL'
   fill_in 'Negative Tweets', with: '3'
   fill_in 'Income', with: '130500'
@@ -146,5 +116,5 @@ def expect_sally_profile
   expect(page).to have_text 'Personality Insights:'
   expect(page).to have_text 'Needs:	Practicality'
   expect(page).to have_text 'Values: Self-transcendence'
-  
+
 end

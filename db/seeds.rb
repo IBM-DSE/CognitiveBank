@@ -11,16 +11,10 @@ end
 puts "Loaded #{Customer.count} customers."
 
 
-User.create!(name:     'David Thomason', email: 'david@example.com',
-             password: 'password', password_confirmation: 'password',
-             admin:    true)
+admin_password = ENV['ADMIN_PASSWORD'] || 'password'
 
-User.create!(name:     'Avijit', email: 'avijit@example.com',
-             password: 'password', password_confirmation: 'password',
-             admin:    true)
-
-User.create!(name:     'John', email: 'john@example.com',
-             password: 'password', password_confirmation: 'password',
+User.create!(name:     'Admin', email: 'admin@example.com',
+             password: admin_password, password_confirmation: admin_password,
              admin:    true)
 
 # Load transaction fraud data

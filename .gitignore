@@ -22,4 +22,3 @@
 
 # Ignore local environment files
 .env
-manifest.yml

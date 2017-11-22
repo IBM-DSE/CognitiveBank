@@ -84,3 +84,5 @@ gem 'local_time'
 gem 'couchrest'
 
 gem 'ibm-ml'
+
+gem 'paperclip', '~> 5.0.0'

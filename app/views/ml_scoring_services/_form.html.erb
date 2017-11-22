@@ -1,4 +1,4 @@
-<%= form_for @ml_scoring_service, html: { class: 'form-horizontal' } do |f| %>
+<%= form_for @ml_scoring_service, html: { class: 'form-horizontal' } do |form| %>
     
     <% if @ml_scoring_service.errors.any? %>
         <div id="error_explanation">
@@ -18,8 +18,8 @@
     <% end %>
     
     <% MlScoringService.standard_attrs.each do |attr| %>
-        <%= render partial: 'shared/input_field', locals: { f:      f, action: attr.to_sym,
-                                                            errors: @ml_scoring_service.errors.messages[attr.to_sym] } %>
+        <%= render partial: 'shared/input_field', locals: { form:   form, attr: attr.to_sym,
+                                                            errors: @ml_scoring_service.errors } %>
     <% end %>
     
     <div class="row">
@@ -29,12 +29,12 @@
       </div>
     </div>
     <% MlScoringService.mlz_attrs.each do |attr| %>
-        <%= render partial: 'shared/input_field', locals: { f:      f, action: attr.to_sym, model_class: MlScoringService,
-                                                            errors: @ml_scoring_service.errors.messages[attr.to_sym] } %>
+        <%= render partial: 'shared/input_field', locals: { form:   form, attr: attr.to_sym, model_class: MlScoringService,
+                                                            errors: @ml_scoring_service.errors } %>
     <% end %>
     
     <div class="center">
-      <%= f.submit class: 'btn btn-lg btn-primary' %>
+      <%= form.submit class: 'btn btn-lg btn-primary' %>
     </div>
 
 <% end %>

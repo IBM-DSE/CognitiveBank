@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116163546) do
+ActiveRecord::Schema.define(version: 20171122151903) do
 
   create_table "customers", force: :cascade do |t|
     t.integer  "user_id"
@@ -35,6 +35,10 @@ ActiveRecord::Schema.define(version: 20171116163546) do
     t.string   "locale"
     t.integer  "img"
     t.text     "score"
+    t.string   "custom_img_file_name"
+    t.string   "custom_img_content_type"
+    t.integer  "custom_img_file_size"
+    t.datetime "custom_img_updated_at"
     t.index ["ml_scoring_service_id"], name: "index_customers_on_ml_scoring_service_id"
     t.index ["user_id"], name: "index_customers_on_user_id"
   end

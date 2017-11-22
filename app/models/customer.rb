@@ -10,6 +10,9 @@ class Customer < ApplicationRecord
   serialize :context, JSON
   serialize :score, JSON
   
+  has_attached_file :custom_img, style: { medium: '300x300>' }
+  validates_attachment_content_type :custom_img, content_type: /\Aimage/
+  
   def self.required_attributes
     [:name, :twitter_id] + MlScoringService.scoring_attrs
   end
@@ -26,12 +29,12 @@ class Customer < ApplicationRecord
   end
   
   def self.form_attributes
-    required_attributes + optional_attributes
+    required_attributes + optional_attributes + [:custom_img]
   end
   
   def self.gender_options
     {
-      'Male': 'M',
+      'Male':   'M',
       'Female': 'F'
     }.to_a
   end
@@ -45,11 +48,11 @@ class Customer < ApplicationRecord
       "Doctor's Degree":    'Doctorate'
     }.to_a
   end
-
+  
   def self.locale_options
     {
       'United States ($)': 'en',
-      'India (₹)': 'en-IN'
+      'India (₹)':         'en-IN'
     }.to_a
   end
   
@@ -124,7 +127,11 @@ class Customer < ApplicationRecord
                          date:        Date.strptime(row['DATE'], '%m/%d/%Y'),
                          category:    row['CATEGORY'])
     end
-    self.img = Customer.where(gender: gender).count + 1
+
+    unless self.custom_img.present?
+      current_max_img = Customer.where(gender: gender).maximum(:img) || 0
+      self.img = current_max_img + 1
+    end
   end
-  
+
 end

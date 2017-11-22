@@ -23,7 +23,11 @@
   <h1><%= @customer.name %>'s Profile:&nbsp;&nbsp;&nbsp;&nbsp;</h1><br>
   <div class="flex even-spaced flex-center">
     <span id="customer-img">
-      <%= image_tag "profiles/#{@customer.gender}/#{@customer.img}.jpg" %>
+      <% if @customer.custom_img.present? %>
+        <%= image_tag @customer.custom_img.url %>
+      <% else %>
+        <%= image_tag "profiles/#{@customer.gender}/#{@customer.img}.jpg" %>
+      <% end %>
       <h4><%= @customer.email %></h4>
     </span>
     <div>

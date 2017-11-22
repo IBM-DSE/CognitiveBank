@@ -34,6 +34,7 @@ en:
         negtweets: "Negative Tweets"
         education: "Education Level"
         locale: "Nationality"
+        custom_img: "Custom Image"
       ml_scoring_service:
         display_type: "Type"
         ldap_port: "LDAP port"

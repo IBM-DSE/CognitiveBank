@@ -1,0 +1,12 @@
+<% attr_errors = errors&.messages[:custom_img] || [] %>
+<% required ||= false %>
+<% text = defined?(model_class) ? model_class.human_attribute_name(action) : t(action) %>
+<div class="row form-group <%= 'has-error' if attr_errors.length>0 %>">
+  <%= form.label action, text+(required ? '*' : '')+':', class: 'control-label col-sm-3' %>
+  <div class="col-sm-6">
+    <%= form.file_field action, class: 'form-control' %>
+    <% if attr_errors.length>0 %>
+      <%= form.label action, attr_errors[0], class: 'control-label' %>
+    <% end %>
+  </div>
+</div>

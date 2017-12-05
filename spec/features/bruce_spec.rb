@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Bruce', js: true do
+feature 'Bruce', js: true, include_shared: true do
   background do
     # Visit home page and click 'Log in'
     visit '/'
@@ -20,11 +20,7 @@ feature 'Bruce', js: true do
 
     # Expect the customer dashboard
     expect(page).to have_text 'Welcome back, Bruce!'
-    expect(page).to have_text 'Cognitive Traveler Rewards Card'
-    expect(page).to have_text 'Current Balance'
-    expect(page).to have_text 'Current Miles'
-    expect(page).to have_text 'Last Statement Balance:'
-    
+    expect_customer_dashboard
   end
   
   scenario 'Bruce logs in and views his account' do

@@ -44,16 +44,7 @@ feature 'Administrate Customers', include_shared: true do
     
     # Expect the customer dashboard
     expect(page).to have_text 'Welcome back, Sally!'
-    expect(page).to have_text 'Cognitive Traveler Rewards Card'
-    expect(page).to have_text 'Current Balance'
-    expect(page).to have_text 'Current Miles'
-    expect(page).to have_text 'Last Statement Balance:'
-    
-    expect(page).to have_text 'Transactions'
-    expect(page).to have_text '2016-12-29	Transportation'
-    expect(page).to have_text '2016-12-22	Transportation'
-    expect(page).to have_text '2016-12-19	Supermarkets'
-    expect(page).to have_text 'Last Statement Balance:'
+    expect_customer_dashboard
   
   end
   

@@ -1,4 +1,5 @@
 # Cognitive Bank
+[![Build Status](https://travis-ci.org/IBM-DSE/CognitiveBank.svg?branch=master)](https://travis-ci.org/IBM-DSE/CognitiveBank)
 
 ## Installation
 

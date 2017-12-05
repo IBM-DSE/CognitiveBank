@@ -80,9 +80,9 @@ feature 'Bruce', js: true, include_shared: true do
     expect(page).to have_text '@bruce_wayne64'
 
     expect(page).to have_text 'Recent Tweets:'
-    expect(page).to have_text "These foreign exchange fees are higher than Trump's wall #kenya #africa #borderwall #AmEx #bankrobbery — Bruce (@bruce_wayne64) December 14, 2016"
-    expect(page).to have_text 'A stunning safari sunset in Mara Naboisho Conservancy#sunset #nofilter #africa #kenya #safari #maranaboisho — Bruce (@bruce_wayne64) December 13, 2016'
-    expect(page).to have_text 'Traveling to Kenya DBX>NBO #kenya #outofafrica #emirates — Bruce (@bruce_wayne64) December 11, 2016'
+    expect(page).to have_text "These foreign exchange fees are higher than Trump's wall #kenya #africa #borderwall #AmEx #bankrobbery — Bruce (@bruce_wayne64) #{(Date.today - 17).strftime('%B %-d, %Y')}"
+    expect(page).to have_text "A stunning safari sunset in Mara Naboisho Conservancy#sunset #nofilter #africa #kenya #safari #maranaboisho — Bruce (@bruce_wayne64) #{(Date.today - 18).strftime('%B %-d, %Y')}"
+    expect(page).to have_text "Traveling to Kenya DBX>NBO #kenya #outofafrica #emirates — Bruce (@bruce_wayne64) #{(Date.today - 20).strftime('%B %-d, %Y')}"
     
     expect(page).to have_text 'Negative Finance-Related Tweets:'
     expect(page).to have_text 'Keywords Sentiment'

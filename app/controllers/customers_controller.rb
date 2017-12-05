@@ -8,28 +8,41 @@ class CustomersController < ApplicationController
     puts ' '
     puts "Customer #{current_customer.name} logged in!"
     
-    # Sort transaction categories
-    cc = {}
-    current_customer.transactions.each do |transaction|
-      cc[transaction.category] = 0 unless cc[transaction.category]
-      cc[transaction.category] += 1
-    end
-    @sorted_categories = cc.sort_by { |k, v| v }.reverse.to_h
+    # Determine dates
+    today    = Date.today
+    mon      = today.month + 1
+    due_date = Date.new(today.year + mon / 12, mon % 12, 1)
     
+    # Sort transaction categories, calculate date offsets
+    cc          = {}
+    rel         = Date.strptime('2016-12-31') # original 'today'
+    offset_date = {}
+    current_customer.transactions.each do |transaction|
+      
+      # calculate transaction date offset relative to original 'today'
+      offset_date[transaction.id] = transaction.date.to_date - rel
+      
+      cc[transaction.category]    = 0 unless cc[transaction.category]
+      cc[transaction.category]    += 1
+    end
+    
+    @transactions      = { due_date: due_date, offset_date: offset_date }
+    @sorted_categories = cc.sort_by { |_, v| v }.reverse.to_h
+  
   end
   
   def show
     if params[:id] and is_admin?
-      @customer = Customer.find params[:id]
+      @customer   = Customer.find params[:id]
       @modifiable = @customer != Customer.first
     elsif is_customer?
       @customer = current_customer
     end
-      
+    
     if @customer
-      tweets = Twitter.load_tweets
-      @personality = @customer.get_personality(tweets).to_h
-      @nlu_output = @customer.extract_signals(tweets)
+      tweets             = Twitter.load_tweets
+      @personality       = @customer.get_personality(tweets).to_h
+      @nlu_output        = @customer.extract_signals(tweets)
       @relevant_keywords = NaturalLanguageUnderstanding.relevant_keywords
     else
       redirect_to login_path, flash: { danger: 'You must log in as customer to view your profile' }
@@ -75,7 +88,7 @@ class CustomersController < ApplicationController
   end
   
   private
-
+  
   def customer_params
     params.require(:customer).permit(Customer.form_attributes)
   end
@@ -92,5 +105,5 @@ class CustomersController < ApplicationController
     end
     true
   end
-  
+
 end

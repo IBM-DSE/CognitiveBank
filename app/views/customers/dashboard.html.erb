@@ -50,7 +50,7 @@
             <h3><%= num_to_currency 1932.52, locale: current_customer.locale %></h3>
             <br>
             <h5>Due on</h5>
-            <h4>March 1st, 2017</h4>
+            <h4><%= @transactions[:due_date].strftime '%B %-d, %Y' %></h4>
           </div>
           <br>
           <%= link_to 'Make a Payment' %>
@@ -77,7 +77,7 @@
               </tr>
               <% current_customer.transactions.order(date: :desc).each do |transaction| %>
                   <tr>
-                    <td><%= transaction.date.strftime('%F') %></td>
+                    <td><%= Date.today + @transactions[:offset_date][transaction.id] %></td>
                     <td><%= transaction.category %></td>
                     <td><%= rand_dollar transaction.category, current_customer.locale %></td>
                   </tr>

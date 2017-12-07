@@ -3,11 +3,11 @@ RSpec.shared_context 'shared stuff', shared_context: :metadata do
   include ActionView::Helpers::NumberHelper
   
   before {
-    @admin_password = ENV['ADMIN_PASSWORD'] || 'password'
-    @select_fields = ['Education Level', 'Gender']
+    @admin_password  = ENV['ADMIN_PASSWORD'] || 'password'
+    @select_fields   = ['Education Level', 'Gender']
     @non_text_fields = @select_fields + ['Email']
   }
-
+  
   def expect_home_page
     expect(page).to have_text 'Cognitive Bank'
     expect(page).to have_text 'Log in'
@@ -24,25 +24,25 @@ RSpec.shared_context 'shared stuff', shared_context: :metadata do
       click_button 'Log in'
     end
   end
-
+  
   def expect_customer_dashboard
     expect(page).to have_text 'Cognitive Traveler Rewards Card'
-  
+    
     expect(page).to have_text 'Current Balance $ 1,265.87'
     expect(page).to have_text 'Available Credit $ 8,735.13'
     expect(page).to have_link 'View Balance Details'
-  
+    
     expect(page).to have_text 'Current Miles'
     expect(page).to have_text '57,892'
     expect(page).to have_link 'Rewards Center'
-  
+    
     expect(page).to have_text 'Last Statement Balance: $ 1,932.52'
     expect(page).to have_text 'Due on'
     today = Date.today
-    mon = today.month + 1
+    mon   = today.month + 1
     expect(page).to have_text Date.new(today.year + mon / 12, mon % 12, 1).strftime '%B %-d, %Y'
     expect(page).to have_link 'Make a Payment'
-  
+    
     expect(page).to have_text 'Transactions'
     expect(page).to have_text 'Date	Category Amount'
     expect(page).to have_text "#{today - 2}	Transportation"
@@ -56,9 +56,9 @@ RSpec.shared_context 'shared stuff', shared_context: :metadata do
     expect(page).to have_text "#{today - 23}	OfficeSupplies"
     expect(page).to have_text "#{today - 30}	Airfare"
   end
-
-  def expect_customer_profile(profile)
   
+  def expect_customer_profile(profile)
+    
     expect(page).to have_text "#{profile['Name']}'s Profile:"
     expect(page).to have_text profile['Email']
     
@@ -67,7 +67,7 @@ RSpec.shared_context 'shared stuff', shared_context: :metadata do
     Customer.standard_attributes.each do |attr|
       expect(page).to have_text "#{attr}: #{profile[attr]}"
     end
-
+    
     Customer.currency_attributes.each do |attr|
       val = Nokogiri::HTML.parse(num_to_currency(profile[attr], locale: 'en')).text
       expect(page).to have_text "#{attr}: #{val}"
@@ -85,11 +85,11 @@ RSpec.shared_context 'shared stuff', shared_context: :metadata do
     expect(page).to have_text 'Top Keywords Sentiment'
     expect(page).to have_text 'foreign exchange fees 0%'
     expect(page).to have_text "Negative Finance-Related Tweets: #{profile['Negative Tweets']}"
-
+    
     expect(page).to have_text 'Personality Insights:'
     expect(page).to have_text 'Needs:	Practicality'
     expect(page).to have_text 'Values: Self-transcendence'
-
+    
     expect(page).to have_text 'IBM Machine Learning Prediction'
     
     expect(page).to have_text 'Customer Attributes:'
@@ -103,24 +103,24 @@ RSpec.shared_context 'shared stuff', shared_context: :metadata do
     expect(page).to have_text 'Prediction:'
     expect(page).to have_text 'Probability:'
     expect(page).to have_text 'Scoring Time:'
-    
+  
   end
-
+  
   def expect_admin_panel
     expect(page).to have_text 'Admin Panel'
     expect(page).to have_text 'Welcome, Admin!'
     expect(page).to have_text 'You are logged in as administrator'
-  
+    
     expect(page).to have_text 'Customers:'
     expect(page).to have_text 'Name Churn Prediction: Churn Probability: Scoring Time: Profile'
     expect(page).to have_text 'Bruce'
     expect(page).to have_text 'View Profile'
-  
+    
     expect(page).to have_text 'Machine Learning Services:'
     expect(page).to have_text 'Name Type Hostname Deployment Actions'
     expect(page).to have_link 'New Machine Learning Service'
   end
-  
+
 end
 
 RSpec.configure do |rspec|

@@ -24,7 +24,7 @@ feature 'Administrate Customers', include_shared: true do
       'Twitter Handle'  => 'sally_may_22',
       'Age'             => '22',
       'Activity'        => '3',
-      'Education Level' => 'Doctorate',
+      'Education Level' => "Doctor's Degree",
       'Gender'          => 'Female',
       'State'           => 'FL',
       'Negative Tweets' => '3',
@@ -77,7 +77,7 @@ feature 'Administrate Customers', include_shared: true do
       'Twitter Handle'  => 'dtom90',
       'Age'             => '27',
       'Activity'        => '3',
-      'Education Level' => 'Masters degree',
+      'Education Level' => "Master's Degree",
       'Gender'          => 'Male',
       'State'           => 'NY',
       'Negative Tweets' => '0',
@@ -103,7 +103,7 @@ def expect_customer_form
   # Required fields
   expect(page).to have_text 'Name*: Twitter Handle*: Age*: Activity*:'
   expect(page).to have_text 'Education Level*:'
-  expect(page).to have_select 'Education Level*:', with_options: Customer.education_options
+  expect(page).to have_select 'Education Level*:', with_options: Customer.education_options.keys
   expect(page).to have_select 'Gender*:', with_options: ['Male', 'Female']
   expect(page).to have_text 'State*: Negative Tweets*: Income*:'
   

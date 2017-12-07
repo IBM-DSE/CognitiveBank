@@ -55,11 +55,17 @@ class Customer < ApplicationRecord
   end
   
   def self.education_options
-    ['High school graduate',
-     'Associate degree',
-     'Bachelors degree',
-     'Masters degree',
-     'Doctorate']
+    {
+      'High School Degree': 'High school graduate',
+      "Associate's Degree": 'Associate degree',
+      "Bachelor's Degree":  'Bachelors degree',
+      "Master's Degree":    'Masters degree',
+      "Doctor's Degree":    'Doctorate'
+    }
+  end
+  
+  def self.education_mapping
+    education_options.invert
   end
   
   def self.locale_options

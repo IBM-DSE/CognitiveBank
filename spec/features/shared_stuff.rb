@@ -1,7 +1,11 @@
 RSpec.shared_context 'shared stuff', shared_context: :metadata do
+  include CustomersHelper
+  include ActionView::Helpers::NumberHelper
   
   before {
     @admin_password = ENV['ADMIN_PASSWORD'] || 'password'
+    @select_fields = ['Education Level', 'Gender']
+    @non_text_fields = @select_fields + ['Email']
   }
 
   def expect_home_page
@@ -53,6 +57,55 @@ RSpec.shared_context 'shared stuff', shared_context: :metadata do
     expect(page).to have_text "#{today - 30}	Airfare"
   end
 
+  def expect_customer_profile(profile)
+  
+    expect(page).to have_text "#{profile['Name']}'s Profile:"
+    expect(page).to have_text profile['Email']
+    
+    expect(page).to have_text "Gender: #{Customer.gender_mapping[profile['Gender']]}"
+    
+    Customer.standard_attributes.each do |attr|
+      expect(page).to have_text "#{attr}: #{profile[attr]}"
+    end
+
+    Customer.currency_attributes.each do |attr|
+      val = Nokogiri::HTML.parse(num_to_currency(profile[attr], locale: 'en')).text
+      expect(page).to have_text "#{attr}: #{val}"
+    end
+    
+    expect(page).to have_text "Twitter Profile: @#{profile['Twitter Handle']}"
+    expect(page).to have_text 'Recent Tweets:'
+    expect(page).to have_text "These foreign exchange fees are higher than Trump's wall #kenya #africa #borderwall #AmEx #bankrobbery"
+    expect(page).to have_text "— #{profile['Name']} (@#{profile['Twitter Handle']}) #{(Date.today - 17).strftime('%B %-d, %Y')}"
+    expect(page).to have_text "A stunning safari sunset in Mara Naboisho Conservancy#sunset #nofilter #africa #kenya #safari #maranaboisho"
+    expect(page).to have_text "— #{profile['Name']} (@#{profile['Twitter Handle']}) #{(Date.today - 18).strftime('%B %-d, %Y')}"
+    expect(page).to have_text "Traveling to Kenya DBX>NBO #kenya #outofafrica #emirates"
+    expect(page).to have_text "— #{profile['Name']} (@#{profile['Twitter Handle']}) #{(Date.today - 20).strftime('%B %-d, %Y')}"
+    
+    expect(page).to have_text 'Top Keywords Sentiment'
+    expect(page).to have_text 'foreign exchange fees 0%'
+    expect(page).to have_text "Negative Finance-Related Tweets: #{profile['Negative Tweets']}"
+
+    expect(page).to have_text 'Personality Insights:'
+    expect(page).to have_text 'Needs:	Practicality'
+    expect(page).to have_text 'Values: Self-transcendence'
+
+    expect(page).to have_text 'IBM Machine Learning Prediction'
+    
+    expect(page).to have_text 'Customer Attributes:'
+    
+    expect(page).to have_text 'ML Scoring Service:'
+    expect(page).to have_text 'Type:'
+    expect(page).to have_text 'Name:'
+    expect(page).to have_text 'Deployment ID:'
+    
+    expect(page).to have_text 'Customer Churn Prediction:'
+    expect(page).to have_text 'Prediction:'
+    expect(page).to have_text 'Probability:'
+    expect(page).to have_text 'Scoring Time:'
+    
+  end
+
   def expect_admin_panel
     expect(page).to have_text 'Admin Panel'
     expect(page).to have_text 'Welcome, Admin!'
@@ -68,9 +121,6 @@ RSpec.shared_context 'shared stuff', shared_context: :metadata do
     expect(page).to have_link 'New Machine Learning Service'
   end
   
-  subject do
-    'this is the subject'
-  end
 end
 
 RSpec.configure do |rspec|

@@ -62,7 +62,7 @@ feature 'Bruce', js: true, include_shared: true do
       'Age'                        => '41',
       'State'                      => 'TX',
       'Negative Tweets'            => '13',
-      'Education Level'            => 'Masters degree',
+      'Education Level'            => "Master's Degree",
       'Income'                     => '316530',
       'Investment'                 => '108972',
       'Annual Spending'            => '70662.63',

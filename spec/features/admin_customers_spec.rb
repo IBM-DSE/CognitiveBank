@@ -18,42 +18,51 @@ feature 'Administrate Customers', include_shared: true do
   
   scenario 'Create Two Sallys' do
     
-    # Create first Sally
-    create_sally
+    sally = {
+      'Name'            => 'Sally',
+      'Email'           => 'sally@example.com',
+      'Twitter Handle'  => 'sally_may_22',
+      'Age'             => '22',
+      'Activity'        => '3',
+      'Education Level' => "Doctor's Degree",
+      'Gender'          => 'Female',
+      'State'           => 'FL',
+      'Negative Tweets' => '3',
+      'Income'          => '130500'
+    }
     
-    # Expect her profile
-    expect(page).to have_text 'sally@example.com'
-    expect_sally_profile
+    # Create first Sally
+    click_link 'New Customer'
+    expect_customer_form
+    fill_customer_form(sally)
+    click_button 'Create Customer'
+    
+    # Expect Sally profile
+    expect_customer_profile(sally)
     
     # Go back to admin
     click_link 'x_admin_link'
     expect_admin_panel
     
     # Create second Sally
-    create_sally
+    click_link 'New Customer'
+    expect_customer_form
+    fill_customer_form(sally)
+    click_button 'Create Customer'
     
-    # Expect her profile with email sally1@example.com
-    expect(page).to have_text 'sally1@example.com'
-    expect_sally_profile
+    # Expect Sally profile with email sally1@example.com
+    sally['Email'] = 'sally1@example.com'
+    expect_customer_profile(sally)
     
+    # Log in as Sally
     click_link 'Account'
     click_link 'Log out'
     expect_home_page
-    
     login('sally@example.com', 'password')
     
     # Expect the customer dashboard
     expect(page).to have_text 'Welcome back, Sally!'
-    expect(page).to have_text 'Cognitive Traveler Rewards Card'
-    expect(page).to have_text 'Current Balance'
-    expect(page).to have_text 'Current Miles'
-    expect(page).to have_text 'Last Statement Balance:'
-    
-    expect(page).to have_text 'Transactions'
-    expect(page).to have_text '2016-12-29	Transportation'
-    expect(page).to have_text '2016-12-22	Transportation'
-    expect(page).to have_text '2016-12-19	Supermarkets'
-    expect(page).to have_text 'Last Statement Balance:'
+    expect_customer_dashboard
   
   end
   
@@ -62,45 +71,27 @@ feature 'Administrate Customers', include_shared: true do
     click_link 'New Customer'
     expect_customer_form
     
-    # Fill in required fields
-    fill_in 'Name', with: 'David'
-    fill_in 'Twitter Handle', with: 'dtom90'
-    fill_in 'Age', with: '27'
-    fill_in 'Activity', with: '3'
-    select "Master's Degree", from: 'Education Level'
-    select 'Male', from: 'Gender'
-    fill_in 'State', with: 'NY'
-    fill_in 'Negative Tweets', with: '0'
-    fill_in 'Income', with: '2000'
-    attach_file 'Custom Image:', Rails.root + 'spec/features/David.jpeg'
+    david = {
+      'Name'            => 'David',
+      'Email'           => 'david@example.com',
+      'Twitter Handle'  => 'dtom90',
+      'Age'             => '27',
+      'Activity'        => '3',
+      'Education Level' => "Master's Degree",
+      'Gender'          => 'Male',
+      'State'           => 'NY',
+      'Negative Tweets' => '0',
+      'Income'          => '2000'
+    }
     
+    # Fill in form with David's profile and attach custom image
+    fill_customer_form(david)
+    attach_file 'Custom Image:', Rails.root + 'spec/features/David.jpeg'
     click_button 'Create Customer'
     
-    expect(page).to have_text "David's Profile:"
+    # Expect David's customer profile and custom image
+    expect_customer_profile(david)
     expect(page).to have_css("img[src*='David.jpeg']")
-    expect(page).to have_text 'david@example.com'
-    
-    expect(page).to have_text 'Gender: Male'
-    expect(page).to have_text 'Age: 27'
-    expect(page).to have_text 'State: NY'
-    expect(page).to have_text 'Education Level: Masters degree'
-    expect(page).to have_text '$ 2,000.00'
-    expect(page).to have_text 'Investment:'
-    expect(page).to have_text 'Annual Spending:'
-    expect(page).to have_text 'Annual Transactions:'
-    expect(page).to have_text 'Average Daily Transactions:'
-    expect(page).to have_text 'Average Transaction Amount:'
-    
-    expect(page).to have_text 'Twitter Profile:'
-    expect(page).to have_text '@dtom90'
-    expect(page).to have_text 'Negative Finance-Related Tweets: 0'
-    expect(page).to have_text 'Keywords'
-    expect(page).to have_text 'Sentiment'
-    expect(page).to have_text 'foreign exchange fees 0%'
-    
-    expect(page).to have_text 'Personality Insights:'
-    expect(page).to have_text 'Needs:	Practicality'
-    expect(page).to have_text 'Values: Self-transcendence'
   
   end
 
@@ -112,8 +103,7 @@ def expect_customer_form
   # Required fields
   expect(page).to have_text 'Name*: Twitter Handle*: Age*: Activity*:'
   expect(page).to have_text 'Education Level*:'
-  expect(page).to have_select 'Education Level*:',
-                              with_options: ['High School Degree', "Associate's Degree", "Bachelor's Degree", "Master's Degree", "Doctor's Degree"]
+  expect(page).to have_select 'Education Level*:', with_options: Customer.education_options.keys
   expect(page).to have_select 'Gender*:', with_options: ['Male', 'Female']
   expect(page).to have_text 'State*: Negative Tweets*: Income*:'
   
@@ -125,49 +115,17 @@ def expect_customer_form
 
 end
 
-def create_sally
+def fill_customer_form(profile)
   
-  click_link 'New Customer'
-  expect_customer_form
+  # Fill in text fields
+  p
+  profile.except(*@non_text_fields).each_key do |field|
+    fill_in field, with: profile[field]
+  end
   
-  # Fill in required fields
-  fill_in 'Name', with: 'Sally'
-  fill_in 'Twitter Handle', with: 'sally_may_22'
-  fill_in 'Age', with: '22'
-  fill_in 'Activity', with: '3'
-  select "Doctor's Degree", from: 'Education Level'
-  select 'Female', from: 'Gender'
-  fill_in 'State', with: 'FL'
-  fill_in 'Negative Tweets', with: '3'
-  fill_in 'Income', with: '130500'
-  
-  click_button 'Create Customer'
-
-end
-
-def expect_sally_profile
-  
-  expect(page).to have_text "Sally's Profile:"
-  expect(page).to have_text 'Gender: Female'
-  expect(page).to have_text 'Age: 22'
-  expect(page).to have_text 'State: FL'
-  expect(page).to have_text 'Education Level: Doctorate'
-  expect(page).to have_text 'Income: $ 130,500.00'
-  expect(page).to have_text 'Investment:'
-  expect(page).to have_text 'Annual Spending:'
-  expect(page).to have_text 'Annual Transactions:'
-  expect(page).to have_text 'Average Daily Transactions:'
-  expect(page).to have_text 'Average Transaction Amount:'
-  
-  expect(page).to have_text 'Twitter Profile:'
-  expect(page).to have_text '@sally_may_22'
-  expect(page).to have_text 'Negative Finance-Related Tweets: 3'
-  expect(page).to have_text 'Keywords'
-  expect(page).to have_text 'Sentiment'
-  expect(page).to have_text 'foreign exchange fees 0%'
-  
-  expect(page).to have_text 'Personality Insights:'
-  expect(page).to have_text 'Needs:	Practicality'
-  expect(page).to have_text 'Values: Self-transcendence'
+  # Select from dropdown fields
+  profile.slice(*@select_fields).each_key do |field|
+    select profile[field], from: field
+  end
 
 end

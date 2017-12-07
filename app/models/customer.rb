@@ -32,6 +32,21 @@ class Customer < ApplicationRecord
     required_attributes + optional_attributes + [:custom_img]
   end
   
+  def self.standard_attributes
+    ['Age', 'State', 'Education Level', 'Annual Transactions', 'Average Daily Transactions']
+  end
+  
+  def self.currency_attributes
+    ['Income', 'Investment', 'Annual Spending', 'Average Transaction Amount']
+  end
+  
+  def self.gender_mapping
+    {
+      'M': 'Male',
+      'F': 'Female'
+    }
+  end
+  
   def self.gender_options
     {
       'Male':   'M',
@@ -40,13 +55,11 @@ class Customer < ApplicationRecord
   end
   
   def self.education_options
-    {
-      'High School Degree': 'High school graduate',
-      "Associate's Degree": 'Associate degree',
-      "Bachelor's Degree":  'Bachelors degree',
-      "Master's Degree":    'Masters degree',
-      "Doctor's Degree":    'Doctorate'
-    }.to_a
+    ['High school graduate',
+     'Associate degree',
+     'Bachelors degree',
+     'Masters degree',
+     'Doctorate']
   end
   
   def self.locale_options
@@ -127,10 +140,10 @@ class Customer < ApplicationRecord
                          date:        Date.strptime(row['DATE'], '%m/%d/%Y'),
                          category:    row['CATEGORY'])
     end
-
+    
     unless self.custom_img.present?
       current_max_img = Customer.where(gender: gender).maximum(:img) || 0
-      self.img = current_max_img + 1
+      self.img        = current_max_img + 1
     end
   end
 

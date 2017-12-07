@@ -1,9 +1,16 @@
 <table class="table">
   
   <tr><th>Gender: </th><td><%= @customer.display_gender %></td></tr>
-  <% @customer.attributes.slice('age', 'state', 'education').each do |k,v| %>
+  <% @customer.attributes.slice('age', 'state').each do |k,v| %>
       <tr><th><%= Customer.human_attribute_name k %>: </th><td><%= v.to_s %></td></tr>
   <% end %>
-  <tr><th>Income: </th><td><%= num_to_currency @customer.income, locale: @customer.locale %></td></tr>
+  <tr>
+    <th><%= Customer.human_attribute_name :education %>: </th>
+    <td><%= Customer.education_mapping[@customer.education] %></td>
+  </tr>
+  <tr>
+    <th><%= Customer.human_attribute_name :income %>: </th>
+    <td><%= num_to_currency @customer.income, locale: @customer.locale %></td>
+  </tr>
   
 </table>

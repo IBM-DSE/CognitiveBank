@@ -1,27 +1,18 @@
 language: ruby
 rvm:
   - 2.4.0
+cache: bundler
 
-sudo: false
+sudo: required
 dist: trusty
 addons:
   apt:
     packages:
-      - google-chrome-stable
-
-cache: bundler
-
-before_install:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - mkdir -p ~/drivers; export PATH=~/drivers:$PATH;
-  - CHROMEDRIVER_VERSION=$(wget -q -O - http://chromedriver.storage.googleapis.com/LATEST_RELEASE);
-    CHROMEDRIVER_URL="http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip";
-    FILE=`mktemp`; wget "$CHROMEDRIVER_URL" -qO $FILE && unzip $FILE chromedriver -d ~/drivers; rm $FILE; chmod 777 ~/drivers/chromedriver;
-  - chromedriver --version
-  - chromium-browser --version
-  - google-chrome --version
-  - google-chrome-stable --version
+      - chromium-chromedriver
+  chrome: stable
 
 before_script:
   - source .travis_config.sh
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3

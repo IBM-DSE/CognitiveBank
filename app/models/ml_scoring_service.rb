@@ -24,20 +24,20 @@ class MlScoringService < ApplicationRecord
         password = convo_creds['password']
         
         # detect first deployment
-        service     = IBM::ML::Cloud.new username, password
-        deployments = service.deployments
+        # service     = IBM::ML::Cloud.new username, password
+        # deployments = service.deployments
         
         name       = 'WML Service'
         deployment = nil
-        if deployments['count'].positive?
-          deployments['resources'].each do |dep|
-            name = dep['entity']['name'].downcase
-            if name.include?('churn')
-              deployment = dep['metadata']['guid']
-              name       = dep['entity']['name']
-            end
-          end
-        end
+        # if deployments['count'].positive?
+        #   deployments['resources'].each do |dep|
+        #     name = dep['entity']['name'].downcase
+        #     if name.include?('churn')
+        #       deployment = dep['metadata']['guid']
+        #       name       = dep['entity']['name']
+        #     end
+        #   end
+        # end
         
         return new(name: name, hostname: hostname, username: username, password: password, deployment: deployment)
       end

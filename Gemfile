@@ -41,9 +41,9 @@ gem 'bcrypt', '~> 3.1.7'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'capybara'
+  gem 'capybara', '~> 2.14.4'
   gem 'rake'
-  gem 'rspec-rails', '~> 3.6'
+  gem 'rspec-rails', '~> 3.6.0'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
 end
@@ -79,10 +79,10 @@ end
 # Prevents warning messages
 gem 'thor', '0.19.1'
 
-gem 'local_time'
+gem 'local_time', '~> 1.0.3'
 
 gem 'couchrest'
 
-gem 'ibm-ml'
+gem 'ibm-ml', '~> 0.2.2'
 
 gem 'paperclip', '~> 5.2'

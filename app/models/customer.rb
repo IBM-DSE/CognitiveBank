@@ -90,6 +90,7 @@ class Customer < ApplicationRecord
   def will_churn?
     churn = MlScoring.new self
     update! churn.result if churn.result
+    self.touch
     churn_prediction
   end
   

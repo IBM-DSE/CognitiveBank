@@ -39,8 +39,8 @@ RSpec.shared_context 'shared stuff', shared_context: :metadata do
     expect(page).to have_text 'Last Statement Balance: $ 1,932.52'
     expect(page).to have_text 'Due on'
     today = Date.today
-    mon   = today.month + 1
-    expect(page).to have_text Date.new(today.year + mon / 12, mon % 12, 1).strftime '%B %-d, %Y'
+    mon   = today.month
+    expect(page).to have_text Date.new(today.year + mon / 12, mon % 12 + 1, 1).strftime '%B %-d, %Y'
     expect(page).to have_link 'Make a Payment'
     
     expect(page).to have_text 'Transactions'

@@ -10,8 +10,8 @@ class CustomersController < ApplicationController
     
     # Determine dates
     today    = Date.today
-    mon      = today.month + 1
-    due_date = Date.new(today.year + mon / 12, mon % 12, 1)
+    mon      = today.month
+    due_date = Date.new(today.year + mon / 12, mon % 12 + 1, 1)
     
     # Sort transaction categories, calculate date offsets
     cc          = {}

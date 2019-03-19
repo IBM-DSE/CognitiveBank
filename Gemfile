@@ -7,7 +7,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.1'
+gem 'rails', '>= 5.0.7.2'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
@@ -41,7 +41,7 @@ gem 'bcrypt', '~> 3.1.7'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'capybara', '~> 2.14.4'
+  gem 'capybara', '~> 2.18.0'
   gem 'rake'
   gem 'rspec-rails', '~> 3.6.0'
   gem 'selenium-webdriver'

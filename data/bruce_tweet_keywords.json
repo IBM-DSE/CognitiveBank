@@ -1,73 +1,100 @@
 {
   "usage": {
     "text_units": 1,
-    "text_characters": 7229,
+    "text_characters": 7230,
     "features": 1
   },
   "language": "en",
   "keywords": [
     {
-      "text": "Lamu Island",
+      "text": "Unreported acts of terror",
       "sentiment": {
-        "score": 0.315024
+        "score": -0.947545,
+        "label": "negative"
       },
-      "relevance": 0.902396
+      "relevance": 0.606872,
+      "count": 1
     },
     {
-      "text": "North Kenya Coast",
+      "text": "stunning sunset",
       "sentiment": {
-        "score": 0.0
+        "score": 0.766949,
+        "label": "positive"
       },
-      "relevance": 0.8147
+      "relevance": 0.591023,
+      "count": 1
     },
     {
-      "text": "Kenya shillings",
+      "text": "sides of femininity",
       "sentiment": {
-        "score": 0.0
+        "score": 0.766949,
+        "label": "positive"
       },
-      "relevance": 0.782375
+      "relevance": 0.583586,
+      "count": 1
     },
     {
-      "text": "Naboisho Conservancy",
+      "text": "n nieces",
       "sentiment": {
-        "score": 0.0
+        "score": 0.996832,
+        "label": "positive"
       },
-      "relevance": 0.704086
-    },
-    {
-      "text": "Mara Naboisho",
-      "sentiment": {
-        "score": 0.634549
-      },
-      "relevance": 0.684622
-    },
-    {
-      "text": "Miami Wynwood Art",
-      "sentiment": {
-        "score": 0.0
-      },
-      "relevance": 0.662875
-    },
-    {
-      "text": "TBT Uncle Buzz",
-      "sentiment": {
-        "score": 0.0
-      },
-      "relevance": 0.662747
-    },
-    {
-      "text": "Deer Valley",
-      "sentiment": {
-        "score": 0.598821
-      },
-      "relevance": 0.652049
+      "relevance": 0.566043,
+      "count": 1
     },
     {
       "text": "foreign exchange fees",
       "sentiment": {
-        "score": 0.0
+        "score": -0.947545,
+        "label": "negative"
       },
-      "relevance": 0.642155
+      "relevance": 0.565617,
+      "count": 1
+    },
+    {
+      "text": "@Cumberland Foreside",
+      "sentiment": {
+        "score": 0.996832,
+        "label": "positive"
+      },
+      "relevance": 0.559982,
+      "count": 2
+    },
+    {
+      "text": "nice job",
+      "sentiment": {
+        "score": 0.712617,
+        "label": "positive"
+      },
+      "relevance": 0.558131,
+      "count": 1
+    },
+    {
+      "text": "exchange rate",
+      "sentiment": {
+        "score": -0.947545,
+        "label": "negative"
+      },
+      "relevance": 0.547403,
+      "count": 1
+    },
+    {
+      "text": "St. Barth",
+      "sentiment": {
+        "score": 0.971313,
+        "label": "positive"
+      },
+      "relevance": 0.547108,
+      "count": 1
+    },
+    {
+      "text": "board meetings",
+      "sentiment": {
+        "score": 0.861168,
+        "label": "positive"
+      },
+      "relevance": 0.538911,
+      "count": 1
     }
   ]
 }

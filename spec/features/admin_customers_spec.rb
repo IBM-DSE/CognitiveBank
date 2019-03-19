@@ -113,12 +113,13 @@ def expect_customer_form
   expect(page).to have_select 'Nationality:', with_options: ['United States ($)', 'India (₹)']
   expect(page).to have_field 'Custom Image:'
 
+  expect(page).to have_button 'Create Customer'
+
 end
 
 def fill_customer_form(profile)
   
   # Fill in text fields
-  p
   profile.except(*@non_text_fields).each_key do |field|
     fill_in field, with: profile[field]
   end

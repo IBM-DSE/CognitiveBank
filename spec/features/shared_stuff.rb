@@ -83,7 +83,7 @@ RSpec.shared_context 'shared stuff', shared_context: :metadata do
     expect(page).to have_text "— #{profile['Name']} (@#{profile['Twitter Handle']}) #{(Date.today - 20).strftime('%B %-d, %Y')}"
     
     expect(page).to have_text 'Top Keywords Sentiment'
-    expect(page).to have_text 'foreign exchange fees 0%'
+    expect(page).to have_text 'foreign exchange fees -95%'
     expect(page).to have_text "Negative Finance-Related Tweets: #{profile['Negative Tweets']}"
     
     expect(page).to have_text 'Personality Insights:'
